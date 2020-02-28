@@ -1,0 +1,194 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+  color: #004d40;
+}
+
+header {
+  min-width: 360px;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+#logoText {
+  letter-spacing: -8px;
+  text-shadow: 2px 2px 4px #000000;
+}
+
+#contactDetails {
+  margin: 0 auto;
+  text-align: right;
+  width: 80%;
+  position: absolute;
+  top: 50%;
+  right: 3%;
+}
+
+.cont,
+#contactDetails {
+  display: inline-block;
+}
+
+.cont {
+  margin-left: 10px;
+}
+
+#lCont {
+  display: inline-block;
+  width: 65px;
+  margin-left: 10px;
+  /* background: gray; */
+}
+
+#c {
+  font-size: 0.9em;
+}
+
+#a {
+  font-size: 0.7em;
+}
+
+#c #a #logo,
+h3 {
+  display: inline-block;
+}
+
+#t {
+  font-size: 1.5em;
+  letter-spacing: -18px;
+}
+
+.fab {
+  font-size: 1.4em;
+  color: #263238;
+}
+
+#logo {
+  border-bottom: 1px solid black;
+  position: fixed;
+  background: white;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+#contactDetails span {
+  display: none;
+  color: #263238;
+}
+
+#app-name {
+  display: inline-block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 0.9em;
+  font-weight: bold;
+  text-align: center;
+}
+
+/************************
+NAVIGATION
+***********************/
+#link {
+  color: white;
+  font-size: 1.2em;
+}
+
+#link:hover {
+  color: black
+}
+
+.navbar {
+  text-align: right;
+  top: 81px;
+  position: fixed;
+  right: 0;
+  left: 0;
+  background: #43545c;
+}
+
+#link.active {
+  color: white;
+  font-weight: bold;
+
+}
+
+
+
+
+/*************************
+MAIN
+***************************/
+/* #features {
+  background: gray;
+} */
+
+main {
+  display: grid;
+  /* background: gold; */
+  width: 95%;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  margin: 150px auto 10px auto;
+  /* grid-column-gap: 10px; */
+}
+
+#login {
+  padding: 15px 10px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
+    0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+#register {
+  padding: 15px 10px;
+  display: none;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
+    0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.cardTitle {
+
+  text-align: center;
+}
+
+#loginRegister,
+#features,
+#guide {
+  margin: 10px 5px;
+}
+
+/******************************
+MEDIA QUERIES
+*********************************/
+@media screen and (min-width: 800px) {
+  #contactDetails span {
+    display: inline;
+  }
+}
+
+@media screen and (min-width: 1000px) {
+
+  .navbar-collapse {
+    position: relative;
+  }
+
+
+
+  .navbar-nav {
+    position: absolute;
+    right: 0;
+  }
+
+  /* .home {
+    position: absolute;
+    left: 10px;
+  } */
+}
