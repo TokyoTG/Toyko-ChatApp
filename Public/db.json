@@ -2,5 +2,8 @@
     "users": [{
         "username": "tokyo",
         "password": "1234"
-    }]
+    }],
+    "states": [
+        "Abia", ""
+    ]
 }

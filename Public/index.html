@@ -105,29 +105,94 @@
                         <input type="checkbox" class="form-check-input" id="exampleCheck1">
                         <label class="form-check-label" for="exampleCheck1">Remember me</label>
                     </div>
-                    <button type="submit" class="btn btn-primary btn-block" onclick="toggleLog()">Login</button>
-                    <p>OR</p>
+                    <button type="submit" class="btn btn-success btn-block" onclick="toggleLog()">Login</button>
+                    <div id="ask">
+                        <p>Dont have an account yet ?</p>
+                    </div>
                     <button type="submit" class="btn btn-primary btn-block" onclick="toggleReg()">Register</button>
                 </form>
             </div>
             <div id="register">
-                <h3>register card here !!</h3>
+                <div class="cardTitle">
+                    <h3>User Registration</h3>
+                </div>
+
                 <form>
                     <div class="form-group">
-                        <label for="exampleInputEmail1">Email address</label>
-                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                        <label for="fname">Full Name</label>
+                        <input type="text" class="form-control" id="fname" aria-describedby="emailHelp"
+                            placeholder="Enter Full Name Here">
+                        <small id="emailHelp" class="form-text text-muted">First name followed by last name
+                        </small>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="text" class="form-control" id="phone" aria-describedby="emailHelp">
+                        <small id="emailHelp" class="form-text text-muted">We'll never share your number with anyone
+                            else.</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email address</label>
+                        <input type="email" class="form-control" id="email" aria-describedby="emailHelp">
                         <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
                             else.</small>
                     </div>
                     <div class="form-group">
-                        <label for="exampleInputPassword1">Password</label>
-                        <input type="password" class="form-control" id="exampleInputPassword1">
+                        <label for="age">Age</label>
+                        <input type="number" class="form-control" id="age" aria-describedby="emailHelp">
                     </div>
-                    <div class="form-group form-check">
-                        <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                        <label class="form-check-label" for="exampleCheck1">Remember me</label>
+                    <fieldset class="form-group">
+                        <div class="row">
+                            <legend class="col-form-label col-sm-2 pt-0">Gender</legend>
+                            <div class="col-sm-10">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="gender" id="male" value="male"
+                                        checked>
+                                    <label class="form-check-label" for="male">
+                                        Male
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="gender" id="female"
+                                        value="female">
+                                    <label class="form-check-label" for="female">
+                                        Female
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                    <div class="form-group">
+                        <label for="state">State</label>
+                        <select class="custom-select" id="state" required>
+                            <option selected disabled value="">Choose State...</option>
+                            <option>...</option>
+                        </select>
+
                     </div>
-                    <button type="submit" class="btn btn-primary btn-block" onclick="toggleReg()">Register</button>
+                    <div class="form-group">
+                        <label for="city">City</label>
+                        <select class="custom-select" id="city" required>
+                            <option selected disabled value="">Choose City...</option>
+                            <option>...</option>
+                        </select>
+
+                    </div>
+                    <div class="form-group">
+                        <label for="password1">Password</label>
+                        <input type="password" class="form-control" id="password1">
+                        <small id="passwordHelpInline" class="text-muted">
+                            Must be 8-20 characters long.
+                        </small>
+                    </div>
+                    <div class="form-group">
+                        <label for="password2">Confirm Password</label>
+                        <input type="password" class="form-control" id="password2">
+                        <small id="passwordHelpInline" class="text-muted">
+                            Must be the same as above.
+                        </small>
+                    </div>
+                    <button type="submit" class="btn btn-success btn-block" onclick="toggleReg()">Register</button>
                 </form>
             </div>
         </section>
