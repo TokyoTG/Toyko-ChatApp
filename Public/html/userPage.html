@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="../style/style.css">
+    <link rel="stylesheet" href="../style/all.min.css">
+
+    <title>Tokyo | ChatApp</title>
+</head>
+
+<body>
+    <header>
+        <div id="logo">
+            <div id="lCont">
+                <a href="index.html">
+                    <h1 id="logoText"><span id="t">T</span><span id="c">C</span><span id="a">A</span></h1>
+                </a>
+
+            </div>
+            <div id="app-name">
+                <h3> Tokyo Chat App</h3>
+            </div>
+
+            <div id="contactDetails">
+                <ul>
+                    <li class="cont"><a href="#"><i class="fab fa-facebook"></i> <span>Facebook</span></a></li>
+                    <li class="cont"><a href="#"><i class="fab fa-twitter"></i> <span>Twitter</span></a></li>
+                    <li class="cont"><a href="#"><i class="fab fa-github"></i> <span>GitHub</span></a></li>
+                </ul>
+            </div>
+
+        </div>
+        <nav class="navbar navbar-expand-lg navbar-light ">
+            <a class="navbar-brand" href="#" id="link">Tokyo ChatApp</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    <a class="nav-item nav-link active" href="#" id="link">Home <span
+                            class="sr-only">(current)</span></a>
+                    <a class="nav-item nav-link" href="#" id="link">Features</a>
+                    <a class="nav-item nav-link" href="#" id="link" onclick="toggleLog()">Login</a>
+                </div>
+            </div>
+        </nav>
+
+    </header>
+    <main>
+    </main>
+    <footer>
+        <p>&copy; Tokyo 2020</p>
+
+        <ul>
+            <li><a href="#">FAQ</a></li>
+            <li><a href="#">Policy</a></li>
+            <li><a href="#">Safety</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+    </footer>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/additional-methods.min.js"></script>
+    <script>
+        $(document).ready(
+            function getStates() {
+                $.ajax({
+                    type: "GET",
+                    url: "http://localhost:3000/states",
+                    success: function (data) {
+                        data.forEach(element => {
+                            $("#state").append(
+                                `<option value="${element}">${element}</option>`)
+                        });
+                    }
+                })
+            }
+
+
+        )
+        let selectedState = $("#state");
+        $("#state").blur(function () {
+            getCities()
+        })
+
+        function getCities() {
+            let state = selectedState[0].value;
+            $("#city").html('');
+            if (state !== '') {
+                $.ajax({
+                    type: 'GET',
+                    url: "http://localhost:3000/cities",
+                    success: function (data) {
+                        data[state].forEach(element => {
+                            $("#city").append(`<option>${element}</option>`)
+                        })
+                    }
+                })
+            }
+
+
+        }
+
+
+        function toggleReg() {
+            $('#login').css('display', 'none')
+            $("#register").show()
+        }
+
+        function toggleLog() {
+            $("#register").css('display', 'none')
+            $('#login').show()
+        }
+    </script>
+</body>
+
+</html>

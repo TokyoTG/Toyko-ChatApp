@@ -35,7 +35,7 @@
 
         </div>
         <nav class="navbar navbar-expand-lg navbar-light ">
-            <a class="navbar-brand" href="#">Tokyo ChatApp</a>
+            <a class="navbar-brand" href="#" id="link">Tokyo ChatApp</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
                 aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -53,18 +53,29 @@
     </header>
     <main>
         <section id="features">
-            <h1>FEATURES</h1>
+            <div class="cardTitle">
+                <h3>FEATURES</h3>
+            </div>
             <div>
+                <div class="icon">
+                    <i class="fas fa-users"></i>
+                </div>
                 <h4>Free Chat Rooms, Chat Online With Rriends </h4>
                 <p>This web site is an online free chat rooms. With us you can meet new friends from all over the world.
                     No download, no setup & no registration needed.</p>
             </div>
             <div>
+                <div class="icon">
+                    <i class="fas fa-user-friends"></i>
+                </div>
                 <h4>Friendly</h4>
                 <p>Meet new single women and men everyday without limits, make friendships, for free you can have a live
                     discussion</p>
             </div>
             <div>
+                <div class="icon">
+                    <i class="fas fa-mobile-alt"></i>
+                </div>
                 <h4>Mobile</h4>
                 <p>Toyko ChatApp supports mobile, so you can use it whenever you go! you can chat on iphone or use Toyko
                     ChatApp free
@@ -166,7 +177,7 @@
                         <label for="state">State</label>
                         <select class="custom-select" id="state" required>
                             <option selected disabled value="">Choose State...</option>
-                            <option>...</option>
+
                         </select>
 
                     </div>
@@ -174,7 +185,7 @@
                         <label for="city">City</label>
                         <select class="custom-select" id="city" required>
                             <option selected disabled value="">Choose City...</option>
-                            <option>...</option>
+
                         </select>
 
                     </div>
@@ -196,7 +207,18 @@
                 </form>
             </div>
         </section>
+
     </main>
+    <footer>
+        <p>&copy; Tokyo 2020</p>
+
+        <ul>
+            <li><a href="#">FAQ</a></li>
+            <li><a href="#">Policy</a></li>
+            <li><a href="#">Safety</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+    </footer>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
@@ -204,6 +226,45 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/additional-methods.min.js"></script>
     <script>
+        $(document).ready(
+            function getStates() {
+                $.ajax({
+                    type: "GET",
+                    url: "http://localhost:3000/states",
+                    success: function (data) {
+                        data.forEach(element => {
+                            $("#state").append(`<option value="${element}">${element}</option>`)
+                        });
+                    }
+                })
+            }
+
+
+        )
+        let selectedState = $("#state");
+        $("#state").blur(function () {
+            getCities()
+        })
+
+        function getCities() {
+            let state = selectedState[0].value;
+            $("#city").html('');
+            if (state !== '') {
+                $.ajax({
+                    type: 'GET',
+                    url: "http://localhost:3000/cities",
+                    success: function (data) {
+                        data[state].forEach(element => {
+                            $("#city").append(`<option>${element}</option>`)
+                        })
+                    }
+                })
+            }
+
+
+        }
+
+
         function toggleReg() {
             $('#login').css('display', 'none')
             $("#register").show()

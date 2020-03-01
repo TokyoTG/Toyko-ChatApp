@@ -15,11 +15,12 @@ header {
 
 a:hover {
   text-decoration: none;
+  color: inherit;
 }
 
 #logoText {
   letter-spacing: -8px;
-  text-shadow: 2px 2px 4px #000000;
+  text-shadow: 2px -2px 2px #000000;
 }
 
 #contactDetails {
@@ -77,6 +78,7 @@ h3 {
   top: 0;
   left: 0;
   right: 0;
+  z-index: 3;
 }
 
 #contactDetails span {
@@ -109,11 +111,12 @@ NAVIGATION
 
 .navbar {
   text-align: right;
-  top: 81px;
+  top: 80px;
   position: fixed;
   right: 0;
   left: 0;
-  background: #43545c;
+  background: #00838f;
+  z-index: 3;
 }
 
 #link.active {
@@ -163,8 +166,24 @@ main {
 }
 
 .cardTitle {
-
+  margin-bottom: 15px;
+  color: #006064;
   text-align: center;
+}
+
+#guide {
+  background: #00838f;
+  color: white;
+  border-radius: 10px;
+  padding: 10px 15px;
+}
+
+#features {
+  background: #69f0ae;
+  padding: 10px 15px;
+  color: #006064;
+  text-align: center;
+  border-radius: 10px;
 }
 
 #loginRegister,
@@ -172,6 +191,61 @@ main {
 #guide {
   margin: 10px 5px;
 }
+
+.fas {
+  color: #00838f;
+  font-size: 5em;
+}
+
+.icon {
+  text-align: center;
+}
+
+
+
+/******************************
+FOOTER
+********************************/
+
+footer {
+  background: #69f0ae;
+  margin: 0;
+  overflow: hidden;
+  color: #006064;
+}
+
+footer li {
+  display: inline;
+}
+
+footer li a {
+  margin: 15px 10px;
+  /* float: right; */
+  transition: .3s;
+  color: #006064;
+  font-size: .9em;
+}
+
+
+footer li a:hover {
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+footer p {
+  margin: 15px 10px;
+}
+
+footer ul {
+  float: right;
+}
+
+footer p,
+footer li a,
+footer ul {
+  display: inline-block;
+}
+
 
 /******************************
 MEDIA QUERIES

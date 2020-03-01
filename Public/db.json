@@ -4,6 +4,13 @@
         "password": "1234"
     }],
     "states": [
-        "Abia", ""
-    ]
+        "Abuja", "Oyo", "Kwara", "Lagos"
+    ],
+    "cities": {
+        "Abuja": ["Baruba", "Dankama"],
+        "Kwara": ["Ilorin", "Asa", "Baruten", "Oyun"],
+        "Lagos": ["Surulere", "Ikeja", "Lekki", "Epe", "Ajegunle", "Apapa", "Tolu"],
+        "Oyo": ["Ibadan", "Sango", "Isheyin", "Bodija"]
+    }
+
 }
