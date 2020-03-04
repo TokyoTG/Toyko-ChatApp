@@ -106,7 +106,7 @@ NAVIGATION
 }
 
 #link:hover {
-  color: black
+  color: black;
 }
 
 .navbar {
@@ -122,11 +122,7 @@ NAVIGATION
 #link.active {
   color: white;
   font-weight: bold;
-
 }
-
-
-
 
 /*************************
 MAIN
@@ -148,8 +144,7 @@ main {
 
 #login {
   padding: 15px 10px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
-    0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 #login p {
@@ -160,9 +155,8 @@ main {
 
 #register {
   padding: 15px 10px;
-  display: none;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
-    0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  /* display: none; */
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .cardTitle {
@@ -175,6 +169,7 @@ main {
   background: #00838f;
   color: white;
   border-radius: 10px;
+
   padding: 10px 15px;
 }
 
@@ -192,7 +187,7 @@ main {
   margin: 10px 5px;
 }
 
-.fas {
+.fas.home {
   color: #00838f;
   font-size: 5em;
 }
@@ -200,8 +195,6 @@ main {
 .icon {
   text-align: center;
 }
-
-
 
 /******************************
 FOOTER
@@ -214,18 +207,13 @@ footer {
   color: #006064;
 }
 
-footer li {
-  display: inline;
-}
-
 footer li a {
-  margin: 15px 10px;
+  padding: 15px 10px;
   /* float: right; */
-  transition: .3s;
+  transition: 0.3s;
   color: #006064;
-  font-size: .9em;
+  font-size: 0.9em;
 }
-
 
 footer li a:hover {
   font-weight: bold;
@@ -242,27 +230,148 @@ footer ul {
 
 footer p,
 footer li a,
-footer ul {
+footer ul,
+footer li {
   display: inline-block;
 }
 
+/******************************
+USER PAGE
+**********************************/
+
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  margin-right: 15px;
+  /* background: lightgrey; */
+  padding: 10px 15px;
+}
+
+.main {
+  display: grid;
+  grid-template-columns: repeat(12, 8.33%);
+  grid-template-rows: repeat(12, 8.33%);
+  color: #006064;
+}
+
+#content {
+  grid-column: 6/-1;
+  grid-row: 1/-1;
+  margin: 0;
+  overflow: auto;
+}
+
+.sidenav {
+  grid-column: 1/6;
+  /* overflow: hidden; */
+}
+
+#menu {
+  margin-top: 15%;
+  grid-row: 7/-1;
+}
+
+#pInfo {
+  grid-row: 1/6;
+  /* margin-bottom: 15px; */
+}
+
+.card.links a span {
+  font-size: 0.7em;
+}
+
+.fas.user {
+  font-size: 1.5em;
+}
+
+.card.links {
+  margin-top: 20px;
+
+  transition: 0.3s;
+}
+
+li {
+  list-style: none;
+  padding: 0;
+}
+
+.card.links a {
+  display: block;
+  padding: 5px;
+  font-size: 1.1em;
+}
+
+.card.links a:hover,
+.card.links a.active {
+  color: #006064;
+  font-weight: bold;
+}
+
+.smaller-image {
+  width: 80%;
+  border: 2px solid #006064;
+  border-radius: 50%;
+}
+
+.image-wrapper {
+  text-align: center;
+  margin: 15px 0;
+}
 
 /******************************
 MEDIA QUERIES
 *********************************/
-@media screen and (min-width: 800px) {
+@media only screen and (max-width: 450px) {
+  .main {
+    display: block;
+  }
+  #content {
+    margin: 15px 0;
+    padding: 0;
+  }
+  /* #menu {
+    grid-row: 4/8;
+  } */
+}
+
+@media only screen and (min-width: 800px) {
   #contactDetails span {
     display: inline;
   }
 }
 
-@media screen and (min-width: 1000px) {
+@media only screen and (min-width: 850px) {
+  #content {
+    grid-column: 4/10;
+    grid-row: 1/-1;
+  }
 
+  #pInfo {
+    grid-column: 1/4;
+    /* overflow: hidden; */
+  }
+
+  .card.links {
+    margin-top: 0;
+  }
+
+  #menu {
+    grid-row: 1/6;
+    margin-top: 0;
+    margin-left: 15px;
+    grid-column: 10/-1;
+  }
+}
+
+@media only screen and (min-width: 600px) {
+  .card.links a span {
+    font-size: 0.8em;
+  }
+}
+
+@media only screen and (min-width: 1000px) {
   .navbar-collapse {
     position: relative;
   }
-
-
 
   .navbar-nav {
     position: absolute;

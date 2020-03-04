@@ -1,7 +1,13 @@
 {
     "users": [{
+        "id": 1,
         "username": "tokyo",
-        "password": "1234"
+        "password": "1234",
+        "email": "tboynoni@gmail.com",
+        "friends": [{
+            "id": 1,
+            "userid": "2"
+        }]
     }],
     "states": [
         "Abuja", "Oyo", "Kwara", "Lagos"

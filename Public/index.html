@@ -58,7 +58,7 @@
             </div>
             <div>
                 <div class="icon">
-                    <i class="fas fa-users"></i>
+                    <i class="fas fa-users home"></i>
                 </div>
                 <h4>Free Chat Rooms, Chat Online With Rriends </h4>
                 <p>This web site is an online free chat rooms. With us you can meet new friends from all over the world.
@@ -66,7 +66,7 @@
             </div>
             <div>
                 <div class="icon">
-                    <i class="fas fa-user-friends"></i>
+                    <i class="fas fa-user-friends home"></i>
                 </div>
                 <h4>Friendly</h4>
                 <p>Meet new single women and men everyday without limits, make friendships, for free you can have a live
@@ -74,7 +74,7 @@
             </div>
             <div>
                 <div class="icon">
-                    <i class="fas fa-mobile-alt"></i>
+                    <i class="fas fa-mobile-alt home"></i>
                 </div>
                 <h4>Mobile</h4>
                 <p>Toyko ChatApp supports mobile, so you can use it whenever you go! you can chat on iphone or use Toyko
@@ -96,7 +96,7 @@
             </div>
         </section>
         <section id="loginRegister">
-            <div id="login">
+            <div id="login" style="display: block;">
                 <div class="cardTitle">
                     <h3>User Login</h3>
                 </div>
@@ -120,10 +120,10 @@
                     <div id="ask">
                         <p>Dont have an account yet ?</p>
                     </div>
-                    <button type="submit" class="btn btn-primary btn-block" onclick="toggleReg()">Register</button>
+                    <button class="btn btn-primary btn-block" id="showReg">Register</button>
                 </form>
             </div>
-            <div id="register">
+            <div id="register" style="display: none;">
                 <div class="cardTitle">
                     <h3>User Registration</h3>
                 </div>
@@ -228,6 +228,7 @@
     <script>
         $(document).ready(
             function getStates() {
+                e.preventDefault()
                 $.ajax({
                     type: "GET",
                     url: "http://localhost:3000/states",
@@ -264,15 +265,23 @@
 
         }
 
+        $("#showReg").click((e) => {
+            e.preventDefault()
+            toggleReg()
+        })
 
         function toggleReg() {
+            // e.preventDefault()
             $('#login').css('display', 'none')
-            $("#register").show()
+            $("#register").css('display', 'block')
+
         }
 
         function toggleLog() {
+            // e.preventDefault()
             $("#register").css('display', 'none')
-            $('#login').show()
+            $('#login').css('display', 'block')
+
         }
     </script>
 </body>
