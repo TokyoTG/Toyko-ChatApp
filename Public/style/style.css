@@ -279,7 +279,8 @@ USER PAGE
   font-size: 0.7em;
 }
 
-.fas.user {
+.fas.user,
+.far.user {
   font-size: 1.5em;
 }
 
@@ -303,7 +304,7 @@ li {
 .card.links a:hover,
 .card.links a.active {
   color: #006064;
-  font-weight: bold;
+  font-weight: bolder;
 }
 
 .smaller-image {
@@ -315,6 +316,77 @@ li {
 .image-wrapper {
   text-align: center;
   margin: 15px 0;
+}
+
+.profile-img {
+  width: 40px;
+  border: 2px solid #006064;
+  border-radius: 50%;
+}
+.chats {
+  display: block;
+  width: 100%;
+}
+/*****************************
+CHAT PAGE
+********************************
+*******************************/
+
+.well {
+  background: rgb(248, 226, 226);
+  /* padding: 10px; */
+  width: 100%;
+  position: relative;
+}
+#wellHeader {
+  background: #00838f;
+  padding: 5px 15px;
+  position: relative;
+  color: white;
+}
+#back {
+  position: absolute;
+  display: inline-block;
+  right: 10px;
+  font-size: 1.5em;
+}
+
+.msgIn,
+.msgOut {
+  display: inline-block;
+  background: lightcoral;
+  border-radius: 5px;
+  position: relative;
+  margin: 10px;
+  padding: 5px;
+  width: 50%;
+}
+
+.msgIn::after {
+  content: " ";
+  position: absolute;
+  top: 50%;
+  right: 100%;
+  /* To the left of the tooltip */
+  margin-top: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent lightcoral transparent transparent;
+}
+.msgOut::after {
+  content: " ";
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  /* To the right of the tooltip */
+  margin-top: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent transparent transparent lightcoral;
+}
+
+.msgOut {
+  float: right;
 }
 
 /******************************

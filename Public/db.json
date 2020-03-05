@@ -3,11 +3,35 @@
         "id": 1,
         "username": "tokyo",
         "password": "1234",
-        "email": "tboynoni@gmail.com",
-        "friends": [{
-            "id": 1,
-            "userid": "2"
-        }]
+        "age": 25,
+        "city": "Ajegunle",
+        "email": "tboynoni@gmail.com"
+
+    }, {
+        "id": 2,
+        "username": "Tboy",
+        "password": "12345",
+        "age": 25,
+        "city": "Ajegunle",
+        "email": "tboynoni@yahoo.com"
+    }],
+    "friends": [{
+        "id": 1,
+        "userid": "1",
+        "username": "Tboy"
+    }],
+    "chat": [{
+        "id": 1,
+        "userid": "1",
+        "username": "Tboy"
+    }],
+    "messages": [{
+        "id": 1,
+        "userid": "1",
+        "chatId": "1",
+        "message": "hi",
+        "reply": "Hello",
+        "timeStamp": "8:14pm"
     }],
     "states": [
         "Abuja", "Oyo", "Kwara", "Lagos"
