@@ -255,8 +255,10 @@ USER PAGE
 
 #content {
   grid-column: 6/-1;
+  position: relative;
   grid-row: 1/-1;
   margin: 0;
+  min-height: 600px;
   overflow: auto;
 }
 
@@ -320,7 +322,7 @@ li {
 
 .profile-img {
   width: 40px;
-  border: 2px solid #006064;
+  border: 2px solid white;
   border-radius: 50%;
 }
 .chats {
@@ -336,12 +338,14 @@ CHAT PAGE
   background: rgb(248, 226, 226);
   /* padding: 10px; */
   width: 100%;
+  max-height: 90%;
+  overflow: auto;
   position: relative;
 }
 #wellHeader {
   background: #00838f;
   padding: 5px 15px;
-  position: relative;
+  position: sticky;
   color: white;
 }
 #back {
@@ -388,7 +392,37 @@ CHAT PAGE
 .msgOut {
   float: right;
 }
+#wellFooter {
+  background: #00838f;
+  padding: 10px;
+  left: 0;
+  height: 10%;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
+.btn.send {
+  float: right;
+}
 
+.typeSpace {
+  border-radius: 10px;
+
+  border: none;
+  padding: 5px;
+  width: 70%;
+}
+.well-container {
+  height: 100%;
+  width: 100%;
+  position: relative;
+}
+.timeStamp {
+  display: block;
+  font-size: 0.7em;
+  font-weight: bold;
+  text-align: right;
+}
 /******************************
 MEDIA QUERIES
 *********************************/
@@ -399,6 +433,10 @@ MEDIA QUERIES
   #content {
     margin: 15px 0;
     padding: 0;
+  }
+
+  .well-container {
+    display: grid;
   }
   /* #menu {
     grid-row: 4/8;

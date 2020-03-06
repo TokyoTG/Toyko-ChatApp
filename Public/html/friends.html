@@ -151,43 +151,6 @@
         $(document).ready(
 
         )
-
-        let timeSent = getTime()
-
-        function disableSend() {
-            let text;
-            text = $(".typeSpace").val()
-            console.log(text)
-            if (text === '') {
-                $(".send").attr('disabled', true)
-            } else {
-                $(".send").attr('disabled', false)
-            }
-        }
-
-        $(".typeSpace").blur(function () {
-            disableSend()
-        })
-
-        function getTime(res) {
-            let tRes, hour, min, d;
-            d = new Date()
-            hour = d.getHours()
-            min = d.getMinutes()
-            if (hour < 12) {
-                res = hour + ":" + min + " AM"
-            } else if (hour === 12) {
-                res = hour + ":" + min + " PM"
-            } else {
-                tRes = Math.abs(hour - 12)
-                if (tRes === 12) {
-                    res = tRes + ":" + min + " AM"
-                }
-                res = tRes + ":" + min + " PM"
-            }
-
-            return res;
-        }
     </script>
 </body>
 
