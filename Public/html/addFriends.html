@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="../style/style.css">
     <link rel="stylesheet" href="../style/all.min.css">
 
-    <title>TCA | Friends</title>
+    <title>TCA | Add Friends</title>
 </head>
 
 <body>
@@ -86,16 +86,17 @@
 
                     </li>
                     <li>
-                        <a href="friends.html" class="active"><i class="fas fa-user-friends user"></i>
+                        <a href="friends.html"><i class="fas fa-user-friends user"></i>
                             <span>Friends</span> </a>
 
                     </li>
                     <li>
-                        <a href="#"><i class="fas fa-user-clock user"></i> <span>Friend Requests</span> </a>
+                        <a href="#"><i class="fas fa-user-clock user"></i> <span>Friend Requests</span>
+                        </a>
 
                     </li>
                     <li>
-                        <a href="#"><i class="fas fa-user-plus user"></i> <span>Add Friend</span> </a>
+                        <a href="#" class="active"><i class="fas fa-user-plus user"></i> <span>Add Friend</span> </a>
 
                     </li>
                 </ul>
@@ -108,22 +109,24 @@
                         <a href="3" class="chats"><img src="../img/login_icon.png" alt="..." class="profile-img"> Cras
                             justo</a>
 
-                        <a href="chatPage.html"><span class="badge"> <i class="far fa-comment-alt"></i> </span></a>
-                        <a href=""><span class="badge"> <i class="fas fa-trash"></i> </span></a>
+
+                        <a href=""><span class="badge" data-toggle="tooltip" data-placement="top" title="Send Request">
+                                <i class="fas fa-user-plus"></i> </span></a>
                     </li>
                     <li class="list-group-item d-flex justify-content-between align-items-center">
                         <a href="#" class="chats"><img src="../img/login_icon.png" alt="..." class="profile-img">
                             Dapibus ac facilisis in </a>
 
-                        <a href="chatPage.html"><span class="badge"> <i class="far fa-comment-alt"></i> </span></a>
-                        <a href=""><span class="badge"> <i class="fas fa-trash"></i> </span></a>
+
+                        <a href=""><span class="badge" data-toggle="tooltip" data-placement="top" title="Send Request">
+                                <i class="fas fa-user-plus"></i> </span></a>
                     </li>
                     <li class="list-group-item d-flex justify-content-between align-items-center">
                         <a href="#" class="chats"><img src="../img/login_icon.png" alt="..." class="profile-img">
                             Morbi leo risus </a>
 
-                        <a href="chatPage.html"><span class="badge"> <i class="far fa-comment-alt"></i> </span></a>
-                        <a href=""><span class="badge"> <i class="fas fa-trash"></i> </span></a>
+                        <a href=""><span class="badge" data-toggle="tooltip" data-placement="top" title="Send Request">
+                                <i class="fas fa-user-plus"></i> </span></a>
                     </li>
                 </ul>
             </div>
@@ -155,7 +158,7 @@
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal"
                             id="closeModal">Close</button>
-
+                        <button type="button" class="btn btn-primary">Send Request</button>
                     </div>
                 </div>
             </div>
@@ -173,6 +176,9 @@
         </ul>
     </footer>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+    </script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
     </script>
@@ -182,6 +188,9 @@
         $(document).ready(
 
         )
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
         $(".close").click((e) => {
             e.preventDefault();
             $(".modal").hide()

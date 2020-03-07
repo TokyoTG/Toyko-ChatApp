@@ -423,6 +423,22 @@ CHAT PAGE
   font-weight: bold;
   text-align: right;
 }
+
+/*****************************
+FRIENDS
+*********************************/
+.profile-imgS {
+  width: 100px;
+  border: 2px solid white;
+  border-radius: 50%;
+}
+
+.fa-check,
+.fa-times,
+.fa-user-plus {
+  font-size: 1.5em;
+}
+
 /******************************
 MEDIA QUERIES
 *********************************/
