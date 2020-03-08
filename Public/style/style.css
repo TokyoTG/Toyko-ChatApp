@@ -13,6 +13,34 @@ header {
   min-width: 360px;
 }
 
+/* input:invalid {
+  border: 1px solid red;
+} */
+
+.text-muted {
+  display: block;
+}
+
+.error {
+  color: red;
+  font-size: .7em;
+}
+
+#login #invalid {
+  background: #f44336;
+  color: white;
+  border-radius: 3px;
+  transition: .3s;
+  padding: 3px 10px;
+  display: inline-block;
+  font-size: 0.8em;
+}
+
+#login .invalidClose {
+  font-size: 1.5em;
+  cursor: pointer;
+}
+
 a:hover {
   text-decoration: none;
   color: inherit;
@@ -264,11 +292,13 @@ USER PAGE
 
 .sidenav {
   grid-column: 1/6;
+  text-transform: capitalize;
   /* overflow: hidden; */
 }
 
 #menu {
   margin-top: 15%;
+  text-transform: capitalize;
   grid-row: 7/-1;
 }
 
@@ -325,10 +355,13 @@ li {
   border: 2px solid white;
   border-radius: 50%;
 }
+
 .chats {
   display: block;
+  text-transform: capitalize;
   width: 100%;
 }
+
 /*****************************
 CHAT PAGE
 ********************************
@@ -342,12 +375,14 @@ CHAT PAGE
   overflow: auto;
   position: relative;
 }
+
 #wellHeader {
   background: #00838f;
   padding: 5px 15px;
   position: sticky;
   color: white;
 }
+
 #back {
   position: absolute;
   display: inline-block;
@@ -377,6 +412,7 @@ CHAT PAGE
   border-style: solid;
   border-color: transparent lightcoral transparent transparent;
 }
+
 .msgOut::after {
   content: " ";
   position: absolute;
@@ -392,6 +428,7 @@ CHAT PAGE
 .msgOut {
   float: right;
 }
+
 #wellFooter {
   background: #00838f;
   padding: 10px;
@@ -401,6 +438,7 @@ CHAT PAGE
   right: 0;
   bottom: 0;
 }
+
 .btn.send {
   float: right;
 }
@@ -412,11 +450,13 @@ CHAT PAGE
   padding: 5px;
   width: 70%;
 }
+
 .well-container {
   height: 100%;
   width: 100%;
   position: relative;
 }
+
 .timeStamp {
   display: block;
   font-size: 0.7em;
@@ -437,6 +477,7 @@ FRIENDS
 .fa-times,
 .fa-user-plus {
   font-size: 1.5em;
+  cursor: pointer;
 }
 
 /******************************
@@ -446,6 +487,7 @@ MEDIA QUERIES
   .main {
     display: block;
   }
+
   #content {
     margin: 15px 0;
     padding: 0;
@@ -454,6 +496,7 @@ MEDIA QUERIES
   .well-container {
     display: grid;
   }
+
   /* #menu {
     grid-row: 4/8;
   } */

@@ -96,69 +96,80 @@
             </div>
         </section>
         <section id="loginRegister">
-            <div id="login" style="display: block;">
+            <div id="login" style="display: none;">
                 <div class="cardTitle">
                     <h3>User Login</h3>
-                </div>
 
-                <form>
+                </div>
+                <p id="invalid" style="display: none;">Invalid email or password <span
+                        class="invalidClose">&times;</span></p>
+                <form id="userLogin">
                     <div class="form-group">
-                        <label for="exampleInputEmail1">Email address</label>
-                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
-                            else.</small>
+                        <a href="./html/userPage.html" id="user" style="display: none;"></a>
+                        <label for="inputEmail">Email address</label>
+                        <input type="email" class="form-control" id="inputEmail" required placeholder="Enter Email">
+                        <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
+                            else.</small> -->
                     </div>
                     <div class="form-group">
-                        <label for="exampleInputPassword1">Password</label>
-                        <input type="password" class="form-control" id="exampleInputPassword1">
+                        <label for="inputPassword">Password</label>
+                        <input type="password" class="form-control" id="inputPassword" required
+                            placeholder="Enter Password">
                     </div>
                     <div class="form-group form-check">
                         <input type="checkbox" class="form-check-input" id="exampleCheck1">
                         <label class="form-check-label" for="exampleCheck1">Remember me</label>
                     </div>
-                    <button type="submit" class="btn btn-success btn-block" onclick="toggleLog()">Login</button>
+                    <button type="submit" class="btn btn-success btn-block" id="signIn">Login</button>
                     <div id="ask">
                         <p>Dont have an account yet ?</p>
                     </div>
                     <button class="btn btn-primary btn-block" id="showReg">Register</button>
                 </form>
             </div>
-            <div id="register" style="display: none;">
+            <div id="register" style="display: block;">
                 <div class="cardTitle">
                     <h3>User Registration</h3>
                 </div>
 
-                <form>
+                <form id="userReg">
                     <div class="form-group">
-                        <label for="fname">Full Name</label>
-                        <input type="text" class="form-control" id="fname" aria-describedby="emailHelp"
+                        <label for="firstname">First Name</label>
+                        <input type="text" name="firstname" class="form-control" id="firstname"
                             placeholder="Enter Full Name Here">
-                        <small id="emailHelp" class="form-text text-muted">First name followed by last name
+                        <small class="form-text text-muted">Must 2-20 characters long
+                        </small>
+                    </div>
+                    <div class="form-group">
+                        <label for="lastname">Last Name</label>
+                        <input type="text" name="lastname" class="form-control" id="lastname"
+                            placeholder="Enter Full Name Here">
+                        <small class="form-text text-muted">Must 2-20 characters long
                         </small>
                     </div>
                     <div class="form-group">
                         <label for="phone">Phone Number</label>
-                        <input type="text" class="form-control" id="phone" aria-describedby="emailHelp">
+                        <input type="text" name="phone" class="form-control" id="phone"
+                            placeholder="Enter Valid Phone Number">
                         <small id="emailHelp" class="form-text text-muted">We'll never share your number with anyone
                             else.</small>
                     </div>
                     <div class="form-group">
                         <label for="email">Email address</label>
-                        <input type="email" class="form-control" id="email" aria-describedby="emailHelp">
+                        <input type="email" name="email" class="form-control" id="email" aria-describedby="emailHelp">
                         <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
                             else.</small>
                     </div>
                     <div class="form-group">
                         <label for="age">Age</label>
-                        <input type="number" class="form-control" id="age" aria-describedby="emailHelp">
+                        <input type="text" name="age" class="form-control" id="age" aria-describedby="emailHelp">
                     </div>
                     <fieldset class="form-group">
                         <div class="row">
                             <legend class="col-form-label col-sm-2 pt-0">Gender</legend>
                             <div class="col-sm-10">
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="gender" id="male" value="male"
-                                        checked>
+                                    <input class="form-check-input" type="radio" name="gender" id="male" value="male">
                                     <label class="form-check-label" for="male">
                                         Male
                                     </label>
@@ -175,7 +186,7 @@
                     </fieldset>
                     <div class="form-group">
                         <label for="state">State</label>
-                        <select class="custom-select" id="state" required>
+                        <select class="custom-select" id="state" name="state">
                             <option selected disabled value="">Choose State...</option>
 
                         </select>
@@ -183,27 +194,35 @@
                     </div>
                     <div class="form-group">
                         <label for="city">City</label>
-                        <select class="custom-select" id="city" required>
+                        <select class="custom-select" id="city" name="city">
                             <option selected disabled value="">Choose City...</option>
 
                         </select>
 
                     </div>
                     <div class="form-group">
-                        <label for="password1">Password</label>
-                        <input type="password" class="form-control" id="password1">
-                        <small id="passwordHelpInline" class="text-muted">
+                        <label for="textarea">Descrpition</label>
+                        <textarea class="form-control" id="textarea" rows="3" placeholder="Briefly describe yourself"
+                            name="description"></textarea>
+                        <small class="text-muted">
+                            Must be 20-100 characters long.
+                        </small>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" name="password" class="form-control" id="password">
+                        <small class="text-muted">
                             Must be 8-20 characters long.
                         </small>
                     </div>
                     <div class="form-group">
                         <label for="password2">Confirm Password</label>
-                        <input type="password" class="form-control" id="password2">
+                        <input type="password" name="password2" class="form-control" id="password2">
                         <small id="passwordHelpInline" class="text-muted">
                             Must be the same as above.
                         </small>
                     </div>
-                    <button type="submit" class="btn btn-success btn-block" onclick="toggleReg()">Register</button>
+                    <button type="submit" class="btn btn-success btn-block">Register</button>
                 </form>
             </div>
         </section>
@@ -223,12 +242,11 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
     </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/additional-methods.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.1/dist/jquery.validate.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.1/dist/additional-methods.min.js"></script>
     <script>
         $(document).ready(
             function getStates() {
-                e.preventDefault()
                 $.ajax({
                     type: "GET",
                     url: "http://localhost:3000/states",
@@ -238,10 +256,27 @@
                         });
                     }
                 })
+                localStorage.clear()
             }
 
 
         )
+
+        $.validator.addMethod('emailCustom', function (value, element) {
+            return this.optional(element) || /[a-z0-9.-]+@[a-z-]+\.(com|ng|net)/i.test(value)
+        }, "Please enter a correct email")
+
+        $.validator.addMethod('fullnameCustom', function (value, element) {
+            return this.optional(element) || /[a-z0-9.-]+@[a-z-]+\.(com|ng|net)/i.test(value)
+        }, "Please Ensure there is space between names")
+
+        $.validator.addMethod('removeSpace', function (value) {
+            return value = $.trim(value);
+        })
+        $.validator.addMethod('phoneNG', function (value, element) {
+            return this.optional(element) || /(081|080|090|070)\d{8}$/.test(value)
+        }, "Please enter a correct number")
+
         let selectedState = $("#state");
         $("#state").blur(function () {
             getCities()
@@ -265,9 +300,129 @@
 
         }
 
+        $("#userReg").validate({
+            rules: {
+                firstname: {
+                    required: true,
+                    rangelength: [2, 20],
+                    normalizer: function (value) {
+                        return $.trim(value);
+                    }
+                },
+                lastname: {
+                    required: true,
+                    rangelength: [2, 20]
+                },
+                phone: {
+                    required: true,
+                    number: true,
+                    phoneNG: true,
+                    normalizer: function (value) {
+                        return $.trim(value);
+                    }
+                },
+                email: {
+                    required: true,
+                    emailCustom: true,
+                    normalizer: function (value) {
+                        return $.trim(value);
+                    }
+                },
+                age: {
+                    required: true,
+                    number: true,
+                    range: [10, 90],
+                    normalizer: function (value) {
+                        return $.trim(value);
+                    }
+                },
+                gender: {
+                    required: true,
+                    normalizer: function (value) {
+                        return $.trim(value);
+                    }
+                },
+                state: {
+                    required: true,
+                },
+                city: {
+                    required: true,
+                },
+                description: {
+                    required: true,
+                    rangelength: [20, 100],
+                    normalizer: function (value) {
+                        return $.trim(value);
+                    }
+                },
+                password: {
+                    required: true,
+                    minlength: 8,
+                    maxlength: 20,
+                    nowhitespace: true
+                },
+                password2: {
+                    required: true,
+                    equalTo: "#password"
+                }
+            },
+            submitHandler: function () {
+                let data = $("#userReg").serializeArray();
+                let res = {};
+                let cap;
+                data.forEach(el => {
+                    if (el.name !== 'password') {
+                        res[el.name] = $.trim(el.value.toLocaleLowerCase())
+                    } else {
+                        res[el.name] = el.value;
+                    }
+                })
+                $.ajax({
+                    method: 'POST',
+                    url: 'http://localhost:3000/users',
+                    data: res,
+                    success: function () {
+                        console.log(res)
+                        alert('registered')
+                    }
+                })
+                return false;
+            }
+        })
+
+        $(".invalidClose").click((e) => {
+            e.preventDefault()
+            $("#invalid").hide()
+        })
+
         $("#showReg").click((e) => {
             e.preventDefault()
             toggleReg()
+        })
+
+        $("#userLogin").submit(e => {
+            e.preventDefault();
+            let email = $("#inputEmail").val();
+            let password = $("#inputPassword").val();
+            $.ajax({
+                method: 'GET',
+                url: `http://localhost:3000/users?email=${email}&password=${password}`,
+                // success: function (res) {
+                //    
+                // }
+            }).done(function (data) {
+                if (data.length) {
+                    let formatted = data[0]
+                    localStorage.setItem('userData', JSON.stringify(formatted));
+                    // let u = JSON.parse(localStorage.getItem('userData'));
+                    // console.log(u.lastname)
+                    // console.log(data[0])
+                    $("#user")[0].click();
+                } else {
+                    $
+                    $("#invalid").show();
+                }
+            })
         })
 
         function toggleReg() {

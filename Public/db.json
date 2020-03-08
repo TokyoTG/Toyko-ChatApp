@@ -1,46 +1,87 @@
 {
-    "users": [{
-        "id": 1,
-        "username": "tokyo",
-        "password": "1234",
-        "age": 25,
-        "city": "Ajegunle",
-        "email": "tboynoni@gmail.com"
-
-    }, {
-        "id": 2,
-        "username": "Tboy",
-        "password": "12345",
-        "age": 25,
-        "city": "Ajegunle",
-        "email": "tboynoni@yahoo.com"
-    }],
-    "friends": [{
-        "id": 1,
-        "userid": "1",
-        "username": "Tboy"
-    }],
-    "chat": [{
-        "id": 1,
-        "userid": "1",
-        "username": "Tboy"
-    }],
-    "messages": [{
-        "id": 1,
-        "userid": "1",
-        "chatId": "1",
-        "message": "hi",
-        "reply": "Hello",
-        "timeStamp": "8:14pm"
-    }],
-    "states": [
-        "Abuja", "Oyo", "Kwara", "Lagos"
-    ],
-    "cities": {
-        "Abuja": ["Baruba", "Dankama"],
-        "Kwara": ["Ilorin", "Asa", "Baruten", "Oyun"],
-        "Lagos": ["Surulere", "Ikeja", "Lekki", "Epe", "Ajegunle", "Apapa", "Tolu"],
-        "Oyo": ["Ibadan", "Sango", "Isheyin", "Bodija"]
+  "users": [{
+      "id": 1,
+      "firstname": "tokyo",
+      "lastname": "baddo",
+      "description": "i live large everyday like my life is too good",
+      "password": "1234",
+      "age": 25,
+      "city": "Ajegunle",
+      "state": "lagos",
+      "email": "tboynoni@gmail.com"
+    },
+    {
+      "id": 2,
+      "firstname": "badmus",
+      "lastname": "Tboy",
+      "password": "12345",
+      "description": "i live large everyday like my life is too good",
+      "age": 25,
+      "city": "Ajegunle",
+      "state": "lagos",
+      "email": "tboynoni@yahoo.com"
+    },
+    {
+      "firstname": "badmus",
+      "lastname": "muyiwa",
+      "phone": "09022442244",
+      "email": "badmus@yhaoo.net",
+      "age": "23",
+      "gender": "male",
+      "state": "oyo",
+      "city": "ibadan",
+      "description": "i live large everyday like my life is too good",
+      "password": "badmusMu",
+      "password2": "badmusmu",
+      "id": 3
     }
-
+  ],
+  "friends": [],
+  "requests": [],
+  "chat": [{
+    "id": 1,
+    "userid": "1",
+    "username": "Tboy"
+  }],
+  "messages": [{
+    "id": 1,
+    "userid": "1",
+    "chatId": "1",
+    "message": "hi",
+    "reply": "Hello",
+    "timeStamp": "8:14pm"
+  }],
+  "states": [
+    "Abuja",
+    "Oyo",
+    "Kwara",
+    "Lagos"
+  ],
+  "cities": {
+    "Abuja": [
+      "Baruba",
+      "Dankama"
+    ],
+    "Kwara": [
+      "Ilorin",
+      "Asa",
+      "Baruten",
+      "Oyun"
+    ],
+    "Lagos": [
+      "Surulere",
+      "Ikeja",
+      "Lekki",
+      "Epe",
+      "Ajegunle",
+      "Apapa",
+      "Tolu"
+    ],
+    "Oyo": [
+      "Ibadan",
+      "Sango",
+      "Isheyin",
+      "Bodija"
+    ]
+  }
 }

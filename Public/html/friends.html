@@ -45,7 +45,7 @@
                     <a class="nav-item nav-link active" href="#" id="link">Home <span
                             class="sr-only">(current)</span></a>
                     <a class="nav-item nav-link" href="#" id="link">Features</a>
-                    <a class="nav-item nav-link" href="#" id="link" onclick="toggleLog()">Login</a>
+                    <a class="nav-item nav-link" href="#" id="link">Log Out</a>
                 </div>
             </div>
         </nav>
@@ -60,16 +60,16 @@
 
                 </div>
                 <ul>
-                    <li>
+                    <li class="username">
                         <span> Profile Name</span>
                     </li>
-                    <li>
+                    <li class="userdes">
                         <span> Profile Description</span>
                     </li>
-                    <li>
+                    <li class="userLoc">
                         <span>Profile Location</span>
                     </li>
-                    <li>
+                    <li class="userAge">
 
                         <span>Profile Age</span>
                     </li>
@@ -82,7 +82,7 @@
                 <h4>Menu</h4>
                 <ul>
                     <li>
-                        <a href="#"><i class="far fa-comment-alt user"></i> <span>Chats</span> </a>
+                        <a href="userPage.html"><i class="far fa-comment-alt user"></i> <span>Chats</span> </a>
 
                     </li>
                     <li>
@@ -91,11 +91,12 @@
 
                     </li>
                     <li>
-                        <a href="#"><i class="fas fa-user-clock user"></i> <span>Friend Requests</span> </a>
+                        <a href="FriendRequest.html"><i class="fas fa-user-clock user"></i> <span>Friend Requests</span>
+                        </a>
 
                     </li>
                     <li>
-                        <a href="#"><i class="fas fa-user-plus user"></i> <span>Add Friend</span> </a>
+                        <a href="addFriends.html"><i class="fas fa-user-plus user"></i> <span>Add Friend</span> </a>
 
                     </li>
                 </ul>
@@ -178,6 +179,7 @@
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/additional-methods.min.js"></script>
+    <script src="../Js/index.js"></script>
     <script>
         $(document).ready(
 

@@ -45,7 +45,7 @@
                     <a class="nav-item nav-link active" href="#" id="link">Home <span
                             class="sr-only">(current)</span></a>
                     <a class="nav-item nav-link" href="#" id="link">Features</a>
-                    <a class="nav-item nav-link" href="#" id="link" onclick="toggleLog()">Login</a>
+                    <a class="nav-item nav-link" href="../index.html" id="link">Log Out</a>
                 </div>
             </div>
         </nav>
@@ -60,17 +60,16 @@
 
                 </div>
                 <ul>
-                    <li>
+                    <li class="username">
                         <span> Profile Name</span>
                     </li>
-                    <li>
+                    <li class="userdes">
                         <span> Profile Description</span>
                     </li>
-                    <li>
+                    <li class="userLoc">
                         <span>Profile Location</span>
                     </li>
-                    <li>
-
+                    <li class="userAge">
                         <span>Profile Age</span>
                     </li>
                 </ul>
@@ -82,7 +81,7 @@
                 <h4>Menu</h4>
                 <ul>
                     <li>
-                        <a href="#"><i class="far fa-comment-alt user"></i> <span>Chats</span> </a>
+                        <a href="userPage.html"><i class="far fa-comment-alt user"></i> <span>Chats</span> </a>
 
                     </li>
                     <li>
@@ -91,12 +90,13 @@
 
                     </li>
                     <li>
-                        <a href="#"><i class="fas fa-user-clock user"></i> <span>Friend Requests</span>
+                        <a href="FriendRequest.html"><i class="fas fa-user-clock user"></i> <span>Friend Requests</span>
                         </a>
 
                     </li>
                     <li>
-                        <a href="#" class="active"><i class="fas fa-user-plus user"></i> <span>Add Friend</span> </a>
+                        <a href="addFriends.html" class="active"><i class="fas fa-user-plus user"></i> <span>Add
+                                Friend</span> </a>
 
                     </li>
                 </ul>
@@ -104,36 +104,14 @@
         </section>
         <section id="content" class="card">
             <div class="friends-container">
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                        <a href="3" class="chats"><img src="../img/login_icon.png" alt="..." class="profile-img"> Cras
-                            justo</a>
+                <ul class="list-group list-group-flush" id="friendList">
 
-
-                        <a href=""><span class="badge" data-toggle="tooltip" data-placement="top" title="Send Request">
-                                <i class="fas fa-user-plus"></i> </span></a>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                        <a href="#" class="chats"><img src="../img/login_icon.png" alt="..." class="profile-img">
-                            Dapibus ac facilisis in </a>
-
-
-                        <a href=""><span class="badge" data-toggle="tooltip" data-placement="top" title="Send Request">
-                                <i class="fas fa-user-plus"></i> </span></a>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                        <a href="#" class="chats"><img src="../img/login_icon.png" alt="..." class="profile-img">
-                            Morbi leo risus </a>
-
-                        <a href=""><span class="badge" data-toggle="tooltip" data-placement="top" title="Send Request">
-                                <i class="fas fa-user-plus"></i> </span></a>
-                    </li>
                 </ul>
             </div>
 
 
         </section>
-        <div class="modal" tabindex="-1" role="dialog">
+        <div class="modal fade" tabindex="-1" role="dialog">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -146,11 +124,11 @@
                         <div class="media">
                             <img src="../img/login_icon.png" class=" mr-3 profile-imgS" alt="...">
                             <div class="media-body">
-                                <ul>
-                                    <li>Name:</li>
-                                    <li>Location:</li>
-                                    <li>Status:</li>
-                                    <li>Age</li>
+                                <ul style="text-transform: capitalize;">
+                                    <li id="pName">Name:</li>
+                                    <li id="pLoc">Location:</li>
+
+                                    <li id="pAge">Age</li>
                                 </ul>
                             </div>
                         </div>
@@ -184,13 +162,48 @@
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/additional-methods.min.js"></script>
+    <script src="../Js/index.js"></script>
     <script>
         $(document).ready(
 
+            $.ajax({
+                method: 'GET',
+                url: 'http://localhost:3000/users',
+                success: function (res) {
+                    res.forEach(element => {
+                        $("#friendList").append(`<li
+                            class="list-group-item d-flex justify-content-between align-items-center">
+                            <a href="#" class="chats" onclick="showProfile(${element.id})" data-toggle="tooltip"
+                                data-placement="top" title="View details"><img src="../img/login_icon.png" alt="..."
+                                    class="profile-img">
+                                ${element.firstname + ' '+ element.lastname}</a>
+                            <span class="badge" data-toggle="tooltip" data-placement="top"
+                                    title="Send Request">
+                                    <i class="fas fa-user-plus"></i></span> </li>`)
+                    });
+                    $('[data-toggle="tooltip"]').tooltip()
+                }
+            })
         )
-        $(function () {
-            $('[data-toggle="tooltip"]').tooltip()
-        })
+
+
+        function sendRequest(id) {
+
+        }
+
+        function showProfile(id) {
+            $.ajax({
+                method: 'GET',
+                url: 'http://localhost:3000/users/' + id,
+                success: function (data) {
+                    $("#pName").text(`Name: ${data.firstname}  ${data.lastname}`);
+                    $("#pLoc").text(`Location: ${data.state}, ${data.city}`);
+                    $("#pAge").text(`Age: ${data.age}`)
+                    $(".modal").modal('show')
+                }
+            })
+        }
+
         $(".close").click((e) => {
             e.preventDefault();
             $(".modal").hide()
@@ -198,11 +211,6 @@
         $("#closeModal").click((e) => {
             e.preventDefault();
             $(".close").click()
-        })
-        $(".chats").click(function (e) {
-            e.preventDefault();
-
-            $(".modal").show()
         })
     </script>
 </body>
