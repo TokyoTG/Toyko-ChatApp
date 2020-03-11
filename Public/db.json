@@ -1,5 +1,6 @@
 {
-  "users": [{
+  "users": [
+    {
       "id": 1,
       "firstname": "tokyo",
       "lastname": "baddo",
@@ -34,23 +35,124 @@
       "password": "badmusMu",
       "password2": "badmusmu",
       "id": 3
+    },
+    {
+      "firstname": "mujeeb",
+      "lastname": "fadeyi",
+      "phone": "09055673489",
+      "email": "mujeeb@yahoo.com",
+      "age": "21",
+      "gender": "male",
+      "state": "oyo",
+      "city": "ibadan",
+      "description": "i am married looking for someone to chat with and have fun",
+      "password": "fadeyi12",
+      "password2": "fadeyi12",
+      "id": 4
     }
   ],
   "friends": [],
-  "requests": [],
-  "chat": [{
-    "id": 1,
-    "userid": "1",
-    "username": "Tboy"
-  }],
-  "messages": [{
-    "id": 1,
-    "userid": "1",
-    "chatId": "1",
-    "message": "hi",
-    "reply": "Hello",
-    "timeStamp": "8:14pm"
-  }],
+  "requestsSent": [
+    {
+      "userId": "1",
+      "senderId": "2",
+      "firstname": "badmus",
+      "lastname": "Tboy",
+      "age": "25",
+      "state": "lagos",
+      "city": "Ajegunle",
+      "id": 1
+    },
+    {
+      "userId": "3",
+      "senderId": "2",
+      "firstname": "badmus",
+      "lastname": "Tboy",
+      "age": "25",
+      "state": "lagos",
+      "city": "Ajegunle",
+      "id": 2
+    },
+    {
+      "userId": "4",
+      "senderId": "2",
+      "firstname": "badmus",
+      "lastname": "Tboy",
+      "age": "25",
+      "state": "lagos",
+      "city": "Ajegunle",
+      "id": 3
+    },
+    {
+      "userId": "3",
+      "senderId": "4",
+      "firstname": "mujeeb",
+      "lastname": "fadeyi",
+      "age": "21",
+      "state": "oyo",
+      "city": "ibadan",
+      "id": 4
+    }
+  ],
+  "requestsRecieved": [
+    {
+      "userId": "1",
+      "senderId": "2",
+      "firstname": "badmus",
+      "lastname": "Tboy",
+      "age": "25",
+      "state": "lagos",
+      "city": "Ajegunle",
+      "id": 1
+    },
+    {
+      "userId": "3",
+      "senderId": "2",
+      "firstname": "badmus",
+      "lastname": "Tboy",
+      "age": "25",
+      "state": "lagos",
+      "city": "Ajegunle",
+      "id": 2
+    },
+    {
+      "userId": "4",
+      "senderId": "2",
+      "firstname": "badmus",
+      "lastname": "Tboy",
+      "age": "25",
+      "state": "lagos",
+      "city": "Ajegunle",
+      "id": 3
+    },
+    {
+      "userId": "3",
+      "senderId": "4",
+      "firstname": "mujeeb",
+      "lastname": "fadeyi",
+      "age": "21",
+      "state": "oyo",
+      "city": "ibadan",
+      "id": 4
+    }
+  ],
+  "chat": [
+    {
+      "id": 1,
+      "userid": "1",
+      "username": "Tboy"
+    }
+  ],
+  "messages": [
+    {
+      "id": 1,
+      "userid": "1",
+      "chatId": "1",
+      "message": "hi",
+      "reply": "Hello",
+      "timeStamp": "8:14pm"
+    }
+  ],
   "states": [
     "Abuja",
     "Oyo",

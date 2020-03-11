@@ -164,31 +164,111 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/additional-methods.min.js"></script>
     <script src="../Js/index.js"></script>
     <script>
+        let userDetails = JSON.parse(localStorage.getItem("userData"));
         $(document).ready(
 
-            $.ajax({
-                method: 'GET',
-                url: 'http://localhost:3000/users',
-                success: function (res) {
-                    res.forEach(element => {
-                        $("#friendList").append(`<li
-                            class="list-group-item d-flex justify-content-between align-items-center">
-                            <a href="#" class="chats" onclick="showProfile(${element.id})" data-toggle="tooltip"
-                                data-placement="top" title="View details"><img src="../img/login_icon.png" alt="..."
-                                    class="profile-img">
-                                ${element.firstname + ' '+ element.lastname}</a>
-                            <span class="badge" data-toggle="tooltip" data-placement="top"
-                                    title="Send Request">
-                                    <i class="fas fa-user-plus"></i></span> </li>`)
-                    });
-                    $('[data-toggle="tooltip"]').tooltip()
-                }
-            })
+            function popFriend() {
+
+                $.ajax({
+                        method: 'GET',
+                        url: 'http://localhost:3000/users',
+                    })
+                    .done(function (res) {
+                        res.forEach(element => {
+                            $.ajax({
+                                    method: 'GET',
+                                    url: `http://localhost:3000/requestsRecieved?userId=${element.id}&senderId=${userDetails.id}`
+                                })
+                                .done(function (result) {
+                                    // console.log(result)
+                                    if (result.length) {
+                                        result.forEach(data => {
+                                            $("#friendList").append(`<li
+                                             class="list-group-item d-flex justify-content-between align-items-center user-${element.id}">
+                                             <a href="#" class="chats" onclick="showProfile(${element.id})"
+                                                 data-toggle="tooltip" data-placement="top" title="View details"><img
+                                                     src="../img/login_icon.png" alt="..." class="profile-img">
+                                                 ${element.firstname + ' '+ element.lastname}</a>
+                                            <span class="sent">
+                                                  sent <i class="fas fa-check"></i></span>
+                                         </li>`)
+
+
+                                        })
+                                    } else if (userDetails.id !== element.id) {
+                                        console.log(element.id)
+
+                                        $("#friendList").append(`<li class="list-group-item d-flex justify-content-between align-items-center user-${element.id}">
+     <a href="#" class="chats" onclick="showProfile(${element.id})" data-toggle="tooltip" data-placement="top"
+         title="View details"><img src="../img/login_icon.png" alt="..." class="profile-img">
+         ${element.firstname + ' '+ element.lastname}</a>
+     <span class="badge" data-toggle="tooltip" data-placement="top" title="Send Request"
+         onclick="sendRequest(${element.id})">
+         <i class="fas fa-user-plus "></i></span> <span class="sent-${element.id}" style="display:none;"> sent <i
+             class="fas fa-check"></i></span>
+
+ </li>`)
+                                        $.ajax({
+                                                method: "GET",
+                                                url: `http://localhost:3000/requestsRecieved?senderId=${element.id}&userId=${userDetails.id}`
+                                            })
+                                            .done(function (res) {
+
+                                                if (res.length) {
+                                                    console.log(res)
+                                                    res.forEach(d => {
+                                                        console.log(d.senderId)
+                                                        $(`.user-${d.senderId}`)
+                                                        .remove()
+                                                    })
+                                                }
+                                            })
+                                    }
+
+
+                                })
+                        });
+                    })
+            }
         )
 
-
         function sendRequest(id) {
+            let userDetails = JSON.parse(localStorage.getItem("userData"));
+            let requestData = {
+                userId: id,
+                senderId: userDetails.id,
+                firstname: userDetails.firstname,
+                lastname: userDetails.lastname,
+                age: userDetails.age,
+                state: userDetails.state,
+                city: userDetails.city
+            }
 
+
+            function removeFromAddFriend(sId, eId, uId) {
+                if (sId === eld && uId === userDetails.id) {
+                    $(`.${eId}`).remove()
+                }
+            }
+            // console.log(requestData)
+            // $(`.${id}`).hide();
+            // $(`.sent-${id}`).show();
+            // $(`.${id}`).addClass('fa-check')
+            $.ajax({
+                    method: 'POST',
+                    url: "http://localhost:3000/requestsRecieved",
+                    data: requestData
+                })
+                .done(function () {
+                    console.log('ok');
+                    $.ajax({
+                        method: 'POST',
+                        data: requestData,
+                        url: 'http://localhost:3000/requestsSent'
+                    }).done(function () {
+                        console.log('ok')
+                    })
+                })
         }
 
         function showProfile(id) {
