@@ -51,7 +51,16 @@
       "id": 4
     }
   ],
-  "friends": [],
+  "friends": [
+    {
+      "userId": "3",
+      "friendId": "2",
+      "name": "badmus Tboy",
+      "age": "25",
+      "location": "lagos, Ajegunle",
+      "id": 1
+    }
+  ],
   "requestsSent": [
     {
       "userId": "1",
@@ -92,6 +101,16 @@
       "state": "oyo",
       "city": "ibadan",
       "id": 4
+    },
+    {
+      "userId": "4",
+      "senderId": "3",
+      "firstname": "badmus",
+      "lastname": "muyiwa",
+      "age": "23",
+      "state": "oyo",
+      "city": "ibadan",
+      "id": 5
     }
   ],
   "requestsRecieved": [
@@ -106,16 +125,6 @@
       "id": 1
     },
     {
-      "userId": "3",
-      "senderId": "2",
-      "firstname": "badmus",
-      "lastname": "Tboy",
-      "age": "25",
-      "state": "lagos",
-      "city": "Ajegunle",
-      "id": 2
-    },
-    {
       "userId": "4",
       "senderId": "2",
       "firstname": "badmus",
@@ -126,11 +135,11 @@
       "id": 3
     },
     {
-      "userId": "3",
-      "senderId": "4",
-      "firstname": "mujeeb",
-      "lastname": "fadeyi",
-      "age": "21",
+      "userId": "4",
+      "senderId": "3",
+      "firstname": "badmus",
+      "lastname": "muyiwa",
+      "age": "23",
       "state": "oyo",
       "city": "ibadan",
       "id": 4

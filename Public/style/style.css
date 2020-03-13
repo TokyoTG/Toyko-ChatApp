@@ -485,6 +485,26 @@ FRIENDS
   color: #00c853;
 }
 
+.empty {
+  font-size: 1.5em;
+  color: #006064;
+  width: 60%;
+  text-align: center;
+  margin: auto;
+}
+
+.empty button.btn {
+  background: #69f0ae;
+  color: #006064;
+  border-color: #69f0ae;
+}
+
+.empty button.btn:hover {
+  background: #529c78;
+  color: white;
+  border-color: #529c78;
+}
+
 /******************************
 MEDIA QUERIES
 *********************************/

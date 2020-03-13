@@ -45,7 +45,7 @@
                     <a class="nav-item nav-link active" href="#" id="link">Home <span
                             class="sr-only">(current)</span></a>
                     <a class="nav-item nav-link" href="#" id="link">Features</a>
-                    <a class="nav-item nav-link" href="#" id="link">Log Out</a>
+                    <a class="nav-item nav-link" href="../index.html" id="link">Log Out</a>
                 </div>
             </div>
         </nav>
@@ -103,29 +103,14 @@
             </div>
         </section>
         <section id="content" class="card">
+            <div class="empty">
+                <p>You dont have any friend yet</p>
+                <button class="btn btn-success">Add Friend</button>
+            </div>
             <div class="friends-container">
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                        <a href="3" class="chats"><img src="../img/login_icon.png" alt="..." class="profile-img"> Cras
-                            justo</a>
 
-                        <a href="chatPage.html"><span class="badge"> <i class="far fa-comment-alt"></i> </span></a>
-                        <a href=""><span class="badge"> <i class="fas fa-trash"></i> </span></a>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                        <a href="#" class="chats"><img src="../img/login_icon.png" alt="..." class="profile-img">
-                            Dapibus ac facilisis in </a>
+                <ul class="list-group list-group-flush" id="friendList">
 
-                        <a href="chatPage.html"><span class="badge"> <i class="far fa-comment-alt"></i> </span></a>
-                        <a href=""><span class="badge"> <i class="fas fa-trash"></i> </span></a>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                        <a href="#" class="chats"><img src="../img/login_icon.png" alt="..." class="profile-img">
-                            Morbi leo risus </a>
-
-                        <a href="chatPage.html"><span class="badge"> <i class="far fa-comment-alt"></i> </span></a>
-                        <a href=""><span class="badge"> <i class="fas fa-trash"></i> </span></a>
-                    </li>
                 </ul>
             </div>
 
@@ -145,10 +130,10 @@
                             <img src="../img/login_icon.png" class=" mr-3 profile-imgS" alt="...">
                             <div class="media-body">
                                 <ul>
-                                    <li>Name:</li>
-                                    <li>Location:</li>
-                                    <li>Status:</li>
-                                    <li>Age</li>
+                                    <li id="pName"></li>
+                                    <li id="pLoc">Location:</li>
+                                    <li id="pStatus">Status:</li>
+                                    <li id="pAge">Age</li>
                                 </ul>
                             </div>
                         </div>
@@ -181,21 +166,60 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/additional-methods.min.js"></script>
     <script src="../Js/index.js"></script>
     <script>
+        let userDetails = JSON.parse(localStorage.getItem("userData"));
         $(document).ready(
+
+            function popFriend() {
+                $.ajax({
+                        method: "GET",
+                        url: `http://localhost:3000/friends?userId=${userDetails.id}`
+                    })
+                    .done(function (res) {
+                        if (res.length) {
+                            $(".empty").hide()
+                            res.forEach(element => {
+                                $("#friendList").append(`<li
+                                    class="list-group-item d-flex justify-content-between align-items-center">
+                                    <a href="#" class="chats" onclick="showProfile(${element.id})"><img
+                                            src="../img/login_icon.png" alt="..."
+                                            class="profile-img">${element.name}</a>
+
+                                    <a href="chatPage.html"><span class="badge"><i class="far fa-comment-alt"></i>
+                                        </span></a>
+                                    <a href=""><span class="badge"> <i class="fas fa-trash"></i> </span></a>
+                                </li>`)
+                            });
+                        }
+                    })
+                $(".chats").click(function (e) {
+                    e.preventDefault();
+
+                    $(".modal").show()
+                })
+            }
 
         )
         $(".close").click((e) => {
             e.preventDefault();
             $(".modal").hide()
         })
+
+        function showProfile(id) {
+            $.ajax({
+                method: 'GET',
+                url: 'http://localhost:3000/users/' + id,
+                success: function (data) {
+                    $("#pName").text(`Name: ${data.firstname} ${data.lastname}`);
+                    $("#pLoc").text(`Location: ${data.state}, ${data.city}`);
+                    $("#pAge").text(`Age: ${data.age}`)
+                    $("#pStatus").text(`Status: ${data.description}`)
+                    $(".modal").modal('show')
+                }
+            })
+        }
         $("#closeModal").click((e) => {
             e.preventDefault();
             $(".close").click()
-        })
-        $(".chats").click(function (e) {
-            e.preventDefault();
-
-            $(".modal").show()
         })
     </script>
 </body>

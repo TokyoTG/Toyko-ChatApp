@@ -45,7 +45,7 @@
                     <a class="nav-item nav-link active" href="#" id="link">Home <span
                             class="sr-only">(current)</span></a>
                     <a class="nav-item nav-link" href="#" id="link">Features</a>
-                    <a class="nav-item nav-link" href="#" id="link">Log Out</a>
+                    <a class="nav-item nav-link" href="../index.html" id="link">Log Out</a>
                 </div>
             </div>
         </nav>
@@ -104,6 +104,12 @@
             </div>
         </section>
         <section id="content" class="card">
+
+            <div class="empty">
+                <p>No Friend Requests</p>
+                <button class="btn btn-success">Add Friend</button>
+            </div>
+
             <div class="friends-container">
                 <ul class="list-group list-group-flush" id="requestList">
 
@@ -168,15 +174,16 @@
         let userDetails = JSON.parse(localStorage.getItem("userData"));
         $(document).ready(
             function getRequests() {
-
                 $.ajax({
                         method: "GET",
                         url: `http://localhost:3000/requestsRecieved?userId=${userDetails.id}`
                     })
                     .done(function (res) {
-                        res.forEach((element, index) => {
-                            console.log(res)
-                            $("#requestList").append(`<li
+                        if (res.length) {
+                            $(".empty").hide()
+                            res.forEach((element, index) => {
+                                // console.log(res)
+                                $("#requestList").append(`<li
                                 class="list-group-item d-flex justify-content-between align-items-center">
                                 <a href="3" class="chats"><img src="../img/login_icon.png" alt="..."
                                         class="profile-img"> ${element.firstname}  ${element.lastname}</a>
@@ -188,10 +195,11 @@
                                 <span class="badge" data-toggle="tooltip" data-placement="top" title="Reject" onclick="reject(${element.id})"> <i
                                         class="fas fa-times"></i> </span>
                             </li>`)
-                        });
-                        console.log(res);
-                        $('[data-toggle="tooltip"]').tooltip()
+                            });
+                            $('[data-toggle="tooltip"]').tooltip()
+                        }
                     })
+
             }
         )
 
@@ -205,25 +213,47 @@
                 location: state + ", " + city
             }
 
+            // .done(function () {
             $.ajax({
-                    method: "POST",
-                    url: `http://localhost:3000/friends`,
-                    data: friendData
+                    method: "GET",
+                    url: `http://localhost:3000/requestsRecieved?userId=${userDetails.id}&senderId=${id}`
                 })
-                .done(function () {
-                    console.log('accepted')
+                .done(function (res) {
+                    let id = res[0].id
+                    $.ajax({
+                            method: 'DELETE',
+                            url: `http://localhost:3000/requestsRecieved/${id}`
+                        })
+                        .done(function () {
+                            $.ajax({
+                                method: "POST",
+                                url: `http://localhost:3000/friends`,
+                                data: friendData
+                            })
+                        })
                 })
+            // })
+        }
+
+
+        function delFromReq(id) {
+
         }
 
 
         function reject(id) {
             $.ajax({
                     method: "DELETE",
-                    url: `http://localhost:3000/requestsRecieved/${id}`
+                    url: `http://localhost:3000/requestsRecieved?userId=${userDetails.id}&senderId=${id}`
                 })
                 .done(function () {
                     console.log('deleted')
+                    $.ajax({
+                        method: "DELETE",
+                        url: `http://localhost:3000/requestsSent?userId=${userDetails.id}&senderId=${id}`
+                    })
                 })
+
         }
         $(".close").click((e) => {
             e.preventDefault();

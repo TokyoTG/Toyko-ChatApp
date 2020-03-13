@@ -127,7 +127,7 @@
                                 <ul style="text-transform: capitalize;">
                                     <li id="pName">Name:</li>
                                     <li id="pLoc">Location:</li>
-
+                                    <li id="pStatus"></li>
                                     <li id="pAge">Age</li>
                                 </ul>
                             </div>
@@ -177,7 +177,7 @@
                         res.forEach(element => {
                             $.ajax({
                                     method: 'GET',
-                                    url: `http://localhost:3000/requestsRecieved?userId=${element.id}&senderId=${userDetails.id}`
+                                    url: `http://localhost:3000/requestsSent?userId=${element.id}&senderId=${userDetails.id}`
                                 })
                                 .done(function (result) {
                                     // console.log(result)
@@ -215,11 +215,26 @@
                                             .done(function (res) {
 
                                                 if (res.length) {
-                                                    console.log(res)
+                                                    // console.log(res)
                                                     res.forEach(d => {
                                                         console.log(d.senderId)
                                                         $(`.user-${d.senderId}`)
-                                                        .remove()
+                                                            .remove()
+                                                    })
+                                                }
+                                            })
+
+                                        $.ajax({
+                                                method: "GET",
+                                                url: `http://localhost:3000/friends?friendId=${element.id}&userId=${userDetails.id}`
+                                            })
+                                            .done(function (ress) {
+                                                if (ress.length) {
+
+                                                    ress.forEach(d => {
+
+                                                        $(`.user-${d.friendId}`)
+                                                            .remove()
                                                     })
                                                 }
                                             })
@@ -245,28 +260,16 @@
             }
 
 
-            function removeFromAddFriend(sId, eId, uId) {
-                if (sId === eld && uId === userDetails.id) {
-                    $(`.${eId}`).remove()
-                }
-            }
-            // console.log(requestData)
-            // $(`.${id}`).hide();
-            // $(`.sent-${id}`).show();
-            // $(`.${id}`).addClass('fa-check')
             $.ajax({
                     method: 'POST',
                     url: "http://localhost:3000/requestsRecieved",
                     data: requestData
                 })
                 .done(function () {
-                    console.log('ok');
                     $.ajax({
                         method: 'POST',
                         data: requestData,
                         url: 'http://localhost:3000/requestsSent'
-                    }).done(function () {
-                        console.log('ok')
                     })
                 })
         }
@@ -279,6 +282,7 @@
                     $("#pName").text(`Name: ${data.firstname}  ${data.lastname}`);
                     $("#pLoc").text(`Location: ${data.state}, ${data.city}`);
                     $("#pAge").text(`Age: ${data.age}`)
+                    $("#pStatus").text(`Status: ${data.description}`)
                     $(".modal").modal('show')
                 }
             })
