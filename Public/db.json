@@ -54,11 +54,19 @@
   "friends": [
     {
       "userId": "3",
-      "friendId": "2",
-      "name": "badmus Tboy",
+      "friendId": "1",
+      "name": "tokyo baddo",
       "age": "25",
       "location": "lagos, Ajegunle",
       "id": 1
+    },
+    {
+      "userId": "2",
+      "friendId": "3",
+      "name": "badmus muyiwa",
+      "age": "23",
+      "location": "oyo, ibadan",
+      "id": 2
     }
   ],
   "requestsSent": [
@@ -111,19 +119,29 @@
       "state": "oyo",
       "city": "ibadan",
       "id": 5
-    }
-  ],
-  "requestsRecieved": [
+    },
     {
-      "userId": "1",
-      "senderId": "2",
-      "firstname": "badmus",
-      "lastname": "Tboy",
+      "userId": "3",
+      "senderId": "1",
+      "firstname": "tokyo",
+      "lastname": "baddo",
       "age": "25",
       "state": "lagos",
       "city": "Ajegunle",
-      "id": 1
+      "id": 6
     },
+    {
+      "userId": "2",
+      "senderId": "3",
+      "firstname": "badmus",
+      "lastname": "muyiwa",
+      "age": "23",
+      "state": "oyo",
+      "city": "ibadan",
+      "id": 7
+    }
+  ],
+  "requestsRecieved": [
     {
       "userId": "4",
       "senderId": "2",
@@ -145,23 +163,117 @@
       "id": 4
     }
   ],
-  "chat": [
+  "chats": [
     {
-      "id": 1,
-      "userid": "1",
-      "username": "Tboy"
-    }
-  ],
-  "messages": [
-    {
-      "id": 1,
-      "userid": "1",
+      "userId": "3",
       "chatId": "1",
-      "message": "hi",
-      "reply": "Hello",
-      "timeStamp": "8:14pm"
+      "name": "tokyo baddo",
+      "location": "lagos, Ajegunle",
+      "age": "25",
+      "id": 1
+    },
+    {
+      "userId": "3",
+      "chatId": "2",
+      "name": "badmus Tboy",
+      "location": "lagos, Ajegunle",
+      "age": "25",
+      "id": 2
     }
   ],
+  "messagesSent": [
+    {
+      "senderId": "3",
+      "senderName": "badmus muyiwa",
+      "chatId": "1",
+      "recieverId": "1",
+      "recieverName": "tokyo baddo",
+      "messageSent": "Hi",
+      "timeSent": "10:28 PM",
+      "id": 1
+    },
+    {
+      "senderId": "3",
+      "senderName": "badmus muyiwa",
+      "chatId": "1",
+      "recieverId": "1",
+      "recieverName": "tokyo baddo",
+      "messageSent": "How are you",
+      "timeSent": "10:28 PM",
+      "id": 2
+    },
+    {
+      "senderId": "3",
+      "senderName": "badmus muyiwa",
+      "chatId": "1",
+      "recieverId": "1",
+      "recieverName": "tokyo baddo",
+      "messageSent": "Are you ok",
+      "timeSent": "10:36 PM",
+      "id": 3
+    },
+    {
+      "senderId": "1",
+      "senderName": "tokyo baddo",
+      "chatId": "1",
+      "recieverId": "3",
+      "recieverName": "badmus muyiwa",
+      "messageSent": "I am fine",
+      "timeSent": "10:38 PM",
+      "id": 4
+    },
+    {
+      "senderId": "1",
+      "senderName": "tokyo baddo",
+      "chatId": "1",
+      "recieverId": "3",
+      "recieverName": "badmus muyiwa",
+      "messageSent": "how was your day",
+      "timeSent": "10:44 PM",
+      "id": 5
+    },
+    {
+      "senderId": "1",
+      "senderName": "tokyo baddo",
+      "chatId": "1",
+      "recieverId": "3",
+      "recieverName": "badmus muyiwa",
+      "messageSent": "How was ur day",
+      "timeSent": "11:20 PM",
+      "id": 6
+    },
+    {
+      "senderId": "3",
+      "senderName": "badmus muyiwa",
+      "chatId": "1",
+      "recieverId": "1",
+      "recieverName": "tokyo baddo",
+      "messageSent": "Was fine\nYours ?",
+      "timeSent": "11:43 PM",
+      "id": 7
+    },
+    {
+      "senderId": "3",
+      "senderName": "badmus muyiwa",
+      "chatId": "1",
+      "recieverId": "1",
+      "recieverName": "tokyo baddo",
+      "messageSent": "Are at home",
+      "timeSent": "11:46 PM",
+      "id": 8
+    },
+    {
+      "senderId": "3",
+      "senderName": "badmus muyiwa",
+      "chatId": "2",
+      "recieverId": "2",
+      "recieverName": "badmus Tboy",
+      "messageSent": "hi there",
+      "timeSent": "12:08 AM",
+      "id": 9
+    }
+  ],
+  "messgesRecieved": [],
   "states": [
     "Abuja",
     "Oyo",

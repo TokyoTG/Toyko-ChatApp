@@ -51,8 +51,8 @@
         </nav>
 
     </header>
-    <main>
-        <section id="features">
+    <main id="home">
+        <!-- <section id="features">
             <div class="cardTitle">
                 <h3>FEATURES</h3>
             </div>
@@ -81,7 +81,7 @@
                     ChatApp free
                     chat apps on android, also chat available on iPad and tablets.</p>
             </div>
-        </section>
+        </section> -->
 
         <section id="guide">
             <H1>GUIDE</H1>
@@ -266,9 +266,7 @@
             return this.optional(element) || /[a-z0-9.-]+@[a-z-]+\.(com|ng|net)/i.test(value)
         }, "Please enter a correct email")
 
-        $.validator.addMethod('fullnameCustom', function (value, element) {
-            return this.optional(element) || /[a-z0-9.-]+@[a-z-]+\.(com|ng|net)/i.test(value)
-        }, "Please Ensure there is space between names")
+
 
         $.validator.addMethod('removeSpace', function (value) {
             return value = $.trim(value);
@@ -305,12 +303,14 @@
                 firstname: {
                     required: true,
                     rangelength: [2, 20],
+                    lettersonly: true,
                     normalizer: function (value) {
                         return $.trim(value);
                     }
                 },
                 lastname: {
                     required: true,
+                    lettersonly: true,
                     rangelength: [2, 20]
                 },
                 phone: {

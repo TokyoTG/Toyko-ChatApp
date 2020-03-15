@@ -102,28 +102,29 @@
                 </ul>
             </div>
         </section>
-        <section id="content" class="card" style="padding: 0; background: rgb(248, 226, 226);">
+        <section id="content" class="card" style="padding: 0;">
             <div class="well-container">
                 <div class="well">
                     <div id="wellHeader">
                         <img src="../img/login_icon.png" alt="..." class="profile-img">
-                        Cras
-                        justo<a href="" id="back"><i class="fas fa-arrow-left"></i></a>
+                        <span class="chatName">Cras
+                            justo</span> <a href="" id="back"><i class="fas fa-arrow-left"></i></a>
                     </div>
-
-                    <p class="msgIn">Hi <span class="timeStamp">8:14</span></p>
-
-                    <p class="msgOut">Hello<span class="timeStamp">8:14</span></p>
-                    <p class="msgOut">Hello<span class="timeStamp">8:14</span></p>
-                    <p class="msgOut">Hello, How are you , Are you ok ?<span class="timeStamp">8:14</span></p>
-                    <p class="msgIn">Hi<span class="timeStamp">8:14</span></p>
-                    <p class="msgIn">Hi<span class="timeStamp">8:14</span></p>
-                    <p class="msgOut">Hello<span class="timeStamp">8:14</span></p>
-                    <p class="msgOut">Hello<span class="timeStamp">8:14</span></p>
-                    <p class="msgOut">Hello<span class="timeStamp">8:15</span></p>
+                    <div id="wellBody">
+                        <!-- <p class="msgIn">Hi <span class="timeStamp">8:14</span></p>
+                        <p class="msgOut">Hello<span class="timeStamp">8:14</span></p>
+                        <p class="msgOut">Hello<span class="timeStamp">8:14</span></p>
+                        <p class="msgOut">Hello, How are you , Are you ok ?<span class="timeStamp">8:14</span></p>
+                        <p class="msgIn">Hi<span class="timeStamp">8:14</span></p>
+                        <p class="msgIn">Hi<span class="timeStamp">8:14</span></p>
+                        <p class="msgOut">Hello<span class="timeStamp">8:14</span></p>
+                        <p class="msgOut">Hello<span class="timeStamp">8:14</span></p>
+                        <p class="msgOut">Hello<span class="timeStamp">8:15</span></p> -->
+                    </div>
                 </div>
                 <div id="wellFooter">
-                    <input type="text" class="typeSpace" placeholder="type message">
+                    <!-- <input type="text" class="typeSpace" placeholder="type message"> -->
+                    <textarea name="" id="" cols="1" rows="1" class="typeSpace" placeholder="Type Message"></textarea>
                     <button type="submit" class="btn btn-success send" disabled> <i class="fas fa-paper-plane"></i>
                     </button>
                 </div>
@@ -151,9 +152,38 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/additional-methods.min.js"></script>
     <script src="../Js/index.js"></script>
     <script>
+        let userDetails = JSON.parse(localStorage.getItem("userData"));
+        let recieverId = localStorage.getItem('recieverId');
+        let recieverName = localStorage.getItem('recieverName');
+        let chatId = localStorage.getItem('chatId');
+        let senderName = userDetails.firstname + ' ' + userDetails.lastname
         $(document).ready(
 
+            function popMsg() {
+                $(".chatName").text(`${recieverName}`)
+                $.ajax({
+                        method: "GET",
+                        url: `http://localhost:3000/messagesSent?chatId=${chatId}`
+                    })
+                    .done(function (result) {
+                        result.forEach(element => {
+                            if (element.senderId == userDetails.id) {
+                                $("#wellBody").append(
+                                    `<p class="msgOut">${element.messageSent}<span class="timeStamp">${element.timeSent}</span></p>`
+                                )
+                            } else {
+                                $("#wellBody").append(`<p class="msgIn">${element.messageSent}<span
+                                     class="timeStamp">${element.timeSent}</span></p>`)
+                            }
+
+                        });
+                    })
+            }
         )
+
+
+
+
 
         let timeSent = getTime()
 
@@ -172,11 +202,49 @@
             disableSend()
         })
 
-        function getTime(res) {
-            let tRes, hour, min, d;
+
+        $(".send").click(e => {
+            let msgData;
+            e.preventDefault();
+            let timeSent = getTime();
+            let messageSent = $(".typeSpace").val()
+            msgData = {
+                senderId: userDetails.id,
+                senderName,
+                chatId,
+                recieverId,
+                recieverName,
+                messageSent,
+                timeSent
+            }
+
+            $.ajax({
+                method: 'POST',
+                url: 'http://localhost:3000/messagesSent',
+                data: msgData
+            })
+
+            clear()
+        })
+
+
+        function clear() {
+            $(".typeSpace").val('')
+        }
+
+        function getTime() {
+            let tRes, hour, min, d, res;
             d = new Date()
             hour = d.getHours()
             min = d.getMinutes()
+            if (min < 10) {
+                min = '0' + min
+            }
+            if (hour == 0) {
+                hour += 12
+                res = hour + ":" + min + " AM"
+                return res
+            }
             if (hour < 12) {
                 res = hour + ":" + min + " AM"
             } else if (hour === 12) {

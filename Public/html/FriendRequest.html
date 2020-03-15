@@ -225,19 +225,19 @@
                             url: `http://localhost:3000/requestsRecieved/${id}`
                         })
                         .done(function () {
-                            $.ajax({
-                                method: "POST",
-                                url: `http://localhost:3000/friends`,
-                                data: friendData
-                            })
+                            post(friendData);
                         })
                 })
             // })
         }
 
 
-        function delFromReq(id) {
-
+        function post(data) {
+            $.ajax({
+                method: "POST",
+                url: `http://localhost:3000/friends`,
+                data: data
+            })
         }
 
 

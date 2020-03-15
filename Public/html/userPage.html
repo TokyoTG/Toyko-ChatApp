@@ -103,54 +103,15 @@
             </div>
         </section>
         <section id="content" class="card">
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item d-flex justify-content-between align-items-center">
-                    <a href="chatPage.html" class="chats"><img src="../img/login_icon.png" alt="..."
-                            class="profile-img"> Cras
-                        justo</a>
-                    <span class="badge badge-primary badge-pill">14</span>
-                </li>
-                <li class="list-group-item d-flex justify-content-between align-items-center">
-                    <a href="chatPage.html" class="chats"><img src="../img/login_icon.png" alt="..."
-                            class="profile-img"> facilisis
-                        in</a>
-                    <a href="chatPage.html"><span class="badge badge-primary badge-pill">2</span></a>
-                </li>
-                <li class="list-group-item d-flex justify-content-between align-items-center">
-                    <a href="chatPage.html" class="chats"><img src="../img/login_icon.png" alt="..."
-                            class="profile-img"> leo
-                        risus</a>
-                    <span class="badge badge-primary badge-pill">1</span>
-                </li>
-                <li class="list-group-item d-flex justify-content-between align-items-center">
+            <div class="empty">
+                <p>You dont have any friend yet</p>
+                <button class="btn btn-success">Add Friend</button>
+            </div>
+            <div class="chat-well">
+                <ul class="list-group list-group-flush" id="chatList">
 
-                    <a href="chatPage.html" class="chats"><img src="../img/login_icon.png" alt="..."
-                            class="profile-img"> Cras
-                        justo</a>
-                    <span class="badge badge-primary badge-pill">14</span>
-                </li>
-                <li class="list-group-item d-flex justify-content-between align-items-center">
-                    <a href=""><img src="../img/login_icon.png" alt="..." class="profile-img"> Dapibus ac facilisis
-                        in</a>
-                    <span class="badge badge-primary badge-pill">2</span>
-                </li>
-                <li class="list-group-item d-flex justify-content-between align-items-center">
-                    <a href=""><img src="../img/login_icon.png" alt="..." class="profile-img">Morbi risus </a>
-                    <a href=""><span class="badge badge-primary badge-pill">1</span></a>
-                </li>
-                <li class="list-group-item d-flex justify-content-between align-items-center">
-                    <a href=""><img src="../img/login_icon.png" alt="..." class="profile-img"> Cras justo</a>
-                    <a href=""><span class="badge badge-primary badge-pill">14</span></a>
-                </li>
-                <li class="list-group-item d-flex justify-content-between align-items-center">
-                    <a href=""><img src="../img/login_icon.png" alt="..." class="profile-img"> Dapibus facili</a>
-                    <a href=""><span class="badge badge-primary badge-pill">2</span></a>
-                </li>
-                <li class="list-group-item d-flex justify-content-between align-items-center">
-                    <a href=""><img src="../img/login_icon.png" alt="..." class="profile-img"> Morbi risus</a>
-                    <a href=""><span class="badge badge-primary badge-pill">1</span></a>
-                </li>
-            </ul>
+                </ul>
+            </div>
         </section>
 
     </main>
@@ -172,12 +133,68 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/additional-methods.min.js"></script>
     <script src="../Js/index.js"></script>
     <script>
+        let userDetails = JSON.parse(localStorage.getItem("userData"));
         $(document).ready(
+            function popChatList() {
+                let recieverId;
+                $.ajax({
+                        method: "GET",
+                        url: `http://localhost:3000/chats?userId=${userDetails.id}`
+                    })
+                    .done(function (res) {
+                        if (res.length) {
+                            $(".empty").hide()
+                            res.forEach(element => {
+                                $("#chatList").append(` <li
+                                    class="list-group-item d-flex justify-content-between align-items-center">
+                                    <a href="chatPage.html" class="chats" onclick="getChatId(${element.chatId},'${element.name}',${element.id})"><img
+                                            src="../img/login_icon.png" alt="..."
+                                            class="profile-img">${element.name}</a>
+                                    <span class="badge badge-primary badge-pill">14</span>
+                                </li>`)
 
+
+                            });
+                        }
+
+                    })
+
+                $.ajax({
+                        method: 'GET',
+                        url: `http://localhost:3000/chats?chatId=${userDetails.id}`
+                    })
+                    .done(function (result) {
+                        if (result.length) {
+                            $(".empty").hide()
+                            result.forEach(data => {
+                                $.ajax({
+                                        method: "GET",
+                                        url: `http://localhost:3000/users/${data.userId}`
+                                    })
+                                    .done(function (result) {
+                                        let resName = result.firstname + " " + result.lastname
+                                        $("#chatList").append(` <li
+                                    class="list-group-item d-flex justify-content-between align-items-center">
+                                    <a href="chatPage.html" class="chats"
+                                        onclick="getChatId(${result.id},'${resName}',${data.id})"><img
+                                            src="../img/login_icon.png" alt="..."
+                                            class="profile-img">${resName}</a>
+                                    <span class="badge badge-primary badge-pill">14</span>
+                                </li>`)
+                                    })
+                            })
+                        }
+                    })
+            }
         )
 
         let timeSent = getTime()
 
+        function getChatId(id, name, cId) {
+            localStorage.setItem('recieverId', id)
+            localStorage.setItem('recieverName', name)
+            localStorage.setItem('chatId', cId)
+        }
 
         function getTime(res) {
             let tRes, hour, min, d;

@@ -23,14 +23,14 @@ header {
 
 .error {
   color: red;
-  font-size: .7em;
+  font-size: 0.7em;
 }
 
 #login #invalid {
   background: #f44336;
   color: white;
   border-radius: 3px;
-  transition: .3s;
+  transition: 0.3s;
   padding: 3px 10px;
   display: inline-block;
   font-size: 0.8em;
@@ -165,7 +165,7 @@ main {
   display: grid;
   /* background: gold; */
   width: 95%;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   margin: 150px auto 10px auto;
   /* grid-column-gap: 10px; */
 }
@@ -368,12 +368,17 @@ CHAT PAGE
 *******************************/
 
 .well {
-  background: rgb(248, 226, 226);
+  background: white;
   /* padding: 10px; */
   width: 100%;
   max-height: 90%;
   overflow: auto;
   position: relative;
+}
+
+.chat-well {
+  max-height: 700px;
+  overflow: auto;
 }
 
 #wellHeader {
@@ -393,7 +398,7 @@ CHAT PAGE
 .msgIn,
 .msgOut {
   display: inline-block;
-  background: lightcoral;
+  color: black;
   border-radius: 5px;
   position: relative;
   margin: 10px;
@@ -410,7 +415,7 @@ CHAT PAGE
   margin-top: -5px;
   border-width: 5px;
   border-style: solid;
-  border-color: transparent lightcoral transparent transparent;
+  border-color: transparent #bdbdbd transparent transparent;
 }
 
 .msgOut::after {
@@ -422,18 +427,24 @@ CHAT PAGE
   margin-top: -5px;
   border-width: 5px;
   border-style: solid;
-  border-color: transparent transparent transparent lightcoral;
+  border-color: transparent transparent transparent #80d8ff;
+}
+
+.msgIn {
+  background: #bdbdbd;
 }
 
 .msgOut {
   float: right;
+
+  background: #80d8ff;
 }
 
 #wellFooter {
   background: #00838f;
   padding: 10px;
   left: 0;
-  height: 10%;
+  /* height: 5%; */
   position: absolute;
   right: 0;
   bottom: 0;
@@ -445,8 +456,9 @@ CHAT PAGE
 
 .typeSpace {
   border-radius: 10px;
-
+  resize: none;
   border: none;
+  height: 50px;
   padding: 5px;
   width: 70%;
 }
@@ -454,7 +466,6 @@ CHAT PAGE
 .well-container {
   height: 100%;
   width: 100%;
-  position: relative;
 }
 
 .timeStamp {
@@ -479,7 +490,6 @@ FRIENDS
   font-size: 1.5em;
   cursor: pointer;
 }
-
 
 .sent {
   color: #00c853;
@@ -559,6 +569,9 @@ MEDIA QUERIES
 @media only screen and (min-width: 600px) {
   .card.links a span {
     font-size: 0.8em;
+  }
+  #home {
+    width: 70%;
   }
 }
 
