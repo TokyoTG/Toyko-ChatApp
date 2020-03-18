@@ -82,7 +82,8 @@
                 <h4>Menu</h4>
                 <ul>
                     <li>
-                        <a href="userPage.html"><i class="far fa-comment-alt user"></i> <span>Chats</span> </a>
+                        <a href="userPage.html" class="user-link"><i class="far fa-comment-alt user"></i>
+                            <span>Chats</span> </a>
 
                     </li>
                     <li>
@@ -133,6 +134,7 @@
                                     <li id="pName"></li>
                                     <li id="pLoc">Location:</li>
                                     <li id="pStatus">Status:</li>
+                                    <li id="pGender"></li>
                                     <li id="pAge">Age</li>
                                 </ul>
                             </div>
@@ -159,6 +161,9 @@
         </ul>
     </footer>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+    </script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
     </script>
@@ -184,14 +189,18 @@
                                             src="../img/login_icon.png" alt="..."
                                             class="profile-img">${element.name}</a>
 
-                                    <a href="#" onclick="addToChats(${element.friendId})"><span class="badge"><i class="far fa-comment-alt"></i>
+                                    <a href="#" onclick="addToChats(${element.friendId})"><span class="badge"
+                                            data-toggle="tooltip" data-placement="top" title="Add to chats"><i
+                                                class="far fa-comment-alt"></i>
                                         </span></a>
-                                    <a href=""><span class="badge"> <i class="fas fa-trash"></i> </span></a>
+                                    <a href=""><span class="badge" data-toggle="tooltip" data-placement="top"
+                                            title="Unfriend"> <i class="fas fa-trash"></i> </span></a>
                                 </li>`)
+
                             });
+                            $('[data-toggle="tooltip"]').tooltip()
                         }
                     })
-
                 $.ajax({
                         method: "GET",
                         url: `http://localhost:3000/friends?friendId=${userDetails.id}`
@@ -212,22 +221,20 @@
                                                      class="profile-img">${result.firstname} ${result.lastname}</a>
 
                                              <a href="#" onclick="addToChats(${result.id})"><span
-                                                     class="badge"><i class="far fa-comment-alt"></i>
+                                                     class="badge" data-toggle="tooltip"
+                                                     data-placement="top" title="Add to chats"><i
+                                                         class="far fa-comment-alt"></i>
                                                  </span></a>
-                                             <a href=""><span class="badge"> <i class="fas fa-trash"></i> </span></a>
+                                             <a href=""><span class="badge" data-toggle="tooltip" data-placement="top"
+                                                     title="Unfriend"> <i class="fas fa-trash"></i> </span></a>
                                          </li>`)
 
                                     })
                             })
+
                         }
                     })
 
-
-                $(".chats").click(function (e) {
-                    e.preventDefault();
-
-                    $(".modal").show()
-                })
             }
 
         )
@@ -245,6 +252,7 @@
                     $("#pLoc").text(`Location: ${data.state}, ${data.city}`);
                     $("#pAge").text(`Age: ${data.age}`)
                     $("#pStatus").text(`Status: ${data.description}`)
+                    $("#pGender").text(`Gender: ${data.gender}`)
                     $(".modal").modal('show')
                 }
             })
@@ -257,7 +265,7 @@
                     data: data
                 })
                 .done(function () {
-                    console.log('aii')
+                    $('.user-link')[0].click();
                 })
         }
 
@@ -274,7 +282,6 @@
                         location: data.state + ', ' + data.city,
                         age: data.age
                     }
-                    console.log(chatData)
                     $.ajax({
                             method: "GET",
                             url: `http://localhost:3000/chats?userId=${userDetails.id}&chatId=${id}`,
@@ -290,10 +297,16 @@
                                             sendChatData(chatData)
                                         }
                                     })
+                            } else {
+                                $('.user-link')[0].click();
                             }
                         })
                 })
         }
+
+        // $(".fa-edit").mouseover(function () {
+        //     $('[data-toggle="tooltip"]').tooltip()
+        // })
         $("#closeModal").click((e) => {
             e.preventDefault();
             $(".close").click()

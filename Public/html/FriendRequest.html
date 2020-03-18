@@ -132,10 +132,11 @@
                             <img src="../img/login_icon.png" class=" mr-3 profile-imgS" alt="...">
                             <div class="media-body">
                                 <ul>
-                                    <li>Name:</li>
-                                    <li>Location:</li>
-                                    <li>Status:</li>
-                                    <li>Age</li>
+                                    <li id="pName"></li>
+                                    <li id="pLoc">Location:</li>
+                                    <li id="pStatus">Status:</li>
+                                    <li id="pGender"></li>
+                                    <li id="pAge">Age</li>
                                 </ul>
                             </div>
                         </div>
@@ -180,21 +181,29 @@
                     })
                     .done(function (res) {
                         if (res.length) {
-                            $(".empty").hide()
                             res.forEach((element, index) => {
-                                // console.log(res)
-                                $("#requestList").append(`<li
+                                //FILTERS ACCEPTED REQUESTS
+                                $.ajax({
+                                        method: "GET",
+                                        url: `http://localhost:3000/friends?friendId=${element.senderId}&userId=${userDetails.id}`
+                                    })
+                                    .done(function (result) {
+                                        if (result.length <= 0) {
+                                            $(".empty").hide()
+                                            $("#requestList").append(`<li
                                 class="list-group-item d-flex justify-content-between align-items-center">
-                                <a href="3" class="chats"><img src="../img/login_icon.png" alt="..."
-                                        class="profile-img"> ${element.firstname}  ${element.lastname}</a>
+                                <a href="#" class="chats" onclick="showProfile(${element.senderId})">
+                                        <img src="../img/login_icon.png" alt="..." class="profile-img"> ${element.firstname}  ${element.lastname}</a>
 
-                                '<span class="badge" data-toggle="tooltip"
-                                    onclick="accept('${element.senderId}','${element.firstname}','${element.lastname}','${element.age}','${element.state}','${element.city}')"
-                                    data-placement="top" title="Accept">'<i
+                                <span class="badge" data-toggle="tooltip"
+                                    onclick="accept(${element.senderId},'${element.firstname}','${element.lastname}','${element.age}','${element.state}','${element.city}')"
+                                    data-placement="top" title="Accept"><i
                                         class="fas fa-check"></i> </span>
                                 <span class="badge" data-toggle="tooltip" data-placement="top" title="Reject" onclick="reject(${element.id})"> <i
                                         class="fas fa-times"></i> </span>
                             </li>`)
+                                        }
+                                    })
                             });
                             $('[data-toggle="tooltip"]').tooltip()
                         }
@@ -212,30 +221,14 @@
                 age,
                 location: state + ", " + city
             }
-
-            // .done(function () {
-            $.ajax({
-                    method: "GET",
-                    url: `http://localhost:3000/requestsRecieved?userId=${userDetails.id}&senderId=${id}`
-                })
-                .done(function (res) {
-                    let id = res[0].id
-                    $.ajax({
-                            method: 'DELETE',
-                            url: `http://localhost:3000/requestsRecieved/${id}`
-                        })
-                        .done(function () {
-                            post(friendData);
-                        })
-                })
-            // })
+            post(friendData);
         }
 
 
         function post(data) {
             $.ajax({
                 method: "POST",
-                url: `http://localhost:3000/friends`,
+                url: `http://localhost:3000/friends/`,
                 data: data
             })
         }
@@ -243,18 +236,53 @@
 
         function reject(id) {
             $.ajax({
-                    method: "DELETE",
-                    url: `http://localhost:3000/requestsRecieved?userId=${userDetails.id}&senderId=${id}`
+                    type: "GET",
+                    url: `http://localhost:3000/requestsRecieved/${id}`
                 })
-                .done(function () {
-                    console.log('deleted')
+                .done(function (res) {
+                    console.log(res);
+                    let resEdit = {
+                        userId: 404,
+                        senderId: 404,
+                        firstname: null,
+                        lastname: null,
+                        age: null,
+                        state: null,
+                        city: null
+                    }
                     $.ajax({
-                        method: "DELETE",
-                        url: `http://localhost:3000/requestsSent?userId=${userDetails.id}&senderId=${id}`
-                    })
+                            method: "PATCH",
+                            url: `http://localhost:3000/requestsRecieved/${id}`,
+                            data: resEdit
+                        })
+                        .done(function (data) {
+
+                            $.ajax({
+                                method: "PATCH",
+                                url: `http://localhost:3000/requestsSent/${id}`,
+                                data: resEdit
+                            })
+                        })
                 })
 
         }
+
+
+        function showProfile(id) {
+            $.ajax({
+                method: 'GET',
+                url: 'http://localhost:3000/users/' + id,
+                success: function (data) {
+                    $("#pName").text(`Name: ${data.firstname} ${data.lastname}`);
+                    $("#pLoc").text(`Location: ${data.state}, ${data.city}`);
+                    $("#pAge").text(`Age: ${data.age}`)
+                    $("#pStatus").text(`Status: ${data.description}`)
+                    $("#pGender").text(`Gender: ${data.gender}`)
+                    $(".modal").modal('show')
+                }
+            })
+        }
+
         $(".close").click((e) => {
             e.preventDefault();
             $(".modal").hide()

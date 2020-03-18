@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="../style/style.css">
+    <link rel="stylesheet" href="../style/all.min.css">
+
+    <title>TCA | Friend Request</title>
+</head>
+
+<body>
+    <header>
+        <div id="logo">
+            <div id="lCont">
+                <a href="/Public/index.html">
+                    <h1 id="logoText"><span id="t">T</span><span id="c">C</span><span id="a">A</span></h1>
+                </a>
+
+            </div>
+            <div id="app-name">
+                <h3> Tokyo Chat App</h3>
+            </div>
+
+            <div id="contactDetails">
+                <ul>
+                    <li class="cont"><a href="#"><i class="fab fa-facebook"></i> <span>Facebook</span></a></li>
+                    <li class="cont"><a href="#"><i class="fab fa-twitter"></i> <span>Twitter</span></a></li>
+                    <li class="cont"><a href="#"><i class="fab fa-github"></i> <span>GitHub</span></a></li>
+                </ul>
+            </div>
+
+        </div>
+        <nav class="navbar navbar-expand-lg navbar-light ">
+            <a class="navbar-brand" href="#" id="link">Tokyo ChatApp</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    <a class="nav-item nav-link active" href="#" id="link">Home <span
+                            class="sr-only">(current)</span></a>
+                    <a class="nav-item nav-link" href="#" id="link">Features</a>
+                    <a class="nav-item nav-link" href="../index.html" id="link">Log Out</a>
+                </div>
+            </div>
+        </nav>
+
+    </header>
+    <main class="edit-profile">
+
+        <div class="card" id="profileCard">
+            <div class="profile-title">
+                <h1>Edit Profile</h1>
+            </div>
+
+            <div class="image-card">
+                <a href="../img/login_icon.png"><img src="../img/login_icon.png" alt="User Image"
+                        class="profile-image"></a>
+                <i class="fa fa-camera upload-button" id="upButton" data-toggle="tooltip" data-placement="right"
+                    title="Edit Photo"></i>
+            </div>
+            <div class="form-card">
+
+                <form id="userReg">
+                    <div class="form-group">
+                        <label for="firstname">First Name</label>
+                        <input type="text" name="firstname" class="form-control" id="firstname"
+                            placeholder="Enter Full Name Here">
+                        <small class="form-text text-muted">Must 2-20 characters long
+                        </small>
+                    </div>
+                    <div class="form-group">
+                        <label for="lastname">Last Name</label>
+                        <input type="text" name="lastname" class="form-control" id="lastname"
+                            placeholder="Enter Full Name Here">
+                        <small class="form-text text-muted">Must 2-20 characters long
+                        </small>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="text" name="phone" class="form-control" id="phone"
+                            placeholder="Enter Valid Phone Number">
+                        <small id="emailHelp" class="form-text text-muted">We'll never share your number with anyone
+                            else.</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email address</label>
+                        <input type="email" name="email" class="form-control" id="email" aria-describedby="emailHelp">
+                        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
+                            else.</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="age">Age</label>
+                        <input type="text" name="age" class="form-control" id="age" aria-describedby="emailHelp">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="state">State</label>
+                        <select class="custom-select" id="state" name="state">
+                            <option selected disabled value="">Choose State...</option>
+
+                        </select>
+
+                    </div>
+                    <div class="form-group">
+                        <label for="city">City</label>
+                        <select class="custom-select" id="city" name="city">
+                            <option selected disabled value="">Choose City...</option>
+
+                        </select>
+
+                    </div>
+                    <div class="form-group">
+                        <label for="textarea">Descrpition</label>
+                        <textarea class="form-control" id="textarea" rows="3" placeholder="Briefly describe yourself"
+                            name="description"></textarea>
+                        <small class="text-muted">
+                            Must be 20-100 characters long.
+                        </small>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" name="password" class="form-control" id="password">
+                        <small class="text-muted">
+                            Must be 8-20 characters long.
+                        </small>
+                    </div>
+                    <div class="form-group">
+                        <label for="password2">Confirm Password</label>
+                        <input type="password" name="password2" class="form-control" id="password2">
+                        <small id="passwordHelpInline" class="text-muted">
+                            Must be the same as above.
+                        </small>
+                    </div>
+                    <button type="submit" class="btn btn-success btn-block">Save Changes</button>
+                </form>
+            </div>
+
+        </div>
+
+    </main>
+    <footer>
+        <p>&copy; Tokyo 2020</p>
+
+        <ul>
+            <li><a href="#">FAQ</a></li>
+            <li><a href="#">Policy</a></li>
+            <li><a href="#">Safety</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+    </footer>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/additional-methods.min.js"></script>
+    <script src="../Js/index.js"></script>
+    <script>
+        let userDetails = JSON.parse(localStorage.getItem("userData"));
+        $(document).ready(
+            function getRequests() {
+                $('[data-toggle="tooltip"]').tooltip()
+            }
+        )
+    </script>
+</body>
+
+</html>

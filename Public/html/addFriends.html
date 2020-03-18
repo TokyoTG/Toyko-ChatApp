@@ -128,6 +128,7 @@
                                     <li id="pName">Name:</li>
                                     <li id="pLoc">Location:</li>
                                     <li id="pStatus"></li>
+                                    <li id="pGender"></li>
                                     <li id="pAge">Age</li>
                                 </ul>
                             </div>
@@ -136,7 +137,7 @@
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal"
                             id="closeModal">Close</button>
-                        <button type="button" class="btn btn-primary">Send Request</button>
+                        <!-- <button type="button" class="btn btn-primary" id="sendReqBtn">Send Request</button> -->
                     </div>
                 </div>
             </div>
@@ -169,38 +170,44 @@
 
             function popFriend() {
 
+                //GETS ALL REGISTERED  USERS
                 $.ajax({
                         method: 'GET',
                         url: 'http://localhost:3000/users',
                     })
                     .done(function (res) {
                         res.forEach(element => {
+                            // FILTERS USERS WITH THOSE THE USERS HAVE SENT REQUEST 
                             $.ajax({
                                     method: 'GET',
                                     url: `http://localhost:3000/requestsSent?userId=${element.id}&senderId=${userDetails.id}`
                                 })
                                 .done(function (result) {
-                                    // console.log(result)
                                     if (result.length) {
                                         result.forEach(data => {
                                             $("#friendList").append(`<li
                                              class="list-group-item d-flex justify-content-between align-items-center user-${element.id}">
                                              <a href="#" class="chats" onclick="showProfile(${element.id})"
-                                                 data-toggle="tooltip" data-placement="top" title="View details"><img
+                                                 data-toggle="tooltip" data-placement="top" title="View profile details"><img
                                                      src="../img/login_icon.png" alt="..." class="profile-img">
                                                  ${element.firstname + ' '+ element.lastname}</a>
                                             <span class="sent">
                                                   sent <i class="fas fa-check"></i></span>
                                          </li>`)
 
+                                            $('[data-toggle="tooltip"]').tooltip()
+
+                                            $("#sendReqBtn").attr('disabled', true);
 
                                         })
+
+                                        //FILTERS THE USER ITSELF
                                     } else if (userDetails.id !== element.id) {
                                         console.log(element.id)
 
                                         $("#friendList").append(`<li class="list-group-item d-flex justify-content-between align-items-center user-${element.id}">
      <a href="#" class="chats" onclick="showProfile(${element.id})" data-toggle="tooltip" data-placement="top"
-         title="View details"><img src="../img/login_icon.png" alt="..." class="profile-img">
+         title="View profile details"><img src="../img/login_icon.png" alt="..." class="profile-img">
          ${element.firstname + ' '+ element.lastname}</a>
      <span class="badge" data-toggle="tooltip" data-placement="top" title="Send Request"
          onclick="sendRequest(${element.id})">
@@ -208,6 +215,10 @@
              class="fas fa-check"></i></span>
 
  </li>`)
+                                        $("#sendReqBtn").attr('disabled', false);
+                                        $('[data-toggle="tooltip"]').tooltip()
+
+                                        // REMOVES USERS WHO HAVE SENT THE USER A REQUEST
                                         $.ajax({
                                                 method: "GET",
                                                 url: `http://localhost:3000/requestsRecieved?senderId=${element.id}&userId=${userDetails.id}`
@@ -223,16 +234,14 @@
                                                     })
                                                 }
                                             })
-
+                                        //REMOVES A USERS WHO IS ALREADY A FRIEND
                                         $.ajax({
                                                 method: "GET",
                                                 url: `http://localhost:3000/friends?friendId=${element.id}&userId=${userDetails.id}`
                                             })
                                             .done(function (ress) {
                                                 if (ress.length) {
-
                                                     ress.forEach(d => {
-
                                                         $(`.user-${d.friendId}`)
                                                             .remove()
                                                     })
@@ -244,6 +253,7 @@
                                 })
                         });
                     })
+
             }
         )
 
@@ -283,6 +293,7 @@
                     $("#pLoc").text(`Location: ${data.state}, ${data.city}`);
                     $("#pAge").text(`Age: ${data.age}`)
                     $("#pStatus").text(`Status: ${data.description}`)
+                    $("#pGender").text(`Gender: ${data.gender}`)
                     $(".modal").modal('show')
                 }
             })
