@@ -16,7 +16,9 @@ header {
 /* input:invalid {
   border: 1px solid red;
 } */
-
+.userdes {
+  text-transform: none;
+}
 .text-muted {
   display: block;
 }
@@ -545,7 +547,21 @@ FRIENDS
 /*******************************
 EDIT PROFILE PAGE
 ******************************/
+input,
+textarea {
+  background: #69f0ae !important;
+  color: #006064;
+}
 
+input.error,
+textarea.error {
+  background: #ef5350 !important;
+  color: white;
+  resize: none;
+}
+input:focus {
+  background: white !important;
+}
 .edit-profile {
   width: 80%;
   margin: 150px auto 10px auto;
@@ -576,6 +592,9 @@ EDIT PROFILE PAGE
   border-radius: 50%;
   transition: 0.3s;
 }
+textarea {
+  resize: none;
+}
 #profileCard {
   display: grid;
   grid-template-columns: repeat(12, 8.333%);
@@ -584,14 +603,15 @@ EDIT PROFILE PAGE
   grid-column: 1/6;
 }
 .profile-title {
-  grid-column: 6/-1;
+  grid-column: 1/-1;
+  border-bottom: 2px solid #006064;
+  text-align: center;
+  margin-bottom: 15px;
 }
 .form-card {
   grid-column: 6/-1;
 }
-.profile-image:hover {
-  opacity: 0.7;
-}
+
 /******************************
 MEDIA QUERIES
 *********************************/

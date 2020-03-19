@@ -3,14 +3,16 @@
     {
       "id": 1,
       "firstname": "tokyo",
-      "lastname": "baddo",
+      "lastname": "geeboyz",
       "description": "i live large everyday like my life is too good",
-      "password": "1234",
-      "age": 25,
+      "password": "12345678",
+      "age": "25",
       "gender": "male",
-      "city": "Ajegunle",
-      "state": "lagos",
-      "email": "tboynoni@gmail.com"
+      "phone": "09022442244",
+      "city": "dankama",
+      "state": "abuja",
+      "email": "tboynoni@gmail.com",
+      "password2": "12345678"
     },
     {
       "id": 2,

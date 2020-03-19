@@ -55,18 +55,18 @@
 
         <div class="card" id="profileCard">
             <div class="profile-title">
-                <h1>Edit Profile</h1>
+                <h3>Edit Profile</h3>
+
             </div>
 
             <div class="image-card">
-                <a href="../img/login_icon.png"><img src="../img/login_icon.png" alt="User Image"
-                        class="profile-image"></a>
+                <img src="../img/login_icon.png" alt="User Image" class="profile-image">
                 <i class="fa fa-camera upload-button" id="upButton" data-toggle="tooltip" data-placement="right"
                     title="Edit Photo"></i>
             </div>
             <div class="form-card">
 
-                <form id="userReg">
+                <form id="userPatch">
                     <div class="form-group">
                         <label for="firstname">First Name</label>
                         <input type="text" name="firstname" class="form-control" id="firstname"
@@ -163,14 +163,123 @@
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/additional-methods.min.js"></script>
-    <script src="../Js/index.js"></script>
+    <script src="../Js/userIndex.js"></script>
     <script>
+        // let userDetails = JSON.parse(localStorage.getItem("userData"));
         let userDetails = JSON.parse(localStorage.getItem("userData"));
         $(document).ready(
-            function getRequests() {
+
+            function getUserDetails() {
+                $('#password').val(`${userDetails.password}`);
+                $('#password2').val(`${userDetails.password}`);
+                $('#textarea').val(`${userDetails.description}`);
+                $('#city').val(`${userDetails.city}`);
+                $('#state').val(`${userDetails.state}`);
+                $('#age').val(`${userDetails.age}`);
+                $('#email').val(`${userDetails.email}`);
+                $('#phone').val(`${userDetails.phone}`);
+                $('#firstname').val(`${userDetails.firstname}`);
+                $('#lastname').val(`${userDetails.lastname}`);
                 $('[data-toggle="tooltip"]').tooltip()
+                $('.alert').alert('close')
             }
         )
+
+        $("#userPatch").validate({
+            rules: {
+                firstname: {
+                    required: true,
+                    rangelength: [2, 20],
+                    lettersonly: true,
+                    normalizer: function (value) {
+                        return $.trim(value);
+                    }
+                },
+                lastname: {
+                    required: true,
+                    lettersonly: true,
+                    rangelength: [2, 20]
+                },
+                phone: {
+                    required: true,
+                    number: true,
+                    phoneNG: true,
+                    normalizer: function (value) {
+                        return $.trim(value);
+                    }
+                },
+                email: {
+                    required: true,
+                    emailCustom: true,
+                    normalizer: function (value) {
+                        return $.trim(value);
+                    }
+                },
+                age: {
+                    required: true,
+                    number: true,
+                    range: [10, 90],
+                    normalizer: function (value) {
+                        return $.trim(value);
+                    }
+                },
+                state: {
+                    required: true
+                },
+                city: {
+                    required: true
+                },
+                description: {
+                    required: true,
+                    rangelength: [20, 100],
+                    normalizer: function (value) {
+                        return $.trim(value);
+                    }
+                },
+                password: {
+                    required: true,
+                    minlength: 8,
+                    maxlength: 20,
+                    nowhitespace: true
+                },
+                password2: {
+                    required: true,
+                    equalTo: "#password"
+                }
+            },
+            submitHandler: function () {
+                let data = $("#userPatch").serializeArray();
+                let res = {};
+                res.gender = userDetails.gender;
+                console.log(data)
+                let cap;
+                data.forEach(el => {
+                    if (el.name !== "password") {
+                        res[el.name] = $.trim(el.value.toLocaleLowerCase());
+                    } else {
+                        res[el.name] = el.value;
+                    }
+                });
+                $.ajax({
+                        method: "PATCH",
+                        url: "http://localhost:3000/users/" + userDetails.id,
+                        data: res,
+
+                        // 
+                    })
+                    .done(function () {
+                        $.ajax({
+                                method: 'GET',
+                                url: "http://localhost:3000/users/" + userDetails.id,
+                            })
+                            .done(function (result) {
+                                localStorage.setItem('userData', JSON.stringify(result));
+                                $('.alert').alert()
+                            })
+                    })
+                return false;
+            }
+        });
     </script>
 </body>
 
