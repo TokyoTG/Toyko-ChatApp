@@ -194,7 +194,7 @@
                                                 class="far fa-comment-alt"></i>
                                         </span></a>
                                     <a href=""><span class="badge" data-toggle="tooltip" data-placement="top"
-                                            title="Unfriend"> <i class="fas fa-trash"></i> </span></a>
+                                            title="Unfriend" onclick="unfriend(${userDetails.id},${element.friendId},${element.id})"> <i class="fas fa-trash"></i> </span></a>
                                 </li>`)
 
                             });
@@ -226,7 +226,9 @@
                                                          class="far fa-comment-alt"></i>
                                                  </span></a>
                                              <a href=""><span class="badge" data-toggle="tooltip" data-placement="top"
-                                                     title="Unfriend"> <i class="fas fa-trash"></i> </span></a>
+                                                     title="Unfriend"
+                                                     onclick="unfriend(${userDetails.id},${element.friendId})> <i
+                                                         class="fas fa-trash"></i> </span></a>
                                          </li>`)
 
                                     })

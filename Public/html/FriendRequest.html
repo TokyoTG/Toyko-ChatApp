@@ -234,38 +234,6 @@
         }
 
 
-        function reject(id) {
-            $.ajax({
-                    type: "GET",
-                    url: `http://localhost:3000/requestsRecieved/${id}`
-                })
-                .done(function (res) {
-                    console.log(res);
-                    let resEdit = {
-                        userId: 404,
-                        senderId: 404,
-                        firstname: null,
-                        lastname: null,
-                        age: null,
-                        state: null,
-                        city: null
-                    }
-                    $.ajax({
-                            method: "PATCH",
-                            url: `http://localhost:3000/requestsRecieved/${id}`,
-                            data: resEdit
-                        })
-                        .done(function (data) {
-
-                            $.ajax({
-                                method: "PATCH",
-                                url: `http://localhost:3000/requestsSent/${id}`,
-                                data: resEdit
-                            })
-                        })
-                })
-
-        }
 
 
         function showProfile(id) {

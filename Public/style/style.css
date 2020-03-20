@@ -6,7 +6,7 @@
 
 a {
   text-decoration: none;
-  color: #004d40;
+  color: #263238;
 }
 
 header {
@@ -45,7 +45,7 @@ header {
 
 a:hover {
   text-decoration: none;
-  color: inherit;
+  color: #006064;
 }
 
 #logoText {
@@ -96,11 +96,6 @@ h3 {
   letter-spacing: -18px;
 }
 
-.fab {
-  font-size: 1.4em;
-  color: #263238;
-}
-
 #logo {
   border-bottom: 1px solid black;
   position: fixed;
@@ -121,6 +116,7 @@ h3 {
   position: absolute;
   top: 50%;
   left: 50%;
+  font-family: cursive;
   transform: translate(-50%, -50%);
   font-size: 0.9em;
   font-weight: bold;
@@ -559,7 +555,8 @@ textarea.error {
   color: white;
   resize: none;
 }
-input:focus {
+input:focus,
+textarea:focus {
   background: white !important;
 }
 .edit-profile {
@@ -604,8 +601,7 @@ textarea {
 }
 .profile-title {
   grid-column: 1/-1;
-  border-bottom: 2px solid #006064;
-  text-align: center;
+  border-bottom: 1px solid #006064;
   margin-bottom: 15px;
 }
 .form-card {
@@ -622,9 +618,6 @@ MEDIA QUERIES
   .profile-image {
     width: 50%;
     border-radius: 50%;
-  }
-  .profile-title {
-    text-align: center;
   }
   .image-card {
     text-align: center;
@@ -681,6 +674,11 @@ MEDIA QUERIES
 @media only screen and (min-width: 600px) {
   .card.links a span {
     font-size: 0.8em;
+  }
+
+  .fab {
+    font-size: 1.4em;
+    color: #263238;
   }
 
   #home {

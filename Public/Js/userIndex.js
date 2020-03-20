@@ -56,6 +56,18 @@ function getCities() {
   }
 }
 
+var checkBox = document.getElementById("check1");
+checkBox.addEventListener("change", function(e) {
+  e.preventDefault();
+  if (checkBox.checked == true) {
+    $("#inputPassword").attr("type", "text");
+    $("#password").attr("type", "text");
+  } else {
+    $("#inputPassword").attr("type", "password");
+    $("#password").attr("type", "password");
+  }
+});
+
 $("#userReg").validate({
   rules: {
     firstname: {

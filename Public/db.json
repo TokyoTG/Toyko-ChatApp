@@ -9,8 +9,8 @@
       "age": "25",
       "gender": "male",
       "phone": "09022442244",
-      "city": "dankama",
-      "state": "abuja",
+      "city": "ibadan",
+      "state": "oyo",
       "email": "tboynoni@gmail.com",
       "password2": "12345678"
     },
@@ -30,11 +30,11 @@
       "firstname": "badmus",
       "lastname": "muyiwa",
       "phone": "09022442244",
-      "email": "badmus@yhaoo.net",
+      "email": "badmus@yahoo.net",
       "age": "23",
       "gender": "male",
-      "state": "oyo",
-      "city": "ibadan",
+      "state": "lagos",
+      "city": "lekki",
       "description": "i live large everyday like my life is too good",
       "password": "badmusMu",
       "password2": "badmusmu",
@@ -85,6 +85,16 @@
       "state": "",
       "city": "",
       "id": 2
+    },
+    {
+      "userId": "404",
+      "senderId": "404",
+      "firstname": "",
+      "lastname": "",
+      "age": "",
+      "state": "",
+      "city": "",
+      "id": 3
     }
   ],
   "requestsRecieved": [
@@ -107,6 +117,16 @@
       "state": "",
       "city": "",
       "id": 2
+    },
+    {
+      "userId": "404",
+      "senderId": "404",
+      "firstname": "",
+      "lastname": "",
+      "age": "",
+      "state": "",
+      "city": "",
+      "id": 3
     }
   ],
   "chats": [
@@ -119,7 +139,18 @@
       "id": 1
     }
   ],
-  "messagesSent": [],
+  "messagesSent": [
+    {
+      "senderId": "1",
+      "senderName": "tokyo geeboyz",
+      "chatId": "1",
+      "recieverId": "3",
+      "recieverName": "badmus muyiwa",
+      "messageSent": "hgg",
+      "timeSent": "1:21 AM",
+      "id": 1
+    }
+  ],
   "messgesRecieved": [],
   "states": [
     "Abuja",

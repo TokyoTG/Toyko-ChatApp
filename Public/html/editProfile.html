@@ -52,11 +52,17 @@
 
     </header>
     <main class="edit-profile">
-
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            <strong>Holy guacamole!</strong> You should check in on some of those fields below.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
         <div class="card" id="profileCard">
+
             <div class="profile-title">
                 <h3>Edit Profile</h3>
-
+                </span> <a href="userPage.html" id="back"><i class="fas fa-arrow-left"></i></a>
             </div>
 
             <div class="image-card">
@@ -137,6 +143,10 @@
                             Must be the same as above.
                         </small>
                     </div>
+                    <div class="form-group form-check">
+                        <input type="checkbox" class="form-check-input" id="check1" value="1">
+                        <label class="form-check-label" for="check1">Show password</label>
+                    </div>
                     <button type="submit" class="btn btn-success btn-block">Save Changes</button>
                 </form>
             </div>
@@ -154,6 +164,13 @@
             <li><a href="#">Contact</a></li>
         </ul>
     </footer>
+    <div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-sm modal-dialog-centered">
+            <div class="modal-content">
+                <p>Successful</p>
+            </div>
+        </div>
+    </div>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
         integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
@@ -181,9 +198,19 @@
                 $('#firstname').val(`${userDetails.firstname}`);
                 $('#lastname').val(`${userDetails.lastname}`);
                 $('[data-toggle="tooltip"]').tooltip()
-                $('.alert').alert('close')
+                // $('.alert').alert('close')
             }
         )
+
+        // $('#check2').change(function (e) {
+        //     e.preventDefault();
+        //     var checkBox = document.getElementById("check2")
+        //     if (checkBox.checked == true) {
+        //         $('#password').attr('type', 'text');
+        //     } else {
+        //         $('#password').attr('type', 'password');
+        //     }
+        // })
 
         $("#userPatch").validate({
             rules: {
@@ -247,7 +274,9 @@
                     equalTo: "#password"
                 }
             },
-            submitHandler: function () {
+            submitHandler: function (e) {
+                e.preventDefault();
+
                 let data = $("#userPatch").serializeArray();
                 let res = {};
                 res.gender = userDetails.gender;
@@ -274,7 +303,7 @@
                             })
                             .done(function (result) {
                                 localStorage.setItem('userData', JSON.stringify(result));
-                                $('.alert').alert()
+                                $('.modal').modal('show');
                             })
                     })
                 return false;
