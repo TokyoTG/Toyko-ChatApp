@@ -46,11 +46,30 @@ function reject(id) {
 }
 
 function unfriend(uId, fId, eId) {
+  let resEdit = {
+    userId: 404,
+    senderId: 404,
+    firstname: null,
+    lastname: null,
+    age: null,
+    state: null,
+    city: null
+  };
   $.ajax({
     method: "GET",
     url: `http://localhost:3000/requestsSent?userId=${uId}&senderId=${fId}`
   }).done(function(res) {
-    reject(res[0].id);
+    $.ajax({
+      method: "PATCH",
+      url: `http://localhost:3000/requestsSent/${res[0].id}`,
+      data: resEdit
+    }).done(function() {
+      $.ajax({
+        method: "PATCH",
+        url: `http://localhost:3000/requestsRecieved/${res[0].id}`,
+        data: resEdit
+      });
+    });
   });
 }
 // $(".fa-pencil-alt").click(function(e) {
