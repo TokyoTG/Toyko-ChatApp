@@ -99,6 +99,11 @@
                         <a href="addFriends.html"><i class="fas fa-user-plus user"></i> <span>Add Friend</span> </a>
 
                     </li>
+                    <li>
+                        <a href="ChatRoomList.html"><i class="fas fa-user-plus user"></i> <span>Chat Rooms</span>
+                        </a>
+
+                    </li>
                 </ul>
             </div>
         </section>
@@ -111,20 +116,13 @@
                             justo</span> <a href="userPage.html" id="back"><i class="fas fa-arrow-left"></i></a>
                     </div>
                     <div id="wellBody">
-                        <!-- <p class="msgIn">Hi <span class="timeStamp">8:14</span></p>
-                        <p class="msgOut">Hello<span class="timeStamp">8:14</span></p>
-                        <p class="msgOut">Hello<span class="timeStamp">8:14</span></p>
-                        <p class="msgOut">Hello, How are you , Are you ok ?<span class="timeStamp">8:14</span></p>
-                        <p class="msgIn">Hi<span class="timeStamp">8:14</span></p>
-                        <p class="msgIn">Hi<span class="timeStamp">8:14</span></p>
-                        <p class="msgOut">Hello<span class="timeStamp">8:14</span></p>
-                        <p class="msgOut">Hello<span class="timeStamp">8:14</span></p>
-                        <p class="msgOut">Hello<span class="timeStamp">8:15</span></p> -->
+
                     </div>
                 </div>
                 <div id="wellFooter">
                     <!-- <input type="text" class="typeSpace" placeholder="type message"> -->
-                    <textarea name="" id="" cols="1" rows="1" class="typeSpace" placeholder="Type Message"></textarea>
+                    <textarea name="" cols="1" rows="1" class="typeSpace" id="msgText" placeholder="Type Message"
+                        oninput="disableSend()"></textarea>
                     <button type="submit" class="btn btn-success send" disabled> <i class="fas fa-paper-plane"></i>
                     </button>
                 </div>
@@ -157,57 +155,54 @@
         let recieverName = localStorage.getItem('recieverName');
         let chatId = localStorage.getItem('chatId');
         let senderName = userDetails.firstname + ' ' + userDetails.lastname
-        $(document).ready(
-
-            function popMsg() {
-                $(".chatName").text(`${recieverName}`)
-                $.ajax({
-                        method: "GET",
-                        url: `http://localhost:3000/messagesSent?chatId=${chatId}`
-                    })
-                    .done(function (result) {
-                        result.forEach(element => {
-                            if (element.senderId == userDetails.id) {
-                                $("#wellBody").append(
-                                    `<p class="msgOut">${element.messageSent}<span class="timeStamp">${element.timeSent}</span></p>`
-                                )
-                            } else {
-                                $("#wellBody").append(`<p class="msgIn">${element.messageSent}<span
-                                     class="timeStamp">${element.timeSent}</span></p>`)
-                            }
-
-                        });
-                    })
+        $(document).ready(function () {
+                popMsg();
             }
+
+
         )
 
 
 
+        function popMsg() {
+            $(".chatName").text(`${recieverName}`)
+            $.ajax({
+                    method: "GET",
+                    url: `http://localhost:3000/messagesSent?chatId=${chatId}`
+                })
+                .done(function (result) {
+                    result.forEach(element => {
+                        if (element.senderId == userDetails.id) {
+                            $("#wellBody").append(
+                                `<p class="msgOut">${element.messageSent}<span class="timeStamp">${element.timeSent}</span></p>`
+                            )
+                        } else {
+                            $("#wellBody").append(`<p class="msgIn">${element.messageSent}<span
+                                     class="timeStamp">${element.timeSent}</span></p>`)
+                        }
 
+                    });
+                })
+        }
 
         let timeSent = getTime()
 
         function disableSend() {
             let text;
             text = $(".typeSpace").val()
-            console.log(text)
-            if (text === '') {
+            if (text === '' || /^\s+$/.test(text)) {
                 $(".send").attr('disabled', true)
             } else {
                 $(".send").attr('disabled', false)
             }
+            console.log('ok')
         }
-
-        $(".typeSpace").blur(function () {
-            disableSend()
-        })
-
 
         $(".send").click(e => {
             let msgData;
             e.preventDefault();
             let timeSent = getTime();
-            let messageSent = $(".typeSpace").val()
+            let messageSent = $(".typeSpace").val().trim();
             msgData = {
                 senderId: userDetails.id,
                 senderName,
@@ -223,7 +218,7 @@
                 url: 'http://localhost:3000/messagesSent',
                 data: msgData
             })
-
+            popMsg();
             clear()
         })
 

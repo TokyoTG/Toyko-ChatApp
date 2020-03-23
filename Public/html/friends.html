@@ -92,12 +92,18 @@
 
                     </li>
                     <li>
-                        <a href="FriendRequest.html"><i class="fas fa-user-clock user"></i> <span>Friend Requests</span>
+                        <a href="FriendRequest.html" id="fR-link"><i class="fas fa-user-clock user"></i> <span>Friend
+                                Requests</span>
                         </a>
 
                     </li>
                     <li>
                         <a href="addFriends.html"><i class="fas fa-user-plus user"></i> <span>Add Friend</span> </a>
+
+                    </li>
+                    <li>
+                        <a href="ChatRoomList.html"><i class="fas fa-user-plus user"></i> <span>Chat Rooms</span>
+                        </a>
 
                     </li>
                 </ul>
@@ -150,6 +156,7 @@
         </div>
 
     </main>
+
     <footer>
         <p>&copy; Tokyo 2020</p>
 
@@ -183,6 +190,7 @@
                         if (res.length) {
                             $(".empty").hide()
                             res.forEach(element => {
+                                console.log(element);
                                 $("#friendList").append(`<li
                                     class="list-group-item d-flex justify-content-between align-items-center">
                                     <a href="#" class="chats" onclick="showProfile(${element.friendId})"><img
@@ -194,7 +202,8 @@
                                                 class="far fa-comment-alt"></i>
                                         </span></a>
                                     <a href=""><span class="badge" data-toggle="tooltip" data-placement="top"
-                                            title="Unfriend" onclick="unfriend(${userDetails.id},${element.friendId},${element.id})"> <i class="fas fa-trash"></i> </span></a>
+                                            title="Unfriend" onclick="unfriend(${element.userId},${element.friendId},${element.id},'${element.name.split(' ')[0]}')"> <i
+                                                class="fas fa-trash"></i> </span></a>
                                 </li>`)
 
                             });
@@ -226,23 +235,28 @@
                                                          class="far fa-comment-alt"></i>
                                                  </span></a>
                                              <a href=""><span class="badge" data-toggle="tooltip" data-placement="top"
-                                                     title="Unfriend"
-                                                     onclick="unfriend(${userDetails.id},${element.friendId})> <i
-                                                         class="fas fa-trash"></i> </span></a>
+                                                     title="Unfriend" onclick="unfriend(${element.id},${element.friendId},${element.id},'${result.firstname}')"> 
+                                                         <i class="fas fa-trash"></i> </span></a>
                                          </li>`)
+                                        $('[data-toggle="tooltip"]').tooltip()
 
                                     })
                             })
 
                         }
                     })
-
+                $('[data-toggle="tooltip"]').tooltip()
             }
 
         )
         $(".close").click((e) => {
             e.preventDefault();
             $(".modal").hide()
+        })
+
+        $('.btn-success').click(function (e) {
+            e.preventDefault();
+            $("#fR-link")[0].click();
         })
 
         function showProfile(id) {
@@ -292,7 +306,7 @@
                             if (res.length <= 0) {
                                 $.ajax({
                                         method: "GET",
-                                        url: `http://localhost:3000/chats?chatId=${userDetails.id}`
+                                        url: `http://localhost:3000/chats?userId=${userDetails.id}&chatId=${userDetails.id}`
                                     })
                                     .done(function (result) {
                                         if (result.length <= 0) {
@@ -313,6 +327,64 @@
             e.preventDefault();
             $(".close").click()
         })
+
+
+
+        function unfriend(uId, senderId, eId, fname) {
+            let cont = confirm(`Are you sure want to unfriend ${fname}`)
+            if (cont == true) {
+                let resEdit = {
+                    userId: 404,
+                    senderId: 404,
+                    firstname: null,
+                    lastname: null,
+                    age: null,
+                    state: null,
+                    city: null
+                };
+                $.ajax({
+                        method: "GET",
+                        url: `http://localhost:3000/requestsSent?userId=${uId}&senderId=${senderId}`
+                    })
+                    .done(function (res) {
+                        patch(res[0].id, resEdit, eId);
+                    });
+                $.ajax({
+                        method: "GET",
+                        url: `http://localhost:3000/chats?userId=${uId}&chatId=${senderId}`
+                    })
+                    .done(function (result) {
+                        patchChat(result[0].id, resEdit);
+                    })
+            }
+
+            function patch(id, sendData, fId) {
+                $.ajax({
+                    method: "PATCH",
+                    url: `http://localhost:3000/requestsRecieved/${id}`,
+                    data: sendData
+                })
+                $.ajax({
+                    method: "PATCH",
+                    url: `http://localhost:3000/requestsSent/${id}`,
+                    data: sendData
+                })
+                $.ajax({
+                    method: "PATCH",
+                    url: `http://localhost:3000/friends/${fId}`,
+                    data: sendData
+                })
+
+            }
+        }
+
+        function patchChat(id, data) {
+            $.ajax({
+                method: "PATCH",
+                url: `http://localhost:3000/chats/${id}`,
+                data: data
+            })
+        }
     </script>
 </body>
 

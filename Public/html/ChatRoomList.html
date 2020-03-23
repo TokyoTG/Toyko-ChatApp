@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="../style/style.css">
     <link rel="stylesheet" href="../style/all.min.css">
 
-    <title>Tokyo | ChatApp</title>
+    <title>TCA | Friend Request</title>
 </head>
 
 <body>
@@ -82,17 +82,17 @@
                 <h4>Menu</h4>
                 <ul>
                     <li>
-                        <a href="userPage.html" class="active"><i class="far fa-comment-alt user"></i>
-                            <span>Chats</span> </a>
+                        <a href="userPage.html"><i class="far fa-comment-alt user"></i> <span>Chats</span> </a>
 
                     </li>
                     <li>
-                        <a href="friends.html" class="friend-link"><i class="fas fa-user-friends user"></i>
+                        <a href="friends.html"><i class="fas fa-user-friends user"></i>
                             <span>Friends</span> </a>
 
                     </li>
                     <li>
-                        <a href="FriendRequest.html"><i class="fas fa-user-clock user"></i> <span>Friend Requests</span>
+                        <a href="FriendRequest.html"><i class="fas fa-user-clock user"></i> <span>Friend
+                                Requests</span>
                         </a>
 
                     </li>
@@ -101,7 +101,8 @@
 
                     </li>
                     <li>
-                        <a href="ChatRoomList.html"><i class="fas fa-user-plus user"></i> <span>Chat Rooms</span>
+                        <a href="ChatRoomList.html" class="active"><i class="fas fa-user-plus user"></i> <span>Chat
+                                Rooms</span>
                         </a>
 
                     </li>
@@ -109,16 +110,21 @@
             </div>
         </section>
         <section id="content" class="card">
+
             <div class="empty">
-                <p>OOps!! you dont have any chats yet</p>
-                <button class="btn btn-success">Add friends to chats</button>
+                <p>OOps!!! your are not in any room</p>
+                <button class="btn btn-success">Create a Room</button>
             </div>
-            <div class="chat-well">
-                <ul class="list-group list-group-flush" id="chatList">
+
+            <div class="friends-container">
+                <ul class="list-group list-group-flush" id="requestList">
 
                 </ul>
             </div>
+
+
         </section>
+
 
     </main>
     <footer>
@@ -144,94 +150,8 @@
     <script>
         let userDetails = JSON.parse(localStorage.getItem("userData"));
         $(document).ready(
-            function popChatList() {
-                let recieverId;
-                $.ajax({
-                        method: "GET",
-                        url: `http://localhost:3000/chats?userId=${userDetails.id}`
-                    })
-                    .done(function (res) {
-                        if (res.length) {
-                            $(".empty").hide()
-                            res.forEach(element => {
-                                $("#chatList").append(` <li
-                                    class="list-group-item d-flex justify-content-between align-items-center">
-                                    <a href="chatPage.html" class="chats" onclick="getChatId(${element.chatId},'${element.name}',${element.id})"><img
-                                            src="../img/login_icon.png" alt="..."
-                                            class="profile-img">${element.name}</a>
-                                    <span class="badge badge-primary badge-pill">14</span>
-                                </li>`)
 
-
-                            });
-                            $('[data-toggle="tooltip"]').tooltip()
-                        }
-
-                    })
-
-                $.ajax({
-                        method: 'GET',
-                        url: `http://localhost:3000/chats?chatId=${userDetails.id}`
-                    })
-                    .done(function (result) {
-                        if (result.length) {
-                            $(".empty").hide()
-                            result.forEach(data => {
-                                $.ajax({
-                                        method: "GET",
-                                        url: `http://localhost:3000/users/${data.userId}`
-                                    })
-                                    .done(function (result) {
-                                        let resName = result.firstname + " " + result.lastname
-                                        $("#chatList").append(` <li
-                                    class="list-group-item d-flex justify-content-between align-items-center">
-                                    <a href="chatPage.html" class="chats"
-                                        onclick="getChatId(${result.id},'${resName}',${data.id})"><img
-                                            src="../img/login_icon.png" alt="..."
-                                            class="profile-img">${resName}</a>
-                                    <span class="badge badge-primary badge-pill">14</span>
-                                </li>`)
-                                    })
-                            })
-                        }
-                    })
-                $('[data-toggle="tooltip"]').tooltip()
-            }
         )
-
-        let timeSent = getTime()
-
-        function getChatId(id, name, cId) {
-            localStorage.setItem('recieverId', id)
-            localStorage.setItem('recieverName', name)
-            localStorage.setItem('chatId', cId)
-        }
-
-
-        $(".btn-success").click(e => {
-            e.preventDefault();
-            $(".friend-link")[0].click()
-        })
-
-        function getTime(res) {
-            let tRes, hour, min, d;
-            d = new Date()
-            hour = d.getHours()
-            min = d.getMinutes()
-            if (hour < 12) {
-                res = hour + ":" + min + " AM"
-            } else if (hour === 12) {
-                res = hour + ":" + min + " PM"
-            } else {
-                tRes = Math.abs(hour - 12)
-                if (tRes === 12) {
-                    res = tRes + ":" + min + " AM"
-                }
-                res = tRes + ":" + min + " PM"
-            }
-
-            return res;
-        }
     </script>
 </body>
 

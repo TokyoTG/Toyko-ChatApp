@@ -52,12 +52,6 @@
 
     </header>
     <main class="edit-profile">
-        <div class="alert alert-warning alert-dismissible fade show" role="alert">
-            <strong>Holy guacamole!</strong> You should check in on some of those fields below.
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
         <div class="card" id="profileCard">
 
             <div class="profile-title">
@@ -66,9 +60,10 @@
             </div>
 
             <div class="image-card">
-                <img src="../img/login_icon.png" alt="User Image" class="profile-image">
+                <img src="../img/login_icon.png" alt="User Image" class="profile-image" width="200px" height="200px">
                 <i class="fa fa-camera upload-button" id="upButton" data-toggle="tooltip" data-placement="right"
                     title="Edit Photo"></i>
+                <input class="file-upload" type="file" accept="image/*" id="file" style="display: none;" />
             </div>
             <div class="form-card">
 
@@ -76,14 +71,14 @@
                     <div class="form-group">
                         <label for="firstname">First Name</label>
                         <input type="text" name="firstname" class="form-control" id="firstname"
-                            placeholder="Enter Full Name Here">
+                            placeholder="Enter First Name Here">
                         <small class="form-text text-muted">Must 2-20 characters long
                         </small>
                     </div>
                     <div class="form-group">
                         <label for="lastname">Last Name</label>
                         <input type="text" name="lastname" class="form-control" id="lastname"
-                            placeholder="Enter Full Name Here">
+                            placeholder="Enter Last Name Here">
                         <small class="form-text text-muted">Must 2-20 characters long
                         </small>
                     </div>
@@ -190,15 +185,15 @@
                 $('#password').val(`${userDetails.password}`);
                 $('#password2').val(`${userDetails.password}`);
                 $('#textarea').val(`${userDetails.description}`);
-                $('#city').val(`${userDetails.city}`);
-                $('#state').val(`${userDetails.state}`);
+                $('#city option:selected').text(`${userDetails.city}`);
+                $('#state option:selected').text(`${userDetails.state}`);
                 $('#age').val(`${userDetails.age}`);
                 $('#email').val(`${userDetails.email}`);
                 $('#phone').val(`${userDetails.phone}`);
                 $('#firstname').val(`${userDetails.firstname}`);
                 $('#lastname').val(`${userDetails.lastname}`);
                 $('[data-toggle="tooltip"]').tooltip()
-                // $('.alert').alert('close')
+                $('.alert').alert('close')
             }
         )
 
@@ -211,7 +206,18 @@
         //         $('#password').attr('type', 'password');
         //     }
         // })
+        $("#file").change(function () {
+            let r = new FileReader();
+            r.onload = function (e) {
+                $(".profile-image").attr('src', e.target.result)
+                console.log(e.target.result)
+            }
+            r.readAsArrayBuffer(this.files[0]);
+        })
+        $(".fa-camera").click((e) => {
+            $("#file").click();
 
+        })
         $("#userPatch").validate({
             rules: {
                 firstname: {
@@ -274,9 +280,7 @@
                     equalTo: "#password"
                 }
             },
-            submitHandler: function (e) {
-                e.preventDefault();
-
+            submitHandler: function () {
                 let data = $("#userPatch").serializeArray();
                 let res = {};
                 res.gender = userDetails.gender;
@@ -303,7 +307,7 @@
                             })
                             .done(function (result) {
                                 localStorage.setItem('userData', JSON.stringify(result));
-                                $('.modal').modal('show');
+
                             })
                     })
                 return false;

@@ -1,6 +1,7 @@
 $(document).ready(function() {
   profileDetalis();
 });
+
 function profileDetalis() {
   let userData = JSON.parse(localStorage.getItem("userData"));
   $(".username").text(`Name: ${userData.firstname} ${userData.lastname}`);
@@ -35,7 +36,7 @@ function reject(id) {
       method: "PATCH",
       url: `http://localhost:3000/requestsRecieved/${id}`,
       data: resEdit
-    }).done(function(data) {
+    }).done(function() {
       $.ajax({
         method: "PATCH",
         url: `http://localhost:3000/requestsSent/${id}`,
@@ -44,36 +45,3 @@ function reject(id) {
     });
   });
 }
-
-function unfriend(uId, fId, eId) {
-  let resEdit = {
-    userId: 404,
-    senderId: 404,
-    firstname: null,
-    lastname: null,
-    age: null,
-    state: null,
-    city: null
-  };
-  $.ajax({
-    method: "GET",
-    url: `http://localhost:3000/requestsSent?userId=${uId}&senderId=${fId}`
-  }).done(function(res) {
-    $.ajax({
-      method: "PATCH",
-      url: `http://localhost:3000/requestsSent/${res[0].id}`,
-      data: resEdit
-    }).done(function() {
-      $.ajax({
-        method: "PATCH",
-        url: `http://localhost:3000/requestsRecieved/${res[0].id}`,
-        data: resEdit
-      });
-    });
-  });
-}
-// $(".fa-pencil-alt").click(function(e) {
-//   e.preventDefault();
-//   console.log("ok");
-//   $(".editP-link")[0].click();
-// });

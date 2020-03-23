@@ -36,7 +36,7 @@ $.validator.addMethod(
 );
 
 let selectedState = $("#state");
-$("#state").blur(function() {
+$("#state").change(function() {
   getCities();
 });
 

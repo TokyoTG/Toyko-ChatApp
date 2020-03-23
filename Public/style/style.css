@@ -581,9 +581,10 @@ textarea:focus {
   margin: 0 auto;
 }
 .profile-image {
-  width: 70%;
+  width: 60%;
   background: #006064;
   display: block;
+
   margin: 0 auto;
   /* border: 4px dashed #69f0ae; */
   border-radius: 50%;

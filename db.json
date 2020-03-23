@@ -53,6 +53,34 @@
       "password": "fadeyi12",
       "password2": "fadeyi12",
       "id": 4
+    },
+    {
+      "firstname": "ayishat",
+      "lastname": "babatunde",
+      "phone": "08180121201",
+      "email": "ayishatbabatunde@gmail.com",
+      "age": "18",
+      "gender": "female",
+      "state": "kwara",
+      "city": "ilorin",
+      "description": "i am an hair dresser",
+      "password": "ayishat12",
+      "password2": "ayishat12",
+      "id": 5
+    },
+    {
+      "firstname": "alimat",
+      "lastname": "babatunde",
+      "phone": "08180121290",
+      "email": "alimatbabatunde@gmail.com",
+      "age": "18",
+      "gender": "female",
+      "state": "kwara",
+      "city": "ilorin",
+      "description": "i'm a fashion designer",
+      "password": "kehindey",
+      "password2": "kehindey",
+      "id": 6
     }
   ],
   "friends": [
@@ -61,8 +89,40 @@
       "friendId": "3",
       "name": "badmus muyiwa",
       "age": "23",
-      "location": "oyo, ibadan",
+      "location": "lagos, lekki",
       "id": 1
+    },
+    {
+      "userId": "2",
+      "friendId": "3",
+      "name": "badmus muyiwa",
+      "age": "23",
+      "location": "lagos, lekki",
+      "id": 2
+    },
+    {
+      "userId": "3",
+      "friendId": "5",
+      "name": "ayishat babatunde",
+      "age": "18",
+      "location": "kwara, ilorin",
+      "id": 3
+    },
+    {
+      "userId": "3",
+      "friendId": "6",
+      "name": "alimat babatunde",
+      "age": "18",
+      "location": "kwara, ilorin",
+      "id": 4
+    },
+    {
+      "userId": "4",
+      "friendId": "3",
+      "name": "badmus muyiwa",
+      "age": "23",
+      "location": "lagos, lekki",
+      "id": 5
     }
   ],
   "requestsSent": [
@@ -72,29 +132,79 @@
       "firstname": "badmus",
       "lastname": "muyiwa",
       "age": "23",
-      "state": "oyo",
-      "city": "ibadan",
+      "state": "lagos",
+      "city": "lekki",
       "id": 1
     },
     {
-      "userId": "404",
-      "senderId": "404",
-      "firstname": "",
-      "lastname": "",
-      "age": "",
-      "state": "",
-      "city": "",
+      "userId": "2",
+      "senderId": "3",
+      "firstname": "badmus",
+      "lastname": "muyiwa",
+      "age": "23",
+      "state": "lagos",
+      "city": "lekki",
       "id": 2
     },
     {
-      "userId": "404",
-      "senderId": "404",
-      "firstname": "",
-      "lastname": "",
-      "age": "",
-      "state": "",
-      "city": "",
+      "userId": "1",
+      "senderId": "5",
+      "firstname": "ayishat",
+      "lastname": "babatunde",
+      "age": "18",
+      "state": "kwara",
+      "city": "ilorin",
       "id": 3
+    },
+    {
+      "userId": "2",
+      "senderId": "5",
+      "firstname": "ayishat",
+      "lastname": "babatunde",
+      "age": "18",
+      "state": "kwara",
+      "city": "ilorin",
+      "id": 4
+    },
+    {
+      "userId": "3",
+      "senderId": "5",
+      "firstname": "ayishat",
+      "lastname": "babatunde",
+      "age": "18",
+      "state": "kwara",
+      "city": "ilorin",
+      "id": 5
+    },
+    {
+      "userId": "5",
+      "senderId": "6",
+      "firstname": "alimat",
+      "lastname": "babatunde",
+      "age": "18",
+      "state": "kwara",
+      "city": "ilorin",
+      "id": 6
+    },
+    {
+      "userId": "3",
+      "senderId": "6",
+      "firstname": "alimat",
+      "lastname": "babatunde",
+      "age": "18",
+      "state": "kwara",
+      "city": "ilorin",
+      "id": 7
+    },
+    {
+      "userId": "4",
+      "senderId": "3",
+      "firstname": "badmus",
+      "lastname": "muyiwa",
+      "age": "23",
+      "state": "lagos",
+      "city": "lekki",
+      "id": 8
     }
   ],
   "requestsRecieved": [
@@ -104,29 +214,89 @@
       "firstname": "badmus",
       "lastname": "muyiwa",
       "age": "23",
-      "state": "oyo",
-      "city": "ibadan",
+      "state": "lagos",
+      "city": "lekki",
       "id": 1
     },
     {
-      "userId": "404",
-      "senderId": "404",
-      "firstname": "",
-      "lastname": "",
-      "age": "",
-      "state": "",
-      "city": "",
+      "userId": "2",
+      "senderId": "3",
+      "firstname": "badmus",
+      "lastname": "muyiwa",
+      "age": "23",
+      "state": "lagos",
+      "city": "lekki",
       "id": 2
     },
     {
-      "userId": "404",
-      "senderId": "404",
-      "firstname": "",
-      "lastname": "",
-      "age": "",
-      "state": "",
-      "city": "",
+      "userId": "1",
+      "senderId": "5",
+      "firstname": "ayishat",
+      "lastname": "babatunde",
+      "age": "18",
+      "state": "kwara",
+      "city": "ilorin",
       "id": 3
+    },
+    {
+      "userId": "2",
+      "senderId": "5",
+      "firstname": "ayishat",
+      "lastname": "babatunde",
+      "age": "18",
+      "state": "kwara",
+      "city": "ilorin",
+      "id": 4
+    },
+    {
+      "userId": "3",
+      "senderId": "5",
+      "firstname": "ayishat",
+      "lastname": "babatunde",
+      "age": "18",
+      "state": "kwara",
+      "city": "ilorin",
+      "id": 5
+    },
+    {
+      "userId": "4",
+      "senderId": "5",
+      "firstname": "ayishat",
+      "lastname": "babatunde",
+      "age": "18",
+      "state": "kwara",
+      "city": "ilorin",
+      "id": 6
+    },
+    {
+      "userId": "5",
+      "senderId": "6",
+      "firstname": "alimat",
+      "lastname": "babatunde",
+      "age": "18",
+      "state": "kwara",
+      "city": "ilorin",
+      "id": 7
+    },
+    {
+      "userId": "3",
+      "senderId": "6",
+      "firstname": "alimat",
+      "lastname": "babatunde",
+      "age": "18",
+      "state": "kwara",
+      "city": "ilorin",
+      "id": 8
+    },
+    {
+      "userId": "4",
+      "senderId": "3",
+      "firstname": "badmus",
+      "lastname": "muyiwa",
+      "age": "23",
+      "state": "lagos",
+      "city": "lekki",
+      "id": 9
     }
   ],
   "chats": [
@@ -134,21 +304,133 @@
       "userId": "1",
       "chatId": "3",
       "name": "badmus muyiwa",
-      "location": "oyo, ibadan",
+      "location": "lagos, lekki",
       "age": "23",
       "id": 1
+    },
+    {
+      "userId": "2",
+      "chatId": "3",
+      "name": "badmus muyiwa",
+      "location": "lagos, lekki",
+      "age": "23",
+      "id": 2
+    },
+    {
+      "userId": "5",
+      "chatId": "3",
+      "name": "badmus muyiwa",
+      "location": "lagos, lekki",
+      "age": "23",
+      "id": 3
+    },
+    {
+      "userId": "6",
+      "chatId": "3",
+      "name": "badmus muyiwa",
+      "location": "lagos, lekki",
+      "age": "23",
+      "id": 4
+    },
+    {
+      "userId": "3",
+      "chatId": "4",
+      "name": "mujeeb fadeyi",
+      "location": "oyo, ibadan",
+      "age": "21",
+      "id": 5
     }
   ],
   "messagesSent": [
     {
-      "senderId": "1",
-      "senderName": "tokyo geeboyz",
+      "senderId": "3",
+      "senderName": "badmus muyiwa",
+      "chatId": "2",
+      "recieverId": "2",
+      "recieverName": "badmus Tboy",
+      "messageSent": "hi\n",
+      "timeSent": "11:59 PM",
+      "id": 1
+    },
+    {
+      "senderId": "3",
+      "senderName": "badmus muyiwa",
       "chatId": "1",
+      "recieverId": "1",
+      "recieverName": "tokyo geeboyz",
+      "messageSent": "hi",
+      "timeSent": "9:19 PM",
+      "id": 2
+    },
+    {
+      "senderId": "5",
+      "senderName": "ayishat babatunde",
+      "chatId": "3",
       "recieverId": "3",
       "recieverName": "badmus muyiwa",
-      "messageSent": "hgg",
-      "timeSent": "1:21 AM",
-      "id": 1
+      "messageSent": "hi",
+      "timeSent": "10:01 PM",
+      "id": 3
+    },
+    {
+      "senderId": "3",
+      "senderName": "badmus muyiwa",
+      "chatId": "3",
+      "recieverId": "5",
+      "recieverName": "ayishat babatunde",
+      "messageSent": "how are you",
+      "timeSent": "10:01 PM",
+      "id": 4
+    },
+    {
+      "senderId": "5",
+      "senderName": "ayishat babatunde",
+      "chatId": "3",
+      "recieverId": "3",
+      "recieverName": "badmus muyiwa",
+      "messageSent": "am fine",
+      "timeSent": "10:02 PM",
+      "id": 5
+    },
+    {
+      "senderId": "3",
+      "senderName": "badmus muyiwa",
+      "chatId": "4",
+      "recieverId": "6",
+      "recieverName": "alimat babatunde",
+      "messageSent": "hi",
+      "timeSent": "10:16 PM",
+      "id": 6
+    },
+    {
+      "senderId": "6",
+      "senderName": "alimat babatunde",
+      "chatId": "4",
+      "recieverId": "3",
+      "recieverName": "badmus muyiwa",
+      "messageSent": "kul",
+      "timeSent": "10:17 PM",
+      "id": 7
+    },
+    {
+      "senderId": "3",
+      "senderName": "badmus muyiwa",
+      "chatId": "4",
+      "recieverId": "6",
+      "recieverName": "alimat babatunde",
+      "messageSent": "how was ur day",
+      "timeSent": "10:17 PM",
+      "id": 8
+    },
+    {
+      "senderId": "6",
+      "senderName": "alimat babatunde",
+      "chatId": "4",
+      "recieverId": "3",
+      "recieverName": "badmus muyiwa",
+      "messageSent": "fyn",
+      "timeSent": "10:17 PM",
+      "id": 9
     }
   ],
   "messgesRecieved": [],
