@@ -339,6 +339,30 @@
       "location": "oyo, ibadan",
       "age": "21",
       "id": 5
+    },
+    {
+      "userId": "3",
+      "chatId": "5",
+      "name": "ayishat babatunde",
+      "location": "kwara, ilorin",
+      "age": "18",
+      "id": 6
+    },
+    {
+      "userId": "3",
+      "chatId": "6",
+      "name": "alimat babatunde",
+      "location": "kwara, ilorin",
+      "age": "18",
+      "id": 7
+    },
+    {
+      "userId": "3",
+      "chatId": "2",
+      "name": "badmus Tboy",
+      "location": "lagos, Ajegunle",
+      "age": "25",
+      "id": 8
     }
   ],
   "messagesSent": [
@@ -431,6 +455,46 @@
       "messageSent": "fyn",
       "timeSent": "10:17 PM",
       "id": 9
+    },
+    {
+      "senderId": "3",
+      "senderName": "badmus muyiwa",
+      "chatId": "5",
+      "recieverId": "4",
+      "recieverName": "mujeeb fadeyi",
+      "messageSent": "hi",
+      "timeSent": "5:39 AM",
+      "id": 10
+    },
+    {
+      "senderId": "6",
+      "senderName": "alimat babatunde",
+      "chatId": "4",
+      "recieverId": "3",
+      "recieverName": "badmus muyiwa",
+      "messageSent": "hi",
+      "timeSent": "5:40 AM",
+      "id": 11
+    },
+    {
+      "senderId": "3",
+      "senderName": "badmus muyiwa",
+      "chatId": "5",
+      "recieverId": "4",
+      "recieverName": "mujeeb fadeyi",
+      "messageSent": "How are you",
+      "timeSent": "5:41 AM",
+      "id": 12
+    },
+    {
+      "senderId": "6",
+      "senderName": "alimat babatunde",
+      "chatId": "4",
+      "recieverId": "3",
+      "recieverName": "badmus muyiwa",
+      "messageSent": "Good morning",
+      "timeSent": "5:41 AM",
+      "id": 13
     }
   ],
   "messgesRecieved": [],

@@ -242,6 +242,7 @@ footer {
   background: #69f0ae;
   margin: 0;
   overflow: hidden;
+
   color: #006064;
 }
 
@@ -260,6 +261,7 @@ footer li a:hover {
 
 footer p {
   margin: 15px 10px;
+  text-align: center;
 }
 
 footer ul {
@@ -307,9 +309,9 @@ USER PAGE
 }
 
 #menu {
-  margin-top: 15%;
+  /* margin-top: 15%; */
   text-transform: capitalize;
-  grid-row: 7/-1;
+  /* grid-row: 7/-1; */
 }
 
 #pInfo {
@@ -610,6 +612,88 @@ textarea {
 }
 
 /******************************
+new styles****************
+******************************/
+
+#newSide {
+  height: 75%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 135.5px;
+  left: 0;
+  color: #006064;
+  background-color: #69f0ae;
+  overflow-x: hidden;
+  overflow: auto;
+  transition: 0.5s;
+  padding-top: 60px;
+}
+.mainT {
+  position: relative;
+  display: block;
+}
+
+.card.links {
+  margin-top: 20px;
+
+  transition: 0.3s;
+}
+
+li {
+  list-style: none;
+  padding: 0;
+}
+
+#newSide a {
+  display: block;
+  padding: 5px 15px;
+  font-size: 1.1em;
+}
+
+#newSide a:hover,
+#newSide a.active {
+  color: #006064;
+  font-weight: bolder;
+}
+
+.new {
+  height: 600px;
+  width: 85%;
+  /* background: grey; */
+  margin: auto;
+  background: white;
+}
+#menuIcon {
+  font-size: 1.5em;
+  display: inline-block;
+  width: 100px;
+  /* z-index: 3; */
+  cursor: pointer;
+}
+#newSide a span {
+  font-size: 0.7em;
+}
+.closeNav {
+  font-size: 3em !important;
+  position: absolute;
+  right: 25px;
+  cursor: pointer;
+  top: 0;
+}
+
+.divMenu h4 {
+  text-align: center;
+  position: absolute;
+  top: 5px;
+  right: 50%;
+}
+
+.navbar-brand,
+.chatName {
+  text-transform: capitalize;
+}
+/******************************
 MEDIA QUERIES
 *********************************/
 @media only screen and (max-width: 750px) {
@@ -681,7 +765,26 @@ MEDIA QUERIES
     font-size: 1.4em;
     color: #263238;
   }
+  #newSide a span {
+    font-size: 0.8em;
+  }
+  #newSide {
+    width: 30% !important;
+    max-width: 300px !important;
+    height: 650px;
+  }
 
+  .card.new {
+    margin-left: 28%;
+    width: 70%;
+    max-width: 700px;
+  }
+  .mainT {
+    width: 80%;
+  }
+  .closeNav {
+    display: none;
+  }
   #home {
     width: 70%;
   }

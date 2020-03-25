@@ -45,3 +45,19 @@ function reject(id) {
     });
   });
 }
+$("#menuIcon").click(function() {
+  $("#newSide").css("width", "250px");
+});
+$(".closeNav").click(function() {
+  $("#newSide").css("width", "0");
+});
+
+var modal = document.getElementById("newSide");
+var btn = document.getElementById("menuIcon");
+
+window.onclick = function(event) {
+  if (event.target !== modal && event.target !== btn) {
+    console.log("e");
+    $("#newSide").css("width", "0");
+  }
+};

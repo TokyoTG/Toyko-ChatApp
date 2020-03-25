@@ -25,17 +25,17 @@
                 <h3> Tokyo Chat App</h3>
             </div>
 
-            <div id="contactDetails">
+            <!-- <div id="contactDetails">
                 <ul>
                     <li class="cont"><a href="#"><i class="fab fa-facebook"></i> <span>Facebook</span></a></li>
                     <li class="cont"><a href="#"><i class="fab fa-twitter"></i> <span>Twitter</span></a></li>
                     <li class="cont"><a href="#"><i class="fab fa-github"></i> <span>GitHub</span></a></li>
                 </ul>
-            </div>
+            </div> -->
 
         </div>
         <nav class="navbar navbar-expand-lg navbar-light ">
-            <a class="navbar-brand" href="#" id="link">Tokyo ChatApp</a>
+            <a class="navbar-brand" href="#" id="link">Friend Requests</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
                 aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -51,43 +51,26 @@
         </nav>
 
     </header>
-    <main class="main">
-        <section class="sidenav" id="pInfo">
-            <div class="card">
-                <h6>Account Information</h6>
-                <div class="image-wrapper">
-                    <img src="../img/login_icon.png" alt="Profile Image" class="smaller-image">
-
-                </div>
-                <ul>
-                    <li class="username">
-                        <span> Profile Name</span>
-                    </li>
-                    <li class="userdes">
-                        <span> Profile Description</span>
-                    </li>
-                    <li class="userLoc">
-                        <span>Profile Location</span>
-                    </li>
-                    <li class="userAge">
-
-                        <span>Profile Age</span>
-                    </li>
-                </ul>
-
-            </div>
-        </section>
-        <section class="sidenav" id="menu">
-            <div class="card links">
+    <main class="mainT">
+        <span id="menuIcon">&#9776; Menu</span>
+        <section id="newSide">
+            <span class="closeNav">&times;</span>
+            <div class="divMenu">
                 <h4>Menu</h4>
                 <ul>
                     <li>
-                        <a href="userPage.html"><i class="far fa-comment-alt user"></i> <span>Chats</span> </a>
+                        <a href="userPage.html"><i class="far fa-comment-alt user"></i>
+                            <span>Chats</span> </a>
 
                     </li>
                     <li>
-                        <a href="friends.html"><i class="fas fa-user-friends user"></i>
-                            <span>Friends</span> </a>
+                        <a href="friends.html"></a><i class="fas fa-user-friends user"></i>
+                        <span>Friends</span> </a>
+
+                    </li>
+                    <li>
+                        <a href="ChatRoomList.html"><i class="fas fa-users user"></i> <span>Chat Rooms</span>
+                        </a>
 
                     </li>
                     <li>
@@ -97,18 +80,20 @@
 
                     </li>
                     <li>
-                        <a href="addFriends.html"><i class="fas fa-user-plus user"></i> <span>Add Friend</span> </a>
+                        <a href="addFriends.html" class="friend-link"><i class="fas fa-user-plus user"></i> <span>Add
+                                Friend</span> </a>
 
                     </li>
                     <li>
-                        <a href="ChatRoomList.html"><i class="fas fa-user-plus user"></i> <span>Chat Rooms</span>
+                        <a href="editProfile.html"><i class="fas fa-user-circle user"></i> <span>Edit Profile</span>
                         </a>
 
                     </li>
                 </ul>
             </div>
+
         </section>
-        <section id="content" class="card">
+        <section class="card new">
 
             <div class="empty">
                 <p>No Friend Requests</p>
@@ -257,7 +242,10 @@
                 }
             })
         }
-
+        $(".btn-success").click(e => {
+            e.preventDefault();
+            $(".friend-link")[0].click();
+        });
         $(".close").click((e) => {
             e.preventDefault();
             $(".modal").hide()

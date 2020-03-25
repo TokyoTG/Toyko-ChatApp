@@ -25,17 +25,17 @@
                 <h3> Tokyo Chat App</h3>
             </div>
 
-            <div id="contactDetails">
+            <!-- <div id="contactDetails">
                 <ul>
                     <li class="cont"><a href="#"><i class="fab fa-facebook"></i> <span>Facebook</span></a></li>
                     <li class="cont"><a href="#"><i class="fab fa-twitter"></i> <span>Twitter</span></a></li>
                     <li class="cont"><a href="#"><i class="fab fa-github"></i> <span>GitHub</span></a></li>
                 </ul>
-            </div>
+            </div> -->
 
         </div>
         <nav class="navbar navbar-expand-lg navbar-light ">
-            <a class="navbar-brand" href="#" id="link">Tokyo ChatApp</a>
+            <a class="navbar-brand" href="#" id="link">Chat Room</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
                 aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -51,16 +51,54 @@
         </nav>
 
     </header>
-    <main class="edit-profile">
-        <div class="card" id="profileCard">
+    <main class="mainT">
+        <span id="menuIcon">&#9776; Menu</span>
+        <section id="newSide">
+            <span class="closeNav">&times;</span>
+            <div class="divMenu">
+                <h4>Menu</h4>
+                <ul>
+                    <li>
+                        <a href="userPage.html" class="active"><i class="far fa-comment-alt user"></i>
+                            <span>Chats</span> </a>
 
-            <div class="profile-title">
-                <h3>Chat Room</h3>
-                </span> <a href="userPage.html" id="back"><i class="fas fa-arrow-left"></i></a>
+                    </li>
+                    <li>
+                        <a href="friends.html" class="friend-link"><i class="fas fa-user-friends user"></i>
+                            <span>Friends</span> </a>
+
+                    </li>
+                    <li>
+                        <a href="ChatRoomList.html"><i class="fas fa-users user"></i> <span>Chat Rooms</span>
+                        </a>
+
+                    </li>
+                    <li>
+                        <a href="FriendRequest.html"><i class="fas fa-user-clock user"></i> <span>Friend
+                                Requests</span>
+                        </a>
+
+                    </li>
+                    <li>
+                        <a href="addFriends.html"><i class="fas fa-user-plus user"></i> <span>Add Friend</span> </a>
+
+                    </li>
+                    <li>
+                        <a href="editProfile.html"><i class="fas fa-user-circle user"></i> <span>Edit Profile</span>
+                        </a>
+
+                    </li>
+                </ul>
             </div>
 
-            <div class="image-card">
-                <ul class="list-group list-group-flush">
+        </section>
+        <section class="card new">
+            <div class="empty">
+                <p>OOps!! you dont have any chats yet</p>
+                <button class="btn btn-success">Add friends to chats</button>
+            </div>
+            <div class="chat-well">
+                <ul class="list-group list-group-flush" id="chatList">
                     <li class="list-group-item">Cras justo odio</li>
                     <li class="list-group-item">Dapibus ac facilisis in</li>
                     <li class="list-group-item">Morbi leo risus</li>
@@ -68,11 +106,7 @@
                     <li class="list-group-item">Vestibulum at eros</li>
                 </ul>
             </div>
-            <div class="form-card">
-
-
-            </div>
-
+        </section>
     </main>
     <footer>
         <p>&copy; Tokyo 2020</p>
