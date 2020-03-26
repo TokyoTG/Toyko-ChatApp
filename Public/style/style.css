@@ -8,7 +8,12 @@ a {
   text-decoration: none;
   color: #263238;
 }
-
+.list-group-item {
+  cursor: pointer;
+}
+.modal {
+  transition: 0.3s;
+}
 header {
   min-width: 360px;
 }
@@ -286,34 +291,6 @@ USER PAGE
   padding: 10px 15px;
 }
 
-.main {
-  display: grid;
-  grid-template-columns: repeat(12, 8.33%);
-  grid-template-rows: repeat(12, 8.33%);
-  color: #006064;
-}
-
-#content {
-  grid-column: 6/-1;
-  position: relative;
-  grid-row: 1/-1;
-  margin: 0;
-  min-height: 600px;
-  overflow: auto;
-}
-
-.sidenav {
-  grid-column: 1/6;
-  text-transform: capitalize;
-  /* overflow: hidden; */
-}
-
-#menu {
-  /* margin-top: 15%; */
-  text-transform: capitalize;
-  /* grid-row: 7/-1; */
-}
-
 #pInfo {
   grid-row: 1/6;
   /* margin-bottom: 15px; */
@@ -487,7 +464,7 @@ CHAT PAGE
   border: none;
   height: 50px;
   padding: 5px;
-  width: 70%;
+  width: 75%;
 }
 
 .well-container {
@@ -693,6 +670,24 @@ li {
 .chatName {
   text-transform: capitalize;
 }
+
+/*****************************
+CHATROOM
+*********************************/
+
+.sFriends {
+  display: inline-block;
+  padding: 3px 5px;
+  color: white;
+  border-radius: 5px;
+  background: #17a2b8;
+}
+.removeFriend {
+  color: white;
+  cursor: pointer;
+  font-size: 1.1em;
+}
+
 /******************************
 MEDIA QUERIES
 *********************************/

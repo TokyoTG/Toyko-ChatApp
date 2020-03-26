@@ -155,76 +155,24 @@
     <script src="../Js/index.js"></script>
     <script>
         let userDetails = JSON.parse(localStorage.getItem("userData"));
-        $(document).ready(
+        let friends;
 
-            function popFriend() {
-                $.ajax({
-                        method: "GET",
-                        url: `http://localhost:3000/friends?userId=${userDetails.id}`
-                    })
-                    .done(function (res) {
-                        if (res.length) {
-                            $(".empty").hide()
-                            res.forEach(element => {
-                                console.log(element);
-                                $("#friendList").append(`<li
-                                    class="list-group-item d-flex justify-content-between align-items-center">
-                                    <a href="#" class="chats" onclick="showProfile(${element.friendId})"><img
-                                            src="../img/login_icon.png" alt="..."
-                                            class="profile-img">${element.name}</a>
 
-                                    <a href="#" onclick="addToChats(${element.friendId})"><span class="badge"
-                                            data-toggle="tooltip" data-placement="top" title="Add to chats"><i
-                                                class="far fa-comment-alt"></i>
-                                        </span></a>
-                                    <a href=""><span class="badge" data-toggle="tooltip" data-placement="top"
-                                            title="Unfriend" onclick="unfriend(${element.userId},${element.friendId},${element.id},'${element.name.split(' ')[0]}')"> <i
-                                                class="fas fa-trash"></i> </span></a>
-                                </li>`)
 
-                            });
-                            $('[data-toggle="tooltip"]').tooltip()
-                        }
-                    })
-                $.ajax({
-                        method: "GET",
-                        url: `http://localhost:3000/friends?friendId=${userDetails.id}`
-                    })
-                    .done(function (res) {
-                        if (res.length) {
-                            $(".empty").hide()
-                            res.forEach(element => {
-                                $.ajax({
-                                        method: "GET",
-                                        url: `http://localhost:3000/users/${element.userId}`
-                                    })
-                                    .done(function (result) {
-                                        $("#friendList").append(`<li
-                                             class="list-group-item d-flex justify-content-between align-items-center">
-                                             <a href="#" class="chats" onclick="showProfile(${result.id})"><img
-                                                     src="../img/login_icon.png" alt="..."
-                                                     class="profile-img">${result.firstname} ${result.lastname}</a>
 
-                                             <a href="#" onclick="addToChats(${result.id})"><span
-                                                     class="badge" data-toggle="tooltip"
-                                                     data-placement="top" title="Add to chats"><i
-                                                         class="far fa-comment-alt"></i>
-                                                 </span></a>
-                                             <a href=""><span class="badge" data-toggle="tooltip" data-placement="top"
-                                                     title="Unfriend" onclick="unfriend(${element.id},${element.friendId},${element.id},'${result.firstname}')"> 
-                                                         <i class="fas fa-trash"></i> </span></a>
-                                         </li>`)
-                                        $('[data-toggle="tooltip"]').tooltip()
+        // setTimeout(function () {
+        //     friends = Array.from(document.getElementsByClassName('list-group-item'));
+        //     let friendArry = [];
+        //     for (let friend of friends) {
+        //         friendArry.push({
+        //             name: friend.innerText,
+        //             id: friend.id
+        //         });
+        //         document.cookie = JSON.stringify(friendArry);
+        //         console.log(friendArry);
+        //     }
+        // }, 3000);
 
-                                    })
-                            })
-
-                        }
-                    })
-                $('[data-toggle="tooltip"]').tooltip()
-            }
-
-        )
         $(".close").click((e) => {
             e.preventDefault();
             $(".modal").hide()
