@@ -22,16 +22,8 @@
 
             </div>
             <div id="app-name">
-                <h3> Tokyo Chat App</h3>
+                <h3> Tokyo ChatApp</h3>
             </div>
-
-            <!-- <div id="contactDetails">
-                <ul>
-                    <li class="cont"><a href="#"><i class="fab fa-facebook"></i> <span>Facebook</span></a></li>
-                    <li class="cont"><a href="#"><i class="fab fa-twitter"></i> <span>Twitter</span></a></li>
-                    <li class="cont"><a href="#"><i class="fab fa-github"></i> <span>GitHub</span></a></li>
-                </ul>
-            </div> -->
 
         </div>
         <nav class="navbar navbar-expand-lg navbar-light ">
@@ -42,8 +34,9 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
-                    <a class="nav-item nav-link" href="#" id="link">Home <span class="sr-only">(current)</span></a>
-                    <a class="nav-item nav-link" href="#" id="link">Features</a>
+                    <a class="nav-item nav-link logoutBtn" href="#" id="link">Home <span
+                            class="sr-only">(current)</span></a>
+                    <a class="nav-item nav-link" href="../index.html" style="display: none;">Features</a>
                 </div>
             </div>
         </nav>
@@ -153,14 +146,26 @@
         <ul>
             <li><a href="#">FAQ</a></li>
             <li><a href="#">Policy</a></li>
-            <li><a href="#">Safety</a></li>
             <li><a href="#">Contact</a></li>
         </ul>
     </footer>
-    <div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog modal-sm modal-dialog-centered">
+    <div class="modal logout" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
             <div class="modal-content">
-                <p>Successful</p>
+                <div class="modal-header">
+                    <h5 class="modal-title">Logout Confirmation</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Are sure you want to logout</p>
+                </div>
+                <div class="modal-footer">
+
+                    <button type="button" class="btn btn-danger">Yes</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                </div>
             </div>
         </div>
     </div>
@@ -198,7 +203,7 @@
             let r = new FileReader();
             r.onload = function (e) {
                 $(".profile-image").attr('src', e.target.result)
-                console.log(e.target.result)
+
             }
             r.readAsDataURL(this.files[0]);
         })
@@ -206,6 +211,14 @@
             $("#file").click();
 
         })
+
+        $(".logoutBtn").click(function () {
+            $(".logout").modal("show");
+        });
+        $(".btn-danger").click(function () {
+            $("#index")[0].click();
+        });
+
         $("#userPatch").validate({
             rules: {
                 firstname: {

@@ -150,11 +150,7 @@ $("#userReg").validate({
     $.ajax({
       method: "POST",
       url: "http://localhost:3000/users",
-      data: res,
-      success: function() {
-        console.log(res);
-        alert("registered");
-      }
+      data: res
     });
     return false;
   }

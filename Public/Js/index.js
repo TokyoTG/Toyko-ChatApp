@@ -1,5 +1,4 @@
 $(document).ready(function() {
-  profileDetalis();
   popFriend();
 });
 let friends = [];
@@ -14,7 +13,6 @@ function popFriend() {
     if (res.length) {
       $(".empty").hide();
       res.forEach(element => {
-        console.log(element);
         $("#friendList").append(`<li
                                     class="list-group-item d-flex justify-content-between align-items-center"
                                    data-toggle="tooltip" data-placement="top"
@@ -92,24 +90,11 @@ function popFriend() {
   $('[data-toggle="tooltip"]').tooltip();
 }
 
-function profileDetalis() {
-  let userData = JSON.parse(localStorage.getItem("userData"));
-  $(".username").text(`Name: ${userData.firstname} ${userData.lastname}`);
-  $(".userdes").text(`Description: ${userData.description}     `);
-  $(".userdes").append(
-    `<a href="editProfile.html"><i class="fas fa-pencil-alt" data-toggle="tooltip" data-placement="top" title="Edit profile"></i></a>`
-  );
-
-  $(".userLoc").text(`Location: ${userData.city}, ${userData.state} `);
-  $(".userAge").text(`Age: ${userData.age}`);
-}
-
 function reject(id) {
   $.ajax({
     type: "GET",
     url: `http://localhost:3000/requestsRecieved/${id}`
   }).done(function(res) {
-    console.log(res);
     let resEdit = {
       userId: 404,
       senderId: 404,
@@ -199,4 +184,26 @@ $("#roomForm").submit(function(e) {
     });
     popFriend();
   });
+});
+
+function showProfile(id) {
+  $.ajax({
+    method: "GET",
+    url: "http://localhost:3000/users/" + id,
+    success: function(data) {
+      $("#pName").text(`Name: ${data.firstname} ${data.lastname}`);
+      $("#pLoc").text(`Location: ${data.state}, ${data.city}`);
+      $("#pAge").text(`Age: ${data.age}`);
+      $("#pStatus").text(`Status: ${data.description}`);
+      $("#pGender").text(`Gender: ${data.gender}`);
+      $(".details").modal("show");
+    }
+  });
+}
+
+$(".logoutBtn").click(function() {
+  $(".logout").modal("show");
+});
+$(".btn-danger").click(function() {
+  $("#index")[0].click();
 });

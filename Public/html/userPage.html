@@ -22,16 +22,8 @@
 
             </div>
             <div id="app-name">
-                <h3> Tokyo Chat App</h3>
+                <h3> Tokyo ChatApp</h3>
             </div>
-
-            <!-- <div id="contactDetails">
-                <ul>
-                    <li class="cont"><a href="#"><i class="fab fa-facebook"></i> <span>Facebook</span></a></li>
-                    <li class="cont"><a href="#"><i class="fab fa-twitter"></i> <span>Twitter</span></a></li>
-                    <li class="cont"><a href="#"><i class="fab fa-github"></i> <span>GitHub</span></a></li>
-                </ul>
-            </div> -->
 
         </div>
         <nav class="navbar navbar-expand-lg navbar-light ">
@@ -42,9 +34,9 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
-                    <a class="nav-item nav-link active" href="#" id="link">Home <span
+                    <a class="nav-item nav-link logoutBtn" href="#" id="link">Home <span
                             class="sr-only">(current)</span></a>
-                    <a class="nav-item nav-link" href="#" id="link">Features</a>
+                    <a class="nav-item nav-link" href="../index.html" id="index" style="display: none;">Features</a>
                 </div>
             </div>
         </nav>
@@ -88,7 +80,8 @@
 
                     </li>
                     <li>
-                        <a href="../index.html"><i class="fas fa-sign-out-alt user"></i> <span>Log Out</span>
+                        <a href="#" class="logoutBtn"><i class="fas fa-sign-out-alt user"></i> <span>Log
+                                Out</span>
                         </a>
 
                     </li>
@@ -115,10 +108,29 @@
         <ul>
             <li><a href="#">FAQ</a></li>
             <li><a href="#">Policy</a></li>
-            <li><a href="#">Safety</a></li>
             <li><a href="#">Contact</a></li>
         </ul>
     </footer>
+    <div class="modal logout" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Logout Confirmation</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Are sure you want to logout</p>
+                </div>
+                <div class="modal-footer">
+
+                    <button type="button" class="btn btn-danger">Yes</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
         integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
@@ -128,66 +140,68 @@
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/additional-methods.min.js"></script>
-    <script src="../Js/index.js"></script>
+    <!-- <script src="../Js/index.js"></script> -->
     <script>
-        // let userDetails = JSON.parse(localStorage.getItem("userData"));
-        $(document).ready(
-            function popChatList() {
-                let recieverId;
-                $.ajax({
-                        method: "GET",
-                        url: `http://localhost:3000/chats?userId=${userDetails.id}`
-                    })
-                    .done(function (res) {
-                        if (res.length) {
-                            $(".empty").hide()
-                            res.forEach(element => {
-                                $("#chatList").append(` <li
+        let userDetails = JSON.parse(localStorage.getItem("userData"));
+        $(document).ready(function () {
+                popChatList();
+            }
+
+        )
+
+        function popChatList() {
+            // $(".empty").show()
+            let recieverId;
+            $.ajax({
+                    method: "GET",
+                    url: `http://localhost:3000/chats?userId=${userDetails.id}`
+                })
+                .done(function (res) {
+                    if (res.length) {
+                        $(".empty").hide()
+                        res.forEach(element => {
+                            $("#chatList").append(` <li
                                     class="list-group-item d-flex justify-content-between align-items-center">
                                     <a href="chatPage.html" class="chats" onclick="getChatId(${element.chatId},'${element.name}',${element.id})"><img
                                             src="../img/login_icon.png" alt="..."
                                             class="profile-img">${element.name}</a>
-                                    <span class="badge badge-primary badge-pill">14</span>
                                 </li>`)
 
 
-                            });
-                            $('[data-toggle="tooltip"]').tooltip()
-                        }
+                        });
+                        $('[data-toggle="tooltip"]').tooltip()
+                    }
 
-                    })
+                })
 
-                $.ajax({
-                        method: 'GET',
-                        url: `http://localhost:3000/chats?userId=${userDetails.id}&chatId=${userDetails.id}`
-                    })
-                    .done(function (result) {
-                        if (result.length) {
-                            $(".empty").hide()
-                            result.forEach(data => {
-                                $.ajax({
-                                        method: "GET",
-                                        url: `http://localhost:3000/users/${data.userId}`
-                                    })
-                                    .done(function (result) {
-                                        let resName = result.firstname + " " + result.lastname
-                                        $("#chatList").append(` <li
+            $.ajax({
+                    method: 'GET',
+                    url: `http://localhost:3000/chats?userId=${userDetails.id}&chatId=${userDetails.id}`
+                })
+                .done(function (result) {
+                    if (result.length) {
+                        $(".empty").hide()
+                        result.forEach(data => {
+                            $.ajax({
+                                    method: "GET",
+                                    url: `http://localhost:3000/users/${data.userId}`
+                                })
+                                .done(function (result) {
+                                    let resName = result.firstname + " " + result.lastname
+                                    $("#chatList").append(` <li
                                     class="list-group-item d-flex justify-content-between align-items-center">
                                     <a href="chatPage.html" class="chats"
                                         onclick="getChatId(${result.id},'${resName}',${data.id})"><img
                                             src="../img/login_icon.png" alt="..."
                                             class="profile-img">${resName}2</a>
-                                    <span class="badge badge-primary badge-pill">14</span>
-                                </li>`)
-                                    })
-                            })
-                        }
-                    })
-                $('[data-toggle="tooltip"]').tooltip()
-            }
-        )
+                                                                    </li>`)
+                                })
+                        })
+                    }
+                })
+            $('[data-toggle="tooltip"]').tooltip()
+        }
 
-        let timeSent = getTime()
 
         function getChatId(id, name, cId) {
             localStorage.setItem('recieverId', id)
@@ -195,31 +209,12 @@
             localStorage.setItem('chatId', cId)
         }
 
-
-        // $(".card").click(function (e) {
-        //     e.preventDefault();
-        //     $("#newSide").css('width', '0');
-        // })
-
-        function getTime(res) {
-            let tRes, hour, min, d;
-            d = new Date()
-            hour = d.getHours()
-            min = d.getMinutes()
-            if (hour < 12) {
-                res = hour + ":" + min + " AM"
-            } else if (hour === 12) {
-                res = hour + ":" + min + " PM"
-            } else {
-                tRes = Math.abs(hour - 12)
-                if (tRes === 12) {
-                    res = tRes + ":" + min + " AM"
-                }
-                res = tRes + ":" + min + " PM"
-            }
-
-            return res;
-        }
+        $(".logoutBtn").click(function () {
+            $(".logout").modal("show");
+        });
+        $(".btn-danger").click(function () {
+            $("#index")[0].click();
+        });
     </script>
 </body>
 

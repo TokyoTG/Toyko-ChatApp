@@ -22,7 +22,7 @@
 
             </div>
             <div id="app-name">
-                <h3> Tokyo Chat App</h3>
+                <h3> Tokyo ChatApp</h3>
             </div>
             <!-- s -->
 
@@ -35,8 +35,9 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
-                    <a class="nav-item nav-link" href="#" id="link">Home <span class="sr-only">(current)</span></a>
-                    <a class="nav-item nav-link" href="#" id="link">Features</a>
+                    <a class="nav-item nav-link" href="../index.html" id="link">Home <span
+                            class="sr-only">(current)</span></a>
+
                 </div>
             </div>
         </nav>
@@ -89,11 +90,10 @@
         <ul>
             <li><a href="#">FAQ</a></li>
             <li><a href="#">Policy</a></li>
-            <li><a href="#">Safety</a></li>
             <li><a href="#">Contact</a></li>
         </ul>
     </footer>
-    <div class="modal" tabindex="-1" role="dialog">
+    <div class="modal addnew" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -134,7 +134,7 @@
             document.getElementById('newMembers').innerHTML = ''
             poplist();
             filter();
-            $('.modal').modal('show');
+            $('.addnew').modal('show');
             $(".list-group-item").click(e => {
                 if ($(e.target).hasClass('selected')) {
                     $(e.target).removeClass('selected');

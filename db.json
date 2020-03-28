@@ -81,6 +81,34 @@
       "password": "kehindey",
       "password2": "kehindey",
       "id": 6
+    },
+    {
+      "firstname": "aliko",
+      "lastname": "dangote",
+      "phone": "09022442244",
+      "email": "dangote@gmail.com",
+      "age": "43",
+      "gender": "male",
+      "state": "abuja",
+      "city": "dankama",
+      "description": "richest kid in africa",
+      "password": "dangote1",
+      "password2": "dangote1",
+      "id": 7
+    },
+    {
+      "firstname": "buhari",
+      "lastname": "mohammed",
+      "phone": "07033668820",
+      "email": "buhari@gmail.com",
+      "age": "90",
+      "gender": "male",
+      "state": "abuja",
+      "city": "baruba",
+      "description": "president king of boys association",
+      "password": "buhari12",
+      "password2": "buhari12",
+      "id": 8
     }
   ],
   "friends": [
@@ -123,6 +151,14 @@
       "age": "23",
       "location": "lagos, lekki",
       "id": 5
+    },
+    {
+      "userId": "1",
+      "friendId": "5",
+      "name": "ayishat babatunde",
+      "age": "18",
+      "location": "kwara, ilorin",
+      "id": 6
     }
   ],
   "requestsSent": [
@@ -363,6 +399,14 @@
       "location": "lagos, Ajegunle",
       "age": "25",
       "id": 8
+    },
+    {
+      "userId": "4",
+      "chatId": "3",
+      "name": "badmus muyiwa",
+      "location": "lagos, lekki",
+      "age": "23",
+      "id": 9
     }
   ],
   "chatroom": [
@@ -549,6 +593,16 @@
       "messageSent": "Good morning",
       "timeSent": "5:41 AM",
       "id": 13
+    },
+    {
+      "senderId": "4",
+      "senderName": "mujeeb fadeyi",
+      "chatId": "9",
+      "recieverId": "3",
+      "recieverName": "badmus muyiwa",
+      "messageSent": "hi there",
+      "timeSent": "11:25 PM",
+      "id": 14
     }
   ],
   "roomMessages": [],

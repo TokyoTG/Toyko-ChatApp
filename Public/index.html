@@ -25,14 +25,14 @@
             <div id="app-name">
                 <h3> Tokyo Chat App</h3>
             </div>
-
+            <!-- 
             <div id="contactDetails">
                 <ul>
                     <li class="cont"><a href="#"><i class="fab fa-facebook"></i> <span>Facebook</span></a></li>
                     <li class="cont"><a href="#"><i class="fab fa-twitter"></i> <span>Twitter</span></a></li>
                     <li class="cont"><a href="#"><i class="fab fa-github"></i> <span>GitHub</span></a></li>
                 </ul>
-            </div>
+            </div> -->
 
         </div>
         <nav class="navbar navbar-expand-lg navbar-light ">
@@ -43,9 +43,10 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
-                    <a class="nav-item nav-link active" href="#" id="link">Home <span
+                    <a class="nav-item nav-link active" href="index.html" id="link">Home <span
                             class="sr-only">(current)</span></a>
-                    <a class="nav-item nav-link" href="#" id="link">Features</a>
+                    <a class="nav-item nav-link" href="./html/features.html" id="link">Features</a>
+                    <a class="nav-item nav-link" href="#guide" id="link">Guide</a>
                     <a class="nav-item nav-link" href="#" id="link" onclick="toggleLog()">Login</a>
                 </div>
             </div>
@@ -54,25 +55,6 @@
     </header>
     <main id="home">
 
-
-        <section id="guide" class="card">
-            <H1>GUIDE</H1>
-            <div>
-                <h3>Register</h3>
-                <img src="./img/user-reg.png" alt="user register image" class="guide-img">
-                <p>Provide the necessary information for registration</p>
-            </div>
-            <div>
-                <h3>Login</h3>
-                <img src="./img/user-login.png" alt="user login image" class="guide-img">
-                <p>Login with your credentials</p>
-            </div>
-            <div>
-                <h3>Chat</h3>
-                <img src="./img/chat.png" alt="chat image" class="guide-img">
-                <p>Add friends and start chatting</p>
-            </div>
-        </section>
         <section id="loginRegister">
             <div id="login" style="display: none;">
                 <div class="cardTitle">
@@ -202,6 +184,25 @@
                 </form>
             </div>
         </section>
+        <section id="guide">
+            <H1>GUIDE</H1>
+            <div>
+                <h3>Register</h3>
+                <img src="./img/user-reg.png" alt="user register image" class="guide-img">
+                <p>Provide the necessary information for registration</p>
+            </div>
+            <div>
+                <h3>Login</h3>
+                <img src="./img/user-login.png" alt="user login image" class="guide-img">
+                <p>Login with your credentials</p>
+            </div>
+            <div>
+                <h3>Chat</h3>
+                <img src="./img/chat.png" alt="chat image" class="guide-img">
+                <p>Add friends and start chatting</p>
+            </div>
+        </section>
+
 
     </main>
     <footer>
@@ -210,7 +211,6 @@
         <ul>
             <li><a href="#">FAQ</a></li>
             <li><a href="#">Policy</a></li>
-            <li><a href="#">Safety</a></li>
             <li><a href="#">Contact</a></li>
         </ul>
     </footer>
@@ -223,11 +223,8 @@
     <script src="./Js/userIndex.js"></script>
     <script>
         $(document).ready(function () {
-                localStorage.clear();
-            }
-
-        )
-
+            localStorage.clear();
+        })
 
 
         $(".invalidClose").click((e) => {
@@ -266,11 +263,14 @@
 
         }
 
+
+
+
+
         function toggleLog() {
             // e.preventDefault()
             $("#register").css('display', 'none')
             $('#login').css('display', 'block')
-
         }
     </script>
 </body>

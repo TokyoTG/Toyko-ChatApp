@@ -166,10 +166,7 @@ MAIN
 }
 
 main {
-  display: grid;
-  /* background: gold; */
   width: 95%;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   margin: 150px auto 10px auto;
   /* grid-column-gap: 10px; */
 }
@@ -199,35 +196,51 @@ main {
 .cardTitle {
   margin-bottom: 15px;
   color: #006064;
+  grid-column: 1/-1;
   text-align: center;
 }
 
 #guide div {
-  margin-bottom: 10px;
+  margin: 10px 15px;
   font-size: 1.2em;
 }
 
+#guide h1 {
+  grid-column: 1/-1;
+}
+
+.modal {
+  top: 10%;
+}
+
 #guide {
-  /* background: #00838f; */
+  background: rgb(247, 244, 244);
   color: #00838f;
   text-align: center;
+  margin-top: 20px;
   border-radius: 10px;
-
+  display: grid;
+  width: 100%;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   padding: 10px 15px;
 }
 
 #features {
   background: #69f0ae;
   padding: 10px 15px;
+  width: 95%;
+  margin: auto;
+  /* display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); */
   color: #006064;
   text-align: center;
   border-radius: 10px;
 }
 
 #loginRegister,
-#features,
 #guide {
   margin: 10px 5px;
+  grid-column: 2/-1;
 }
 
 .fas.home {
@@ -371,15 +384,6 @@ CHAT PAGE
   text-transform: capitalize;
 }
 
-/* .well {
-  background: white; */
-/* padding: 10px; */
-/* width: 100%;
-  max-height: 90%;
-  overflow: auto;
-  position: relative; */
-/* } */
-
 #wellHead {
   padding: 10px 15px;
   color: white;
@@ -389,13 +393,6 @@ CHAT PAGE
   max-height: 700px;
   overflow: auto;
 }
-
-/* #wellHeader {
-  background: #00838f;
-  padding: 5px 15px;
-  position: sticky;
-  color: white;
-} */
 
 #back {
   position: absolute;
@@ -791,6 +788,9 @@ MEDIA QUERIES
   #contactDetails span {
     display: inline;
   }
+  #loginRegister {
+    grid-column: 3/10;
+  }
 }
 
 @media only screen and (min-width: 850px) {
@@ -821,6 +821,14 @@ MEDIA QUERIES
     font-size: 0.8em;
   }
 
+  #features {
+    width: 70%;
+  }
+
+  #loginRegister {
+    width: 50%;
+    margin: auto;
+  }
   .sent {
     font-size: 0.8em;
   }
@@ -834,7 +842,7 @@ MEDIA QUERIES
   #newSide {
     width: 31% !important;
     max-width: 350px !important;
-    height: 65%;
+    height: 660px;
   }
 
   .btn-info {
@@ -857,9 +865,6 @@ MEDIA QUERIES
   .closeNav {
     display: none;
   }
-  #home {
-    width: 70%;
-  }
 }
 
 @media only screen and (min-width: 1000px) {
@@ -867,9 +872,10 @@ MEDIA QUERIES
     position: relative;
   }
 
-  #newSide {
-    height: 660px;
+  #loginRegister {
+    width: 40%;
   }
+
   .navbar-nav {
     position: absolute;
     right: 0;
