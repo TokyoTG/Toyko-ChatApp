@@ -24,28 +24,17 @@
             <div id="app-name">
                 <h3> Tokyo Chat App</h3>
             </div>
-
-            <!-- <div id="contactDetails">
-                <ul>
-                    <li class="cont"><a href="#"><i class="fab fa-facebook"></i> <span>Facebook</span></a></li>
-                    <li class="cont"><a href="#"><i class="fab fa-twitter"></i> <span>Twitter</span></a></li>
-                    <li class="cont"><a href="#"><i class="fab fa-github"></i> <span>GitHub</span></a></li>
-                </ul>
-            </div> -->
-
         </div>
         <nav class="navbar navbar-expand-lg navbar-light ">
-            <a class="navbar-brand" href="#" id="link">Friend Requests</a>
+            <a class="navbar-brand" id="link">Friend Requests</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
                 aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
-                    <a class="nav-item nav-link active" href="#" id="link">Home <span
-                            class="sr-only">(current)</span></a>
+                    <a class="nav-item nav-link" href="#" id="link">Home <span class="sr-only">(current)</span></a>
                     <a class="nav-item nav-link" href="#" id="link">Features</a>
-                    <a class="nav-item nav-link" href="../index.html" id="link">Log Out</a>
                 </div>
             </div>
         </nav>
@@ -86,6 +75,11 @@
                     </li>
                     <li>
                         <a href="editProfile.html"><i class="fas fa-user-circle user"></i> <span>Edit Profile</span>
+                        </a>
+
+                    </li>
+                    <li>
+                        <a href="../index.html"><i class="fas fa-sign-out-alt user"></i> <span>Log Out</span>
                         </a>
 
                     </li>
@@ -162,9 +156,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/additional-methods.min.js"></script>
     <script src="../Js/index.js"></script>
     <script>
-        let userDetails = JSON.parse(localStorage.getItem("userData"));
         $(document).ready(
             function getRequests() {
+                $(".empty").hide()
                 $.ajax({
                         method: "GET",
                         url: `http://localhost:3000/requestsRecieved?userId=${userDetails.id}`
@@ -179,7 +173,7 @@
                                     })
                                     .done(function (result) {
                                         if (result.length <= 0) {
-                                            $(".empty").hide()
+
                                             $("#requestList").append(`<li
                                 class="list-group-item d-flex justify-content-between align-items-center">
                                 <a href="#" class="chats" onclick="showProfile(${element.senderId})">
@@ -192,6 +186,8 @@
                                 <span class="badge" data-toggle="tooltip" data-placement="top" title="Reject" onclick="reject(${element.id})"> <i
                                         class="fas fa-times"></i> </span>
                             </li>`)
+                                        } else {
+                                            $(".empty").show()
                                         }
                                     })
                             });

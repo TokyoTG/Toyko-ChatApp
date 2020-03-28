@@ -35,7 +35,7 @@
 
         </div>
         <nav class="navbar navbar-expand-lg navbar-light ">
-            <a class="navbar-brand" href="#" id="link">Chats</a>
+            <a class="navbar-brand" id="link">Chats</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
                 aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -45,7 +45,6 @@
                     <a class="nav-item nav-link active" href="#" id="link">Home <span
                             class="sr-only">(current)</span></a>
                     <a class="nav-item nav-link" href="#" id="link">Features</a>
-                    <a class="nav-item nav-link" href="../index.html" id="link">Log Out</a>
                 </div>
             </div>
         </nav>
@@ -88,6 +87,11 @@
                         </a>
 
                     </li>
+                    <li>
+                        <a href="../index.html"><i class="fas fa-sign-out-alt user"></i> <span>Log Out</span>
+                        </a>
+
+                    </li>
                 </ul>
             </div>
 
@@ -126,7 +130,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/additional-methods.min.js"></script>
     <script src="../Js/index.js"></script>
     <script>
-        let userDetails = JSON.parse(localStorage.getItem("userData"));
+        // let userDetails = JSON.parse(localStorage.getItem("userData"));
         $(document).ready(
             function popChatList() {
                 let recieverId;

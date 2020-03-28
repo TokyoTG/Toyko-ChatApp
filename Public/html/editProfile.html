@@ -42,10 +42,8 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
-                    <a class="nav-item nav-link active" href="#" id="link">Home <span
-                            class="sr-only">(current)</span></a>
+                    <a class="nav-item nav-link" href="#" id="link">Home <span class="sr-only">(current)</span></a>
                     <a class="nav-item nav-link" href="#" id="link">Features</a>
-                    <a class="nav-item nav-link" href="../index.html" id="link">Log Out</a>
                 </div>
             </div>
         </nav>
@@ -196,23 +194,13 @@
                 $('.alert').alert('close')
             }
         )
-
-        // $('#check2').change(function (e) {
-        //     e.preventDefault();
-        //     var checkBox = document.getElementById("check2")
-        //     if (checkBox.checked == true) {
-        //         $('#password').attr('type', 'text');
-        //     } else {
-        //         $('#password').attr('type', 'password');
-        //     }
-        // })
         $("#file").change(function () {
             let r = new FileReader();
             r.onload = function (e) {
                 $(".profile-image").attr('src', e.target.result)
                 console.log(e.target.result)
             }
-            r.readAsArrayBuffer(this.files[0]);
+            r.readAsDataURL(this.files[0]);
         })
         $(".fa-camera").click((e) => {
             $("#file").click();

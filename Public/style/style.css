@@ -371,34 +371,50 @@ CHAT PAGE
   text-transform: capitalize;
 }
 
-.well {
-  background: white;
-  /* padding: 10px; */
-  width: 100%;
+/* .well {
+  background: white; */
+/* padding: 10px; */
+/* width: 100%;
   max-height: 90%;
   overflow: auto;
-  position: relative;
-}
+  position: relative; */
+/* } */
 
+#wellHead {
+  padding: 10px 15px;
+  color: white;
+  background: #00838f;
+}
 .chat-well {
   max-height: 700px;
   overflow: auto;
 }
 
-#wellHeader {
+/* #wellHeader {
   background: #00838f;
   padding: 5px 15px;
   position: sticky;
   color: white;
-}
+} */
 
 #back {
   position: absolute;
   display: inline-block;
   right: 10px;
+  top: 5px;
   font-size: 1.5em;
 }
 
+#wellBody {
+  height: 75%;
+  max-height: 75%;
+  overflow: auto;
+}
+
+.well- {
+  height: 100%;
+  max-height: 100%;
+}
 .msgIn,
 .msgOut {
   display: inline-block;
@@ -440,7 +456,7 @@ CHAT PAGE
 
 .msgOut {
   float: right;
-
+  font-size: 0.9em;
   background: #80d8ff;
 }
 
@@ -456,6 +472,10 @@ CHAT PAGE
 
 .btn.send {
   float: right;
+  margin-left: 5px;
+  width: 15%;
+  max-width: 80px;
+  text-align: center;
 }
 
 .typeSpace {
@@ -464,19 +484,24 @@ CHAT PAGE
   border: none;
   height: 50px;
   padding: 5px;
-  width: 75%;
-}
-
-.well-container {
-  height: 100%;
-  width: 100%;
+  width: 82%;
+  max-width: 90%;
 }
 
 .timeStamp {
-  display: block;
-  font-size: 0.7em;
-  font-weight: bold;
   text-align: right;
+  font-weight: bold;
+}
+
+.senderName {
+  text-transform: capitalize;
+  font-weight: bold;
+}
+
+.timeStamp,
+.senderName {
+  display: block;
+  font-size: 0.6em;
 }
 
 /*****************************
@@ -497,6 +522,7 @@ FRIENDS
 
 .sent {
   color: #00c853;
+  font-size: 0.5em;
 }
 
 .empty {
@@ -560,7 +586,6 @@ textarea:focus {
   margin: 0 auto;
 }
 .profile-image {
-  width: 60%;
   background: #006064;
   display: block;
 
@@ -593,7 +618,7 @@ new styles****************
 ******************************/
 
 #newSide {
-  height: 75%;
+  height: 100vh;
   width: 0;
   position: fixed;
   z-index: 1;
@@ -644,7 +669,8 @@ li {
 #menuIcon {
   font-size: 1.5em;
   display: inline-block;
-  width: 100px;
+
+  /* width: 100px; */
   /* z-index: 3; */
   cursor: pointer;
 }
@@ -675,6 +701,24 @@ li {
 CHATROOM
 *********************************/
 
+.list-group-item.selected {
+  background: lightblue;
+}
+
+.list-group-item a {
+  display: block;
+}
+
+.list-group-item {
+  cursor: pointer;
+  width: 90%;
+}
+
+.list-group-item span {
+  display: inline-block;
+  width: 10%;
+}
+
 .sFriends {
   display: inline-block;
   padding: 3px 5px;
@@ -686,6 +730,27 @@ CHATROOM
   color: white;
   cursor: pointer;
   font-size: 1.1em;
+}
+
+#members option {
+  text-transform: capitalize;
+}
+
+#memList {
+  max-height: 80%;
+}
+
+#memList:hover ::-webkit-scrollbar {
+  display: none;
+}
+#memList li img {
+  border: 0.3px solid;
+}
+#memList li {
+  padding: 3px;
+  text-transform: capitalize;
+  overflow: auto;
+  border-bottom: 0.5px solid;
 }
 
 /******************************
@@ -756,6 +821,9 @@ MEDIA QUERIES
     font-size: 0.8em;
   }
 
+  .sent {
+    font-size: 0.8em;
+  }
   .fab {
     font-size: 1.4em;
     color: #263238;
@@ -764,10 +832,19 @@ MEDIA QUERIES
     font-size: 0.8em;
   }
   #newSide {
-    width: 30% !important;
-    max-width: 300px !important;
-    height: 650px;
+    width: 31% !important;
+    max-width: 350px !important;
+    height: 65%;
   }
+
+  .btn-info {
+    width: 60%;
+    margin: 10px auto;
+  }
+
+  /* .typeSpace {
+    width: 90%;
+  } */
 
   .card.new {
     margin-left: 28%;
@@ -790,6 +867,9 @@ MEDIA QUERIES
     position: relative;
   }
 
+  #newSide {
+    height: 660px;
+  }
   .navbar-nav {
     position: absolute;
     right: 0;

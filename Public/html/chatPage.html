@@ -28,17 +28,15 @@
 
         </div>
         <nav class="navbar navbar-expand-lg navbar-light ">
-            <a class="navbar-brand" href="#" id="link">Chat Page</a>
+            <a class="navbar-brand" id="link">Chat Page</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
                 aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
-                    <a class="nav-item nav-link active" href="#" id="link">Home <span
-                            class="sr-only">(current)</span></a>
+                    <a class="nav-item nav-link" href="#" id="link">Home <span class="sr-only">(current)</span></a>
                     <a class="nav-item nav-link" href="#" id="link">Features</a>
-                    <a class="nav-item nav-link" href="../index.html" id="link">Log Out</a>
                 </div>
             </div>
         </nav>
@@ -81,21 +79,24 @@
                         </a>
 
                     </li>
+                    <li>
+                        <a href="../index.html"><i class="fas fa-sign-out-alt user"></i> <span>Log Out</span>
+                        </a>
+
+                    </li>
                 </ul>
             </div>
 
         </section>
         <section class="card new" style="padding: 0;">
-            <div class="well-container">
-                <div class="well">
-                    <div id="wellHeader">
-                        <img src="../img/login_icon.png" alt="..." class="profile-img">
-                        <span class="chatName">Cras
-                            justo</span> <a href="userPage.html" id="back"><i class="fas fa-arrow-left"></i></a>
-                    </div>
-                    <div id="wellBody">
+            <div class="well-">
+                <div id="wellHead">
+                    <img src="../img/login_icon.png" alt="..." class="profile-img">
+                    <span class="chatName">Cras
+                        justo</span> <a href="userPage.html" id="back"><i class="fas fa-arrow-left"></i></a>
+                </div>
+                <div id="wellBody">
 
-                    </div>
                 </div>
                 <div id="wellFooter">
                     <!-- <input type="text" class="typeSpace" placeholder="type message"> -->
@@ -129,7 +130,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/additional-methods.min.js"></script>
     <script src="../Js/index.js"></script>
     <script>
-        let userDetails = JSON.parse(localStorage.getItem("userData"));
         let recieverId = localStorage.getItem('recieverId');
         let recieverName = localStorage.getItem('recieverName');
         let chatId = localStorage.getItem('chatId');

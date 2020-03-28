@@ -35,17 +35,15 @@
 
         </div>
         <nav class="navbar navbar-expand-lg navbar-light ">
-            <a class="navbar-brand" href="#" id="link">Chat Rooms</a>
+            <a class="navbar-brand" id="link">Chat Rooms</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
                 aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
-                    <a class="nav-item nav-link active" href="#" id="link">Home <span
-                            class="sr-only">(current)</span></a>
+                    <a class="nav-item nav-link" href="#" id="link">Home <span class="sr-only">(current)</span></a>
                     <a class="nav-item nav-link" href="#" id="link">Features</a>
-                    <a class="nav-item nav-link" href="../index.html" id="link">Log Out</a>
                 </div>
             </div>
         </nav>
@@ -89,21 +87,20 @@
                         </a>
 
                     </li>
+                    <li>
+                        <a href="../index.html"><i class="fas fa-sign-out-alt user"></i> <span>Log Out</span>
+                        </a>
+
+                    </li>
                 </ul>
             </div>
         </section>
         <section class="card new">
 
-            <div class="empty">
-                <p>OOps!!! your are not in any room</p>
-                <button class="btn btn-success">Create a Room</button>
-            </div>
+
 
             <div class="friends-container">
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item">Cras justo odio</li>
-                    <li class="list-group-item">Dapibus ac facilisis in</li>
-                    <li class="list-group-item">Morbi leo risus</li>
+                <ul class="list-group list-group-flush" id="roomList">
                     <button class="btn btn-info">Create a new chatroom +</button>
                 </ul>
             </div>
@@ -121,23 +118,23 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form id="userLogin">
+                    <form id="roomForm">
                         <div class="form-group">
                             <label for="chatroomName">Chatroom Name</label>
                             <input type="text" class="form-control" id="chatroomName" required
-                                placeholder="Enter Chatroom name">
+                                placeholder="Enter Chatroom name" minlength="2">
                         </div>
                         <div class="form-group">
                             <label for="purpose">Purpose</label>
-                            <input type="text" class="form-control" id="" purpose" required
-                                placeholder="Enter Chatroom name">
+                            <input type="text" class="form-control" id="purpose" required
+                                placeholder="Enter Chatroom name" minlength="2">
                         </div>
                         <div id="memList">
 
                         </div>
                         <div class="form-group">
                             <label for="members">Select members</label>
-                            <select class="" id="members" name="members">
+                            <select class="custom-select" id="members" name="members">
                                 <option selected value="">Select friends...</option>
 
                             </select>
@@ -175,41 +172,81 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/additional-methods.min.js"></script>
     <script src="../Js/index.js"></script>
     <script>
-        let userDetails = JSON.parse(localStorage.getItem("userData"));
         $(document).ready(function () {
-                $(".empty").hide();
+
+                popRoomList();
             }
 
         )
-        var l = Array.from(document.getElementsByClassName('sFriends'));
-        for (let e of l) {
-            console.log($(`p.sFriends`).text())
+
+        function popRoomList() {
+            $.ajax({
+                    method: "GET",
+                    url: `http://localhost:3000/chatroom?adminId=${userDetails.id}`
+                })
+                .done(function (result) {
+                    if (result.length) {
+                        $(".empty").hide();
+                        result.forEach(element => {
+                            $("#roomList").prepend(
+                                ` <li class="list-group-item"> <a href="ChatRoom.html"
+                                        onclick="storeRoomDetails(${element.id},'${element.roomName}','${element.roomPurpose}')">${element.roomName}</a>
+                                </li>`
+                            )
+                        });
+
+                    } else {
+                        $.ajax({
+                            method: "GET",
+                            url: `http://localhost:3000/chatroomMembers?memId=${userDetails.id}`
+                        }).done(function (result) {
+                            if (result.length) {
+                                $(".empty").hide();
+                                result.forEach(element => {
+                                    $("#roomList").prepend(
+                                        ` <li class="list-group-item"> <a href="ChatRoom.html" onclick="storeRoomDetails(${element.roomId},'${element.roomName}','${element.roomPurpose}')">${element.roomName}</a> </li>`
+                                    )
+                                });
+                            }
+                        })
+
+                    }
+                })
+
+        }
+
+
+        function storeRoomDetails(id, name, purpose) {
+            let obj = {
+                roomId: id,
+                roomName: name,
+                roomPurpose: purpose
+            }
+            document.cookie = JSON.stringify(obj);
         }
 
         $(".btn-info").click(e => {
             e.preventDefault();
             $('.modal').modal('show');
         })
-        let p
         $("#members").change(function (e) {
             e.preventDefault();
+            let sId = $("#members option:selected")[0].id
             $("#memList").append(
-                ` <p class="sFriends" value="${$(this).val()}">${$(this).val()} <span
+                ` <p class="sFriends" value="${$(this).val()}" id="${sId}">
+                    ${$(this).val()} <span
                         class="removeFriend">&times;</span></p>`)
-            console.log($(this).val());
+            console.log(sId);
             $("#members option:selected").remove();
-            $('.removeFriend').click(function (e) {
+            $('.removeFriend').unbind().click(function (e) {
                 e.preventDefault()
+                let text = $(this).parent().text().replace(/\u00D7/gi, '').trim()
                 $(this).parent().remove()
                 $("#members").append(
-                    `<option>${$(this).parent().text().replace(/\u00D7/gi,'').trim()}</option>`)
-                console.log($(this).parent().text().replace('r', '').trim())
+                    `<option>${text}</option>`)
+                console.log(text)
             })
         })
-        // $('.removeFriend').click(function (e) {
-        //     e.preventDefault()
-        //     $(this).parent().remove()
-        // })
     </script>
 </body>
 

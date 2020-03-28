@@ -2,6 +2,9 @@ $(document).ready(function() {
   profileDetalis();
   popFriend();
 });
+let friends = [];
+
+let userDetails = JSON.parse(localStorage.getItem("userData"));
 
 function popFriend() {
   $.ajax({
@@ -14,7 +17,8 @@ function popFriend() {
         console.log(element);
         $("#friendList").append(`<li
                                     class="list-group-item d-flex justify-content-between align-items-center"
-                                    >
+                                   data-toggle="tooltip" data-placement="top"
+         title="View profile details" >
                                     <a href="#" class="chats" onclick="showProfile(${
                                       element.friendId
                                     })"><img
@@ -38,8 +42,9 @@ function popFriend() {
                                                 class="fas fa-trash"></i> </span></a>
                                 </li>`);
         $("#members").append(
-          `<option id="${element.friendId}">${element.name}</option>`
+          `<option id="${element.friendId}" value="${element.name}">${element.name}</option>`
         );
+        friends.push({ friendName: element.name, friendId: element.friendId });
       });
       $('[data-toggle="tooltip"]').tooltip();
     }
@@ -57,7 +62,8 @@ function popFriend() {
         }).done(function(result) {
           $("#friendList").append(`<li
                                              class="list-group-item d-flex justify-content-between align-items-center"
-                                             id="${result.id}">
+                                             id="${result.id}" data-toggle="tooltip" data-placement="top"
+         title="View profile details">
                                              <a href="#" class="chats" onclick="showProfile(${result.id})"><img
                                                      src="../img/login_icon.png" alt="..."
                                                      class="profile-img">${result.firstname} ${result.lastname}</a>
@@ -72,8 +78,12 @@ function popFriend() {
                                                          <i class="fas fa-trash"></i> </span></a>
                                          </li>`);
           $("#members").append(
-            `<option id="${result.id}">${result.firstname} ${result.lastname}</option>`
+            `<option id="${result.id}" value="${result.firstname} ${result.lastname}">${result.firstname} ${result.lastname}</option>`
           );
+          friends.push({
+            friendName: result.firstname + " " + result.lastname,
+            friendId: result.id
+          });
           $('[data-toggle="tooltip"]').tooltip();
         });
       });
@@ -90,11 +100,8 @@ function profileDetalis() {
     `<a href="editProfile.html"><i class="fas fa-pencil-alt" data-toggle="tooltip" data-placement="top" title="Edit profile"></i></a>`
   );
 
-  // $('[data-toggle="tooltip"]').tooltip();
   $(".userLoc").text(`Location: ${userData.city}, ${userData.state} `);
   $(".userAge").text(`Age: ${userData.age}`);
-
-  //   console.log(userData);
 }
 
 function reject(id) {
@@ -140,3 +147,56 @@ window.onclick = function(event) {
     $("#newSide").css("width", "0");
   }
 };
+
+$("#roomForm").submit(function(e) {
+  e.preventDefault();
+  let name, id, roomName, roomPurpose, roomObj, memData, adminData;
+  let selectedFriends = Array.from(document.getElementsByClassName("sFriends"));
+
+  roomName = $("#chatroomName").val();
+  roomPurpose = $("#purpose").val();
+  roomObj = {
+    roomName,
+    roomPurpose,
+    adminId: userDetails.id
+  };
+  $.ajax({
+    method: "POST",
+    url: "http://localhost:3000/chatroom",
+    data: roomObj
+  }).done(function(res) {
+    adminData = {
+      roomId: res.id,
+      roomName: res.roomName,
+      roomPurpose: res.roomPurpose,
+      memName: userDetails.firstname + " " + userDetails.lastname,
+      memId: userDetails.id
+    };
+    $.ajax({
+      method: "POST",
+      url: "http://localhost:3000/chatroomMembers",
+      data: adminData
+    }).done(function() {
+      if (selectedFriends.length > 0) {
+        for (let friend of selectedFriends) {
+          name = friend.textContent.replace(/\u00D7/gi, "").trim();
+          mId = friend.id;
+          memData = {
+            roomId: res.id,
+            roomName: res.roomName,
+            roomPurpose: res.roomPurpose,
+            memName: name,
+            memId: mId,
+            adminId: userDetails.id
+          };
+          $.ajax({
+            method: "POST",
+            url: "http://localhost:3000/chatroomMembers",
+            data: memData
+          });
+        }
+      }
+    });
+    popFriend();
+  });
+});

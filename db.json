@@ -365,7 +365,60 @@
       "id": 8
     }
   ],
-  "chatroom": [],
+  "chatroom": [
+    {
+      "roomName": "First Chatroom",
+      "roomPurpose": "For Friends only",
+      "adminId": "3",
+      "id": 1
+    }
+  ],
+  "chatroomMembers": [
+    {
+      "roomId": "1",
+      "roomName": "First Chatroom",
+      "roomPurpose": "For Friends only",
+      "memName": "badmus muyiwa",
+      "memId": "3",
+      "id": 1
+    },
+    {
+      "roomId": "1",
+      "roomName": "First Chatroom",
+      "roomPurpose": "For Friends only",
+      "memName": "ayishat babatunde",
+      "memId": "5",
+      "adminId": "3",
+      "id": 2
+    },
+    {
+      "roomId": "1",
+      "roomName": "First Chatroom",
+      "roomPurpose": "For Friends only",
+      "memName": "alimat babatunde",
+      "memId": "6",
+      "adminId": "3",
+      "id": 3
+    },
+    {
+      "roomId": "1",
+      "roomName": "First Chatroom",
+      "roomPurpose": "For Friends only",
+      "memName": "badmus Tboy",
+      "memId": "2",
+      "adminId": "3",
+      "id": 4
+    },
+    {
+      "roomId": "1",
+      "roomName": "First Chatroom",
+      "roomPurpose": "For Friends only",
+      "memName": "mujeeb fadeyi",
+      "memId": "4",
+      "adminId": "3",
+      "id": 5
+    }
+  ],
   "messagesSent": [
     {
       "senderId": "3",
@@ -498,12 +551,38 @@
       "id": 13
     }
   ],
-  "messgesRecieved": [],
-  "states": ["Abuja", "Oyo", "Kwara", "Lagos"],
+  "roomMessages": [],
+  "states": [
+    "Abuja",
+    "Oyo",
+    "Kwara",
+    "Lagos"
+  ],
   "cities": {
-    "Abuja": ["Baruba", "Dankama"],
-    "Kwara": ["Ilorin", "Asa", "Baruten", "Oyun"],
-    "Lagos": ["Surulere", "Ikeja", "Lekki", "Epe", "Ajegunle", "Apapa", "Tolu"],
-    "Oyo": ["Ibadan", "Sango", "Isheyin", "Bodija"]
+    "Abuja": [
+      "Baruba",
+      "Dankama"
+    ],
+    "Kwara": [
+      "Ilorin",
+      "Asa",
+      "Baruten",
+      "Oyun"
+    ],
+    "Lagos": [
+      "Surulere",
+      "Ikeja",
+      "Lekki",
+      "Epe",
+      "Ajegunle",
+      "Apapa",
+      "Tolu"
+    ],
+    "Oyo": [
+      "Ibadan",
+      "Sango",
+      "Isheyin",
+      "Bodija"
+    ]
   }
 }
