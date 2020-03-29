@@ -71,7 +71,8 @@
 
                     </li>
                     <li>
-                        <a href="addFriends.html"><i class="fas fa-user-plus user"></i> <span>Add Friend</span> </a>
+                        <a href="addFriends.html" id="fR-link"><i class="fas fa-user-plus user"></i> <span>Add
+                                Friend</span> </a>
 
                     </li>
                     <li>
@@ -139,6 +140,11 @@
             }
 
         )
+
+        $('.btn-success').click(function (e) {
+            e.preventDefault();
+            $("#fR-link")[0].click();
+        })
 
         function popChatList() {
             // $(".empty").show()
