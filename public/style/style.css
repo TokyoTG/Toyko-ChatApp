@@ -137,7 +137,8 @@ NAVIGATION
   transition: 0.3s;
 }
 
-#link:hover {
+#link:hover,
+#link.active:hover {
   color: black;
 }
 
@@ -219,9 +220,9 @@ main {
   text-align: center;
   margin-top: 20px;
   border-radius: 10px;
-  display: grid;
+  /* display: grid; */
   width: 100%;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  /* grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); */
   padding: 10px 15px;
 }
 
@@ -237,9 +238,23 @@ main {
   border-radius: 10px;
 }
 
+#showReg:hover {
+  text-decoration: underline;
+  color: #006064;
+  scale: 2;
+}
+
+#showReg {
+  font-size: 1.5em;
+  width: 30%;
+  font-weight: bold;
+  margin: auto;
+  display: inline-block;
+}
+
 #loginRegister,
 #guide {
-  margin: 10px 5px;
+  margin: 30px 5px;
   grid-column: 2/-1;
 }
 
@@ -547,13 +562,12 @@ EDIT PROFILE PAGE
 ******************************/
 input,
 textarea {
-  background: #69f0ae !important;
   color: #006064;
 }
 
 input.error,
 textarea.error {
-  background: #ef5350 !important;
+  border: 1px solid #ef5350 !important;
   color: white;
   resize: none;
 }
@@ -564,7 +578,6 @@ textarea:focus {
 .edit-profile {
   width: 80%;
   margin: 150px auto 10px auto;
-
   display: block;
 }
 
@@ -790,6 +803,7 @@ MEDIA QUERIES
   #contactDetails span {
     display: inline;
   }
+
   #loginRegister {
     grid-column: 3/10;
   }
@@ -823,6 +837,14 @@ MEDIA QUERIES
     font-size: 0.8em;
   }
 
+  .featureCard {
+    display: inline-block;
+    width: 40%;
+  }
+  #guide div {
+    display: inline-block;
+    width: 30%;
+  }
   #features {
     width: 70%;
   }

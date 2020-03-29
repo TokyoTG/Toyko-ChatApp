@@ -37,14 +37,31 @@
                             class="sr-only">(current)</span></a>
                     <a class="nav-item nav-link" href="./html/features.html" id="link">Features</a>
                     <a class="nav-item nav-link" href="#guide" id="link">Guide</a>
-                    <a class="nav-item nav-link" href="#" id="link" onclick="toggleLog()">Login</a>
+                    <a class="nav-item nav-link" href="#login" id="link" onclick="toggleLog()">Login</a>
                 </div>
             </div>
         </nav>
 
     </header>
     <main id="home">
-
+        <section id="guide">
+            <H1>GUIDE</H1>
+            <div>
+                <h3>Register</h3>
+                <img src="./img/user-reg.png" alt="user register image" class="guide-img">
+                <p>Provide the necessary information for registration</p>
+            </div>
+            <div>
+                <h3>Login</h3>
+                <img src="./img/user-login.png" alt="user login image" class="guide-img">
+                <p>Login with your credentials</p>
+            </div>
+            <div>
+                <h3>Chat</h3>
+                <img src="./img/chat.png" alt="chat image" class="guide-img">
+                <p>Add friends and start chatting</p>
+            </div>
+        </section>
         <section id="loginRegister">
             <div id="login" style="display: none;">
                 <div class="cardTitle">
@@ -71,8 +88,9 @@
                     <button type="submit" class="btn btn-success btn-block" id="signIn">Login</button>
                     <div id="ask">
                         <p>Dont have an account yet ?</p>
+                        <a href="#" id="showReg">Register</a>
                     </div>
-                    <button class="btn btn-primary btn-block" id="showReg">Register</button>
+
                 </form>
             </div>
             <div id="register" style="display: block;">
@@ -174,24 +192,7 @@
                 </form>
             </div>
         </section>
-        <section id="guide">
-            <H1>GUIDE</H1>
-            <div>
-                <h3>Register</h3>
-                <img src="./img/user-reg.png" alt="user register image" class="guide-img">
-                <p>Provide the necessary information for registration</p>
-            </div>
-            <div>
-                <h3>Login</h3>
-                <img src="./img/user-login.png" alt="user login image" class="guide-img">
-                <p>Login with your credentials</p>
-            </div>
-            <div>
-                <h3>Chat</h3>
-                <img src="./img/chat.png" alt="chat image" class="guide-img">
-                <p>Add friends and start chatting</p>
-            </div>
-        </section>
+
 
 
     </main>
@@ -224,7 +225,7 @@
             let password = $("#inputPassword").val();
             $.ajax({
                 method: 'GET',
-                url: `http://localhost:3000/users?email=${email}&password=${password}`,
+                url: `https://tokyochatappdb.herokuapp.com/users?email=${email}&password=${password}`,
             }).done(function (data) {
                 if (data.length) {
                     let formatted = data[0]

@@ -170,14 +170,14 @@
                 //GETS ALL REGISTERED  USERS
                 $.ajax({
                         method: 'GET',
-                        url: 'http://localhost:3000/users',
+                        url: 'https://tokyochatappdb.herokuapp.com/users',
                     })
                     .done(function (res) {
                         res.forEach(element => {
                             // FILTERS USERS WITH THOSE THE USERS HAVE SENT REQUEST 
                             $.ajax({
                                     method: 'GET',
-                                    url: `http://localhost:3000/requestsSent?userId=${element.id}&senderId=${userDetails.id}`
+                                    url: `https://tokyochatappdb.herokuapp.com/requestsSent?userId=${element.id}&senderId=${userDetails.id}`
                                 })
                                 .done(function (result) {
                                     if (result.length) {
@@ -217,7 +217,7 @@
                                         // REMOVES USERS WHO HAVE SENT THE USER A REQUEST
                                         $.ajax({
                                                 method: "GET",
-                                                url: `http://localhost:3000/requestsRecieved?senderId=${element.id}&userId=${userDetails.id}`
+                                                url: `https://tokyochatappdb.herokuapp.com/requestsRecieved?senderId=${element.id}&userId=${userDetails.id}`
                                             })
                                             .done(function (res) {
 
@@ -233,7 +233,7 @@
                                         //REMOVES A USERS WHO IS ALREADY A FRIEND
                                         $.ajax({
                                                 method: "GET",
-                                                url: `http://localhost:3000/friends?friendId=${element.id}&userId=${userDetails.id}`
+                                                url: `https://tokyochatappdb.herokuapp.com/friends?friendId=${element.id}&userId=${userDetails.id}`
                                             })
                                             .done(function (ress) {
                                                 if (ress.length) {
@@ -268,14 +268,14 @@
 
             $.ajax({
                     method: 'POST',
-                    url: "http://localhost:3000/requestsRecieved",
+                    url: "https://tokyochatappdb.herokuapp.com/requestsRecieved",
                     data: requestData
                 })
                 .done(function () {
                     $.ajax({
                         method: 'POST',
                         data: requestData,
-                        url: 'http://localhost:3000/requestsSent'
+                        url: 'https://tokyochatappdb.herokuapp.com/requestsSent'
                     })
                 })
         }
@@ -283,7 +283,7 @@
         function showProfile(id) {
             $.ajax({
                 method: 'GET',
-                url: 'http://localhost:3000/users/' + id,
+                url: 'https://tokyochatappdb.herokuapp.com/users/' + id,
                 success: function (data) {
                     $("#pName").text(`Name: ${data.firstname}  ${data.lastname}`);
                     $("#pLoc").text(`Location: ${data.state}, ${data.city}`);
