@@ -141,7 +141,7 @@
             friends.forEach(friend => {
                 $.ajax({
                         method: 'GET',
-                        url: `http://localhost:3000/chatroomMembers?roomId=${roomDetails.roomId}&memId=${friend.friendId}`
+                        url: `https://tokyochatappdb.herokuapp.com/chatroomMembers?roomId=${roomDetails.roomId}&memId=${friend.friendId}`
                     })
                     .done(function (res) {
                         if (res.length) {
@@ -157,7 +157,7 @@
         function checkAdmin() {
             $.ajax({
                     method: 'GET',
-                    url: `http://localhost:3000/chatroom/${roomDetails.roomId}`
+                    url: `https://tokyochatappdb.herokuapp.com/chatroom/${roomDetails.roomId}`
                 })
                 .done(function (res) {
                     if (res.adminId != userDetails.id) {
@@ -171,7 +171,7 @@
         function popMemList() {
             $.ajax({
                     method: "GET",
-                    url: `http://localhost:3000/chatroomMembers?roomId=${roomDetails.roomId}`
+                    url: `https://tokyochatappdb.herokuapp.com/chatroomMembers?roomId=${roomDetails.roomId}`
                 })
                 .done(function (result) {
                     result.forEach(mem => {
@@ -187,7 +187,7 @@
         function popRoomMsg() {
             $.ajax({
                     method: "GET",
-                    url: `http://localhost:3000/roomMessages?roomId=${roomDetails.roomId}`
+                    url: `https://tokyochatappdb.herokuapp.com/roomMessages?roomId=${roomDetails.roomId}`
                 })
                 .done(function (res) {
                     if (res.length) {
@@ -237,7 +237,7 @@
                 }
                 $.ajax({
                     method: 'POST',
-                    url: 'http://localhost:3000/chatroomMembers',
+                    url: 'https://tokyochatappdb.herokuapp.com/chatroomMembers',
                     data: memData
                 })
 
@@ -272,7 +272,7 @@
 
             $.ajax({
                 method: 'POST',
-                url: 'http://localhost:3000/roomMessages',
+                url: 'https://tokyochatappdb.herokuapp.com/roomMessages',
                 data: msgData
             })
             popRoomMsg();

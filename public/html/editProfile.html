@@ -287,7 +287,7 @@
                 });
                 $.ajax({
                         method: "PATCH",
-                        url: "http://localhost:3000/users/" + userDetails.id,
+                        url: "https://tokyochatappdb.herokuapp.com/users/" + userDetails.id,
                         data: res,
 
                         // 
@@ -295,7 +295,7 @@
                     .done(function () {
                         $.ajax({
                                 method: 'GET',
-                                url: "http://localhost:3000/users/" + userDetails.id,
+                                url: "https://tokyochatappdb.herokuapp.com/users/" + userDetails.id,
                             })
                             .done(function (result) {
                                 localStorage.setItem('userData', JSON.stringify(result));

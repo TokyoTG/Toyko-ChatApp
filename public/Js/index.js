@@ -9,7 +9,7 @@ let userDetails = JSON.parse(localStorage.getItem("userData"));
 function popRoomList() {
   $.ajax({
     method: "GET",
-    url: `http://localhost:3000/chatroom?adminId=${userDetails.id}`
+    url: `https://tokyochatappdb.herokuapp.com/chatroom?adminId=${userDetails.id}`
   }).done(function(result) {
     if (result.length) {
       result.forEach(element => {
@@ -22,7 +22,7 @@ function popRoomList() {
     } else {
       $.ajax({
         method: "GET",
-        url: `http://localhost:3000/chatroomMembers?memId=${userDetails.id}`
+        url: `https://tokyochatappdb.herokuapp.com/chatroomMembers?memId=${userDetails.id}`
       }).done(function(result) {
         if (result.length) {
           result.forEach(element => {
@@ -39,7 +39,7 @@ function popRoomList() {
 function popFriend() {
   $.ajax({
     method: "GET",
-    url: `http://localhost:3000/friends?userId=${userDetails.id}`
+    url: `https://tokyochatappdb.herokuapp.com/friends?userId=${userDetails.id}`
   }).done(function(res) {
     if (res.length) {
       $(".empty").hide();
@@ -80,14 +80,14 @@ function popFriend() {
   });
   $.ajax({
     method: "GET",
-    url: `http://localhost:3000/friends?friendId=${userDetails.id}`
+    url: `https://tokyochatappdb.herokuapp.com/friends?friendId=${userDetails.id}`
   }).done(function(res) {
     if (res.length) {
       $(".empty").hide();
       res.forEach(element => {
         $.ajax({
           method: "GET",
-          url: `http://localhost:3000/users/${element.userId}`
+          url: `https://tokyochatappdb.herokuapp.com/users/${element.userId}`
         }).done(function(result) {
           $("#friendList").append(`<li
                                              class="list-group-item d-flex justify-content-between align-items-center"
@@ -127,7 +127,7 @@ function popFriend() {
 function reject(id) {
   $.ajax({
     type: "GET",
-    url: `http://localhost:3000/requestsRecieved/${id}`
+    url: `https://tokyochatappdb.herokuapp.com/requestsRecieved/${id}`
   }).done(function(res) {
     let resEdit = {
       userId: 404,
@@ -140,12 +140,12 @@ function reject(id) {
     };
     $.ajax({
       method: "PATCH",
-      url: `http://localhost:3000/requestsRecieved/${id}`,
+      url: `https://tokyochatappdb.herokuapp.com/requestsRecieved/${id}`,
       data: resEdit
     }).done(function() {
       $.ajax({
         method: "PATCH",
-        url: `http://localhost:3000/requestsSent/${id}`,
+        url: `https://tokyochatappdb.herokuapp.com/requestsSent/${id}`,
         data: resEdit
       });
     });
@@ -181,7 +181,7 @@ $("#roomForm").submit(function(e) {
   };
   $.ajax({
     method: "POST",
-    url: "http://localhost:3000/chatroom",
+    url: "https://tokyochatappdb.herokuapp.com/chatroom",
     data: roomObj
   }).done(function(res) {
     adminData = {
@@ -193,7 +193,7 @@ $("#roomForm").submit(function(e) {
     };
     $.ajax({
       method: "POST",
-      url: "http://localhost:3000/chatroomMembers",
+      url: "https://tokyochatappdb.herokuapp.com/chatroomMembers",
       data: adminData
     }).done(function() {
       if (selectedFriends.length > 0) {
@@ -210,7 +210,7 @@ $("#roomForm").submit(function(e) {
           };
           $.ajax({
             method: "POST",
-            url: "http://localhost:3000/chatroomMembers",
+            url: "https://tokyochatappdb.herokuapp.com/chatroomMembers",
             data: memData
           }).done(function() {
             location.reload();
@@ -227,7 +227,7 @@ $("#roomForm").submit(function(e) {
 function showProfile(id) {
   $.ajax({
     method: "GET",
-    url: "http://localhost:3000/users/" + id,
+    url: "https://tokyochatappdb.herokuapp.com/users/" + id,
     success: function(data) {
       $("#pName").text(`Name: ${data.firstname} ${data.lastname}`);
       $("#pLoc").text(`Location: ${data.state}, ${data.city}`);

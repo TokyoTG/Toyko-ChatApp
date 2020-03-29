@@ -5,7 +5,7 @@ $(document).ready(function() {
 function getStates() {
   $.ajax({
     type: "GET",
-    url: "http://localhost:3000/states",
+    url: "https://tokyochatappdb.herokuapp.com/states",
     success: function(data) {
       data.forEach(element => {
         $("#state").append(`<option value="${element}">${element}</option>`);
@@ -46,7 +46,7 @@ function getCities() {
   if (state !== "") {
     $.ajax({
       type: "GET",
-      url: "http://localhost:3000/cities",
+      url: "https://tokyochatappdb.herokuapp.com/cities",
       success: function(data) {
         data[state].forEach(element => {
           $("#city").append(`<option>${element}</option>`);
@@ -149,7 +149,7 @@ $("#userReg").validate({
     });
     $.ajax({
       method: "POST",
-      url: "http://localhost:3000/users",
+      url: "https://tokyochatappdb.herokuapp.com/users",
       data: res
     });
     return false;

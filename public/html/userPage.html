@@ -145,7 +145,7 @@
             let recieverId;
             $.ajax({
                     method: "GET",
-                    url: `http://localhost:3000/chats?userId=${userDetails.id}`
+                    url: `https://tokyochatappdb.herokuapp.com/chats?userId=${userDetails.id}`
                 })
                 .done(function (res) {
                     if (res.length) {
@@ -167,7 +167,7 @@
 
             $.ajax({
                     method: 'GET',
-                    url: `http://localhost:3000/chats?userId=${userDetails.id}&chatId=${userDetails.id}`
+                    url: `https://tokyochatappdb.herokuapp.com/chats?userId=${userDetails.id}&chatId=${userDetails.id}`
                 })
                 .done(function (result) {
                     if (result.length) {
@@ -175,7 +175,7 @@
                         result.forEach(data => {
                             $.ajax({
                                     method: "GET",
-                                    url: `http://localhost:3000/users/${data.userId}`
+                                    url: `https://tokyochatappdb.herokuapp.com/users/${data.userId}`
                                 })
                                 .done(function (result) {
                                     let resName = result.firstname + " " + result.lastname

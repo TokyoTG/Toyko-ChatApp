@@ -182,7 +182,7 @@
         function sendChatData(data) {
             $.ajax({
                     method: "POST",
-                    url: "http://localhost:3000/chats",
+                    url: "https://tokyochatappdb.herokuapp.com/chats",
                     data: data
                 })
                 .done(function () {
@@ -193,7 +193,7 @@
         function addToChats(id) {
             $.ajax({
                     method: 'GET',
-                    url: 'http://localhost:3000/users/' + id,
+                    url: 'https://tokyochatappdb.herokuapp.com/users/' + id,
                 })
                 .done(function (data) {
                     let chatData = {
@@ -205,13 +205,13 @@
                     }
                     $.ajax({
                             method: "GET",
-                            url: `http://localhost:3000/chats?userId=${userDetails.id}&chatId=${id}`,
+                            url: `https://tokyochatappdb.herokuapp.com/chats?userId=${userDetails.id}&chatId=${id}`,
                         })
                         .done(function (res) {
                             if (res.length <= 0) {
                                 $.ajax({
                                         method: "GET",
-                                        url: `http://localhost:3000/chats?userId=${userDetails.id}&chatId=${userDetails.id}`
+                                        url: `https://tokyochatappdb.herokuapp.com/chats?userId=${userDetails.id}&chatId=${userDetails.id}`
                                     })
                                     .done(function (result) {
                                         if (result.length <= 0) {
@@ -250,14 +250,14 @@
                 };
                 $.ajax({
                         method: "GET",
-                        url: `http://localhost:3000/requestsSent?userId=${uId}&senderId=${senderId}`
+                        url: `https://tokyochatappdb.herokuapp.com/requestsSent?userId=${uId}&senderId=${senderId}`
                     })
                     .done(function (res) {
                         patch(res[0].id, resEdit, eId);
                     });
                 $.ajax({
                         method: "GET",
-                        url: `http://localhost:3000/chats?userId=${uId}&chatId=${senderId}`
+                        url: `https://tokyochatappdb.herokuapp.com/chats?userId=${uId}&chatId=${senderId}`
                     })
                     .done(function (result) {
                         patchChat(result[0].id, resEdit);
@@ -267,17 +267,17 @@
             function patch(id, sendData, fId) {
                 $.ajax({
                     method: "PATCH",
-                    url: `http://localhost:3000/requestsRecieved/${id}`,
+                    url: `https://tokyochatappdb.herokuapp.com/requestsRecieved/${id}`,
                     data: sendData
                 })
                 $.ajax({
                     method: "PATCH",
-                    url: `http://localhost:3000/requestsSent/${id}`,
+                    url: `https://tokyochatappdb.herokuapp.com/requestsSent/${id}`,
                     data: sendData
                 })
                 $.ajax({
                     method: "PATCH",
-                    url: `http://localhost:3000/friends/${fId}`,
+                    url: `https://tokyochatappdb.herokuapp.com/friends/${fId}`,
                     data: sendData
                 })
 
@@ -288,7 +288,7 @@
         function patchChat(id, data) {
             $.ajax({
                 method: "PATCH",
-                url: `http://localhost:3000/chats/${id}`,
+                url: `https://tokyochatappdb.herokuapp.com/chats/${id}`,
                 data: data
             })
         }
