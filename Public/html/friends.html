@@ -91,8 +91,8 @@
 
         </section>
         <section class="card new">
-            <div class="empty">
-                <p>You dont have any friend yet</p>
+            <div class="empty nofriend">
+                <p>OOps !!! You dont have any friend yet</p>
                 <button class="btn btn-success">Add Friend</button>
             </div>
             <div class="friends-container">
@@ -137,16 +137,6 @@
         </div>
 
     </main>
-
-    <footer>
-        <p>&copy; Tokyo 2020</p>
-
-        <ul>
-            <li><a href="#">FAQ</a></li>
-            <li><a href="#">Policy</a></li>
-            <li><a href="#">Contact</a></li>
-        </ul>
-    </footer>
     <div class="modal logout" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -292,6 +282,7 @@
                 })
 
             }
+            popFriend();
         }
 
         function patchChat(id, data) {

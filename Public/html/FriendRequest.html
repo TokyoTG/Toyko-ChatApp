@@ -137,15 +137,6 @@
         </div>
 
     </main>
-    <footer>
-        <p>&copy; Tokyo 2020</p>
-
-        <ul>
-            <li><a href="#">FAQ</a></li>
-            <li><a href="#">Policy</a></li>
-            <li><a href="#">Contact</a></li>
-        </ul>
-    </footer>
     <div class="modal logout" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -285,6 +276,22 @@
 
             $(".modal").show()
         })
+
+        $("#menuIcon").click(function () {
+            $("#newSide").css("width", "250px");
+        });
+        $(".closeNav").click(function () {
+            $("#newSide").css("width", "0");
+        });
+
+        var modal = document.getElementById("newSide");
+        var btn = document.getElementById("menuIcon");
+
+        window.onclick = function (event) {
+            if (event.target !== modal && event.target !== btn) {
+                $("#newSide").css("width", "0");
+            }
+        };
     </script>
 </body>
 

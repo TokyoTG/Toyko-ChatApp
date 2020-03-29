@@ -1,9 +1,40 @@
 $(document).ready(function() {
   popFriend();
+  popRoomList();
 });
 let friends = [];
 
 let userDetails = JSON.parse(localStorage.getItem("userData"));
+
+function popRoomList() {
+  $.ajax({
+    method: "GET",
+    url: `http://localhost:3000/chatroom?adminId=${userDetails.id}`
+  }).done(function(result) {
+    if (result.length) {
+      result.forEach(element => {
+        $("#roomList").prepend(
+          ` <li class="list-group-item"> <a href="ChatRoom.html"
+                                        onclick="storeRoomDetails(${element.id},'${element.roomName}','${element.roomPurpose}')">${element.roomName}</a>
+                                </li>`
+        );
+      });
+    } else {
+      $.ajax({
+        method: "GET",
+        url: `http://localhost:3000/chatroomMembers?memId=${userDetails.id}`
+      }).done(function(result) {
+        if (result.length) {
+          result.forEach(element => {
+            $("#roomList").prepend(
+              ` <li class="list-group-item"> <a href="ChatRoom.html" onclick="storeRoomDetails(${element.roomId},'${element.roomName}','${element.roomPurpose}')">${element.roomName}</a> </li>`
+            );
+          });
+        }
+      });
+    }
+  });
+}
 
 function popFriend() {
   $.ajax({
@@ -15,11 +46,11 @@ function popFriend() {
       res.forEach(element => {
         $("#friendList").append(`<li
                                     class="list-group-item d-flex justify-content-between align-items-center"
-                                   data-toggle="tooltip" data-placement="top"
-         title="View profile details" >
+                                    >
                                     <a href="#" class="chats" onclick="showProfile(${
                                       element.friendId
-                                    })"><img
+                                    })" data-toggle="tooltip" data-placement="top"
+         title="View profile details"><img
                                             src="../img/login_icon.png" alt="..."
                                             class="profile-img">${
                                               element.name
@@ -60,9 +91,9 @@ function popFriend() {
         }).done(function(result) {
           $("#friendList").append(`<li
                                              class="list-group-item d-flex justify-content-between align-items-center"
-                                             id="${result.id}" data-toggle="tooltip" data-placement="top"
-         title="View profile details">
-                                             <a href="#" class="chats" onclick="showProfile(${result.id})"><img
+                                             id="${result.id}" >
+                                             <a href="#" class="chats" onclick="showProfile(${result.id})" data-toggle="tooltip" data-placement="top"
+         title="View profile details"><img
                                                      src="../img/login_icon.png" alt="..."
                                                      class="profile-img">${result.firstname} ${result.lastname}</a>
 
@@ -87,6 +118,9 @@ function popFriend() {
       });
     }
   });
+  // if (document.getElementById(friendList).innerHTML == "") {
+  //   $(".empty").hide();
+  // }
   $('[data-toggle="tooltip"]').tooltip();
 }
 
@@ -178,10 +212,14 @@ $("#roomForm").submit(function(e) {
             method: "POST",
             url: "http://localhost:3000/chatroomMembers",
             data: memData
+          }).done(function() {
+            location.reload();
           });
         }
       }
     });
+
+    $(".createRoom").modal("hide");
     popFriend();
   });
 });

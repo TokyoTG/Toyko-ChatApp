@@ -615,7 +615,7 @@ new styles****************
 ******************************/
 
 #newSide {
-  height: 100vh;
+  height: 100%;
   width: 0;
   position: fixed;
   z-index: 1;
@@ -630,6 +630,7 @@ new styles****************
 }
 .mainT {
   position: relative;
+  height: 100vh;
   display: block;
 }
 
@@ -657,8 +658,9 @@ li {
 }
 
 .new {
-  height: 600px;
+  height: 80%;
   width: 85%;
+  overflow: auto;
   /* background: grey; */
   margin: auto;
   background: white;
@@ -842,7 +844,6 @@ MEDIA QUERIES
   #newSide {
     width: 31% !important;
     max-width: 350px !important;
-    height: 660px;
   }
 
   .btn-info {

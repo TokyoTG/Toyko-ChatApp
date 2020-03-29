@@ -113,12 +113,17 @@
   ],
   "friends": [
     {
-      "userId": "1",
+      "userId": "404",
       "friendId": "3",
       "name": "badmus muyiwa",
-      "age": "23",
+      "age": "",
       "location": "lagos, lekki",
-      "id": 1
+      "id": 1,
+      "senderId": "404",
+      "firstname": "",
+      "lastname": "",
+      "state": "",
+      "city": ""
     },
     {
       "userId": "2",
@@ -153,23 +158,28 @@
       "id": 5
     },
     {
-      "userId": "1",
+      "userId": "404",
       "friendId": "5",
       "name": "ayishat babatunde",
-      "age": "18",
+      "age": "",
       "location": "kwara, ilorin",
-      "id": 6
+      "id": 6,
+      "senderId": "404",
+      "firstname": "",
+      "lastname": "",
+      "state": "",
+      "city": ""
     }
   ],
   "requestsSent": [
     {
-      "userId": "1",
-      "senderId": "3",
-      "firstname": "badmus",
-      "lastname": "muyiwa",
-      "age": "23",
-      "state": "lagos",
-      "city": "lekki",
+      "userId": "404",
+      "senderId": "404",
+      "firstname": "",
+      "lastname": "",
+      "age": "",
+      "state": "",
+      "city": "",
       "id": 1
     },
     {
@@ -183,13 +193,13 @@
       "id": 2
     },
     {
-      "userId": "1",
-      "senderId": "5",
-      "firstname": "ayishat",
-      "lastname": "babatunde",
-      "age": "18",
-      "state": "kwara",
-      "city": "ilorin",
+      "userId": "404",
+      "senderId": "404",
+      "firstname": "",
+      "lastname": "",
+      "age": "",
+      "state": "",
+      "city": "",
       "id": 3
     },
     {
@@ -245,13 +255,13 @@
   ],
   "requestsRecieved": [
     {
-      "userId": "1",
-      "senderId": "3",
-      "firstname": "badmus",
-      "lastname": "muyiwa",
-      "age": "23",
-      "state": "lagos",
-      "city": "lekki",
+      "userId": "404",
+      "senderId": "404",
+      "firstname": "",
+      "lastname": "",
+      "age": "",
+      "state": "",
+      "city": "",
       "id": 1
     },
     {
@@ -265,13 +275,13 @@
       "id": 2
     },
     {
-      "userId": "1",
-      "senderId": "5",
-      "firstname": "ayishat",
-      "lastname": "babatunde",
-      "age": "18",
-      "state": "kwara",
-      "city": "ilorin",
+      "userId": "404",
+      "senderId": "404",
+      "firstname": "",
+      "lastname": "",
+      "age": "",
+      "state": "",
+      "city": "",
       "id": 3
     },
     {
@@ -337,12 +347,17 @@
   ],
   "chats": [
     {
-      "userId": "1",
+      "userId": "404",
       "chatId": "3",
       "name": "badmus muyiwa",
       "location": "lagos, lekki",
-      "age": "23",
-      "id": 1
+      "age": "",
+      "id": 1,
+      "senderId": "404",
+      "firstname": "",
+      "lastname": "",
+      "state": "",
+      "city": ""
     },
     {
       "userId": "2",
@@ -415,6 +430,12 @@
       "roomPurpose": "For Friends only",
       "adminId": "3",
       "id": 1
+    },
+    {
+      "roomName": "My Niggas",
+      "roomPurpose": "Real OGs",
+      "adminId": "1",
+      "id": 2
     }
   ],
   "chatroomMembers": [
@@ -461,6 +482,32 @@
       "memId": "4",
       "adminId": "3",
       "id": 5
+    },
+    {
+      "roomId": "2",
+      "roomName": "My Niggas",
+      "roomPurpose": "Real OGs",
+      "memName": "tokyo geeboyz",
+      "memId": "1",
+      "id": 6
+    },
+    {
+      "roomId": "2",
+      "roomName": "My Niggas",
+      "roomPurpose": "Real OGs",
+      "memName": "badmus muyiwa",
+      "memId": "3",
+      "adminId": "1",
+      "id": 7
+    },
+    {
+      "roomId": "2",
+      "roomName": "My Niggas",
+      "roomPurpose": "Real OGs",
+      "memName": "ayishat babatunde",
+      "memId": "5",
+      "adminId": "1",
+      "id": 8
     }
   ],
   "messagesSent": [
@@ -605,7 +652,16 @@
       "id": 14
     }
   ],
-  "roomMessages": [],
+  "roomMessages": [
+    {
+      "senderId": "1",
+      "senderName": "tokyo geeboyz",
+      "roomId": "2",
+      "messageSent": "Hi guys",
+      "timeSent": "1:13 PM",
+      "id": 1
+    }
+  ],
   "states": [
     "Abuja",
     "Oyo",
