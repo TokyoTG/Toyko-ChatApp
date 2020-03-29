@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="../style/style.css">
+    <link rel="stylesheet" href="../style/all.min.css">
+
+    <title>TCA | Friend Request</title>
+</head>
+
+<body>
+    <header>
+        <div id="logo">
+            <div id="lCont">
+                <a href="/Public/index.html">
+                    <h1 id="logoText"><span id="t">T</span><span id="c">C</span><span id="a">A</span></h1>
+                </a>
+
+            </div>
+            <div id="app-name">
+                <h3> Tokyo ChatApp</h3>
+            </div>
+        </div>
+        <nav class="navbar navbar-expand-lg navbar-light ">
+            <a class="navbar-brand" id="link">Chat Rooms</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    <a class="nav-item nav-link logoutBtn" href="#" id="link">Home <span
+                            class="sr-only">(current)</span></a>
+                    <a class="nav-item nav-link" href="../index.html" id="index" style="display: none;"></a>
+                </div>
+            </div>
+        </nav>
+
+    </header>
+    <main class="mainT">
+        <span id="menuIcon">&#9776; Menu</span>
+        <section id="newSide">
+            <span class="closeNav">&times;</span>
+            <div class="divMenu">
+                <h4>Menu</h4>
+                <ul>
+                    <li>
+                        <a href="userPage.html"><i class="far fa-comment-alt user"></i>
+                            <span>Chats</span> </a>
+
+                    </li>
+                    <li>
+                        <a href="friends.html" class="friend-link"><i class="fas fa-user-friends user"></i>
+                            <span>Friends</span> </a>
+
+                    </li>
+                    <li>
+                        <a href="ChatRoomList.html" class="active"><i class="fas fa-users user"></i> <span>Chat
+                                Rooms</span>
+                        </a>
+
+                    </li>
+                    <li>
+                        <a href="FriendRequest.html"><i class="fas fa-user-clock user"></i> <span>Friend
+                                Requests</span>
+                        </a>
+
+                    </li>
+                    <li>
+                        <a href="addFriends.html"><i class="fas fa-user-plus user"></i> <span>Add Friend</span> </a>
+
+                    </li>
+                    <li>
+                        <a href="editProfile.html"><i class="fas fa-user-circle user"></i> <span>Edit Profile</span>
+                        </a>
+
+                    </li>
+                    <li>
+                        <a href="#" class="logoutBtn"><i class="fas fa-sign-out-alt user"></i> <span>Log
+                                Out</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </section>
+        <section class="card new">
+
+
+
+            <div class="friends-container">
+                <ul class="list-group list-group-flush" id="roomList">
+
+                </ul>
+                <button class="btn btn-info btn-block">Create a new chatroom +</button>
+            </div>
+        </section>
+
+
+    </main>
+    <div class="modal createRoom" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">New ChatRoom</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="roomForm">
+                        <div class="form-group">
+                            <label for="chatroomName">Chatroom Name</label>
+                            <input type="text" class="form-control" id="chatroomName" required
+                                placeholder="Enter Chatroom name" minlength="2">
+                        </div>
+                        <div class="form-group">
+                            <label for="purpose">Purpose</label>
+                            <input type="text" class="form-control" id="purpose" required
+                                placeholder="Enter Chatroom name" minlength="2">
+                        </div>
+                        <div id="memList">
+
+                        </div>
+                        <div class="form-group">
+                            <label for="members">Select members</label>
+                            <select class="custom-select" id="members" name="members">
+                                <option selected value="">Select friends...</option>
+
+                            </select>
+
+                        </div>
+                        <button type="submit" class="btn btn-success btn-block">Create Chatroom</button>
+
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" id="closeModal">Cancel</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal logout" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Logout Confirmation</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Are sure you want to logout</p>
+                </div>
+                <div class="modal-footer">
+
+                    <button type="button" class="btn btn-danger">Yes</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/additional-methods.min.js"></script>
+    <script src="../Js/index.js"></script>
+    <script>
+        // $(document).ready(function () {
+
+        //         popRoomList();
+        //     }
+
+        // )
+
+
+
+        function storeRoomDetails(id, name, purpose) {
+            let obj = {
+                roomId: id,
+                roomName: name,
+                roomPurpose: purpose
+            }
+            document.cookie = JSON.stringify(obj);
+        }
+
+        $(".btn-info").click(e => {
+            e.preventDefault();
+            $('.createRoom').modal('show');
+        })
+        $("#members").change(function (e) {
+            e.preventDefault();
+            let sId = $("#members option:selected")[0].id
+            $("#memList").append(
+                ` <p class="sFriends" value="${$(this).val()}" id="${sId}">
+                    ${$(this).val()} <span
+                        class="removeFriend">&times;</span></p>`)
+
+            $("#members option:selected").remove();
+            $('.removeFriend').unbind().click(function (e) {
+                e.preventDefault()
+                let text = $(this).parent().text().replace(/\u00D7/gi, '').trim()
+                $(this).parent().remove()
+                $("#members").append(
+                    `<option>${text}</option>`)
+
+            })
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="./style/style.css">
+    <link rel="stylesheet" href="./style/all.min.css">
+    <title>Tokyo | ChatApp</title>
+</head>
+
+<body>
+    <header>
+        <div id="logo">
+            <div id="lCont">
+                <a href="index.html">
+                    <h1 id="logoText"><span id="t">T</span><span id="c">C</span><span id="a">A</span></h1>
+                </a>
+
+            </div>
+            <div id="app-name">
+                <h3> Tokyo Chat App</h3>
+            </div>
+        </div>
+        <nav class="navbar navbar-expand-lg navbar-light ">
+            <a class="navbar-brand" href="#" id="link">Tokyo ChatApp</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    <a class="nav-item nav-link active" href="index.html" id="link">Home <span
+                            class="sr-only">(current)</span></a>
+                    <a class="nav-item nav-link" href="./html/features.html" id="link">Features</a>
+                    <a class="nav-item nav-link" href="#guide" id="link">Guide</a>
+                    <a class="nav-item nav-link" href="#" id="link" onclick="toggleLog()">Login</a>
+                </div>
+            </div>
+        </nav>
+
+    </header>
+    <main id="home">
+
+        <section id="loginRegister">
+            <div id="login" style="display: none;">
+                <div class="cardTitle">
+                    <h3>User Login</h3>
+
+                </div>
+                <p id="invalid" style="display: none;">Invalid email or password <span
+                        class="invalidClose">&times;</span></p>
+                <form id="userLogin">
+                    <div class="form-group">
+                        <a href="./html/userPage.html" id="user" style="display: none;"></a>
+                        <label for="inputEmail">Email address</label>
+                        <input type="email" class="form-control" id="inputEmail" required placeholder="Enter Email">
+                    </div>
+                    <div class="form-group">
+                        <label for="inputPassword">Password</label>
+                        <input type="password" class="form-control" id="inputPassword" required
+                            placeholder="Enter Password">
+                    </div>
+                    <div class="form-group form-check">
+                        <input type="checkbox" class="form-check-input" id="check1" value="1">
+                        <label class="form-check-label" for="check1">Show password</label>
+                    </div>
+                    <button type="submit" class="btn btn-success btn-block" id="signIn">Login</button>
+                    <div id="ask">
+                        <p>Dont have an account yet ?</p>
+                    </div>
+                    <button class="btn btn-primary btn-block" id="showReg">Register</button>
+                </form>
+            </div>
+            <div id="register" style="display: block;">
+                <div class="cardTitle">
+                    <h3>User Registration</h3>
+                </div>
+
+                <form id="userReg">
+                    <div class="form-group">
+                        <label for="firstname">First Name</label>
+                        <input type="text" name="firstname" class="form-control" id="firstname"
+                            placeholder="Enter firstname here">
+                        <small class="form-text text-muted">Must 2-20 characters long
+                        </small>
+                    </div>
+                    <div class="form-group">
+                        <label for="lastname">Last Name</label>
+                        <input type="text" name="lastname" class="form-control" id="lastname"
+                            placeholder="Enter lastname here">
+                        <small class="form-text text-muted">Must 2-20 characters long
+                        </small>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="text" name="phone" class="form-control" id="phone"
+                            placeholder="Enter valid phone number">
+                        <small id="emailHelp" class="form-text text-muted">We'll never share your number with anyone
+                            else.</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email address</label>
+                        <input type="email" name="email" class="form-control" id="email" aria-describedby="emailHelp">
+                        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
+                            else.</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="age">Age</label>
+                        <input type="text" name="age" class="form-control" id="age" aria-describedby="emailHelp">
+                    </div>
+                    <fieldset class="form-group">
+                        <div class="row">
+                            <legend class="col-form-label col-sm-2 pt-0">Gender</legend>
+                            <div class="col-sm-10">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="gender" id="male" value="male">
+                                    <label class="form-check-label" for="male">
+                                        Male
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="gender" id="female"
+                                        value="female">
+                                    <label class="form-check-label" for="female">
+                                        Female
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                    <div class="form-group">
+                        <label for="state">State</label>
+                        <select class="custom-select" id="state" name="state">
+                            <option selected disabled value="">Choose State...</option>
+
+                        </select>
+
+                    </div>
+                    <div class="form-group">
+                        <label for="city">City</label>
+                        <select class="custom-select" id="city" name="city">
+                            <option selected disabled value="">Choose City...</option>
+
+                        </select>
+
+                    </div>
+                    <div class="form-group">
+                        <label for="textarea">Descrpition</label>
+                        <textarea class="form-control" id="textarea" rows="3" placeholder="Briefly describe yourself"
+                            name="description"></textarea>
+                        <small class="text-muted">
+                            Must be 20-100 characters long.
+                        </small>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" name="password" class="form-control" id="password">
+                        <small class="text-muted">
+                            Must be 8-20 characters long.
+                        </small>
+                    </div>
+                    <div class="form-group">
+                        <label for="password2">Confirm Password</label>
+                        <input type="password" name="password2" class="form-control" id="password2">
+                        <small id="passwordHelpInline" class="text-muted">
+                            Must be the same as above.
+                        </small>
+                    </div>
+                    <button type="submit" class="btn btn-success btn-block">Register</button>
+                </form>
+            </div>
+        </section>
+        <section id="guide">
+            <H1>GUIDE</H1>
+            <div>
+                <h3>Register</h3>
+                <img src="./img/user-reg.png" alt="user register image" class="guide-img">
+                <p>Provide the necessary information for registration</p>
+            </div>
+            <div>
+                <h3>Login</h3>
+                <img src="./img/user-login.png" alt="user login image" class="guide-img">
+                <p>Login with your credentials</p>
+            </div>
+            <div>
+                <h3>Chat</h3>
+                <img src="./img/chat.png" alt="chat image" class="guide-img">
+                <p>Add friends and start chatting</p>
+            </div>
+        </section>
+
+
+    </main>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.1/dist/jquery.validate.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.1/dist/additional-methods.min.js"></script>
+    <script src="./Js/userIndex.js"></script>
+    <script>
+        $(document).ready(function () {
+            localStorage.clear();
+        })
+
+
+        $(".invalidClose").click((e) => {
+            e.preventDefault()
+            $("#invalid").hide()
+        })
+
+        $("#showReg").click((e) => {
+            e.preventDefault()
+            toggleReg()
+        })
+
+        $("#userLogin").submit(e => {
+            e.preventDefault();
+            let email = $("#inputEmail").val();
+            let password = $("#inputPassword").val();
+            $.ajax({
+                method: 'GET',
+                url: `http://localhost:3000/users?email=${email}&password=${password}`,
+            }).done(function (data) {
+                if (data.length) {
+                    let formatted = data[0]
+                    localStorage.setItem('userData', JSON.stringify(formatted));
+                    $("#user")[0].click();
+                } else {
+
+                    $("#invalid").show();
+                }
+            })
+        })
+
+        function toggleReg() {
+            // e.preventDefault()
+            $('#login').css('display', 'none')
+            $("#register").css('display', 'block')
+
+        }
+
+
+
+
+
+        function toggleLog() {
+            // e.preventDefault()
+            $("#register").css('display', 'none')
+            $('#login').css('display', 'block')
+        }
+    </script>
+</body>
+
+</html>
