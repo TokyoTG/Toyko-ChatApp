@@ -79,6 +79,7 @@ function popFriend() {
         friends.push({ friendName: element.name, friendId: element.friendId });
       });
       $('[data-toggle="tooltip"]').tooltip();
+      $(".nofriend").hide();
     }
   });
   $.ajax({
@@ -116,16 +117,17 @@ function popFriend() {
             friendName: result.firstname + " " + result.lastname,
             friendId: result.id
           });
+          $(".nofriend").hide();
           $('[data-toggle="tooltip"]').tooltip();
         });
       });
     }
   });
-  if (friends.length == 0) {
-    $(".nofriend").show();
-  } else {
-    $(".nofriend").hide();
-  }
+  // if (friends.length > 0) {
+  //   $(".nofriend").show();
+  // } else {
+  //   $(".nofriend").hide();
+  // }
   $('[data-toggle="tooltip"]').tooltip();
 }
 
@@ -234,7 +236,6 @@ function showSpinner() {
 }
 
 function unfriend(uId, senderId, eId, fname) {
-  alert(senderId);
   let cont = confirm(`Are you sure want to unfriend ${fname}`);
   if (cont === true) {
     showSpinner();
@@ -272,9 +273,10 @@ function unfriend(uId, senderId, eId, fname) {
         patchChat(result[0].id, resEdit);
       }
     });
+
+    document.getElementById("friendList").innerHTML = "";
+    popFriend();
   }
-  document.getElementById("friendList").innerHTML = "";
-  popFriend();
 }
 
 function patch(id, sendData, fId) {
