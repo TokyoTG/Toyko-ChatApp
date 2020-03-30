@@ -199,6 +199,7 @@
 
 
 
+
         $('.btn-success').click(function (e) {
             e.preventDefault();
             $("#fR-link")[0].click();
@@ -299,26 +300,27 @@
                         patchChat(result[0].id, resEdit);
                     })
             }
-
-            function patch(id, sendData, fId) {
-                $.ajax({
-                    method: "PATCH",
-                    url: `https://tokyochatappdb.herokuapp.com/requestsRecieved/${id}`,
-                    data: sendData
-                })
-                $.ajax({
-                    method: "PATCH",
-                    url: `https://tokyochatappdb.herokuapp.com/requestsSent/${id}`,
-                    data: sendData
-                })
-                $.ajax({
-                    method: "PATCH",
-                    url: `https://tokyochatappdb.herokuapp.com/friends/${fId}`,
-                    data: sendData
-                })
-
-            }
         }
+
+        function patch(id, sendData, fId) {
+            $.ajax({
+                method: "PATCH",
+                url: `https://tokyochatappdb.herokuapp.com/requestsRecieved/${id}`,
+                data: sendData
+            })
+            $.ajax({
+                method: "PATCH",
+                url: `https://tokyochatappdb.herokuapp.com/requestsSent/${id}`,
+                data: sendData
+            })
+            $.ajax({
+                method: "PATCH",
+                url: `https://tokyochatappdb.herokuapp.com/friends/${fId}`,
+                data: sendData
+            })
+
+        }
+
 
         function patchChat(id, data) {
             $.ajax({
