@@ -37,6 +37,7 @@ function popRoomList() {
 }
 
 function popFriend() {
+  friends = [];
   showSpinner();
   $.ajax({
     method: "GET",
@@ -192,7 +193,7 @@ $("#roomForm").submit(function(e) {
         }
       }
     });
-
+    document.getElementById("friendList").innerHTML = "";
     $(".createRoom").modal("hide");
     popFriend();
   });
@@ -219,3 +220,12 @@ $(".logoutBtn").click(function() {
 $(".btn-danger").click(function() {
   $("#index")[0].click();
 });
+
+function showSpinner() {
+  $(".spinner").addClass("d-flex");
+  $(".spinner").show();
+  setTimeout(() => {
+    $(".spinner").removeClass("d-flex");
+    $(".spinner").hide();
+  }, 4000);
+}

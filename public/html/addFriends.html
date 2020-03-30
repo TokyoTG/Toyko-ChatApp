@@ -210,7 +210,8 @@
                                          </li>`)
 
                                         $('[data-toggle="tooltip"]').tooltip()
-
+                                        $(`.user-${element.id}`)
+                                            .remove()
                                         $("#sendReqBtn").attr('disabled', true);
 
                                     })
@@ -321,6 +322,7 @@
                     $(".spinner").hide()
                 })
             showAlert();
+            document.getElementById("friendList").innerHTML = "";
             popFriend();
         }
 
