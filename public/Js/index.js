@@ -39,12 +39,13 @@ function popRoomList() {
 function popFriend() {
   friends = [];
   showSpinner();
+  //GET Friends using the userId to check the users friend
   $.ajax({
     method: "GET",
     url: `https://tokyochatappdb.herokuapp.com/friends?userId=${userDetails.id}`
   }).done(function(res) {
     if (res.length) {
-      $(".empty").hide();
+      // $(".empty").hide();
       res.forEach(element => {
         $("#friendList").append(`<li
                                     class="list-group-item d-flex justify-content-between align-items-center"
@@ -64,7 +65,7 @@ function popFriend() {
                                             data-toggle="tooltip" data-placement="top" title="Add to chats"><i
                                                 class="far fa-comment-alt"></i>
                                         </span></a>
-                                    <a href=""><span class="badge" data-toggle="tooltip" data-placement="top"
+                                    <a href="#"><span class="badge" data-toggle="tooltip" data-placement="top"
                                             title="Unfriend" onclick="unfriend(${
                                               element.userId
                                             },${element.friendId},${
@@ -85,7 +86,7 @@ function popFriend() {
     url: `https://tokyochatappdb.herokuapp.com/friends?friendId=${userDetails.id}`
   }).done(function(res) {
     if (res.length) {
-      $(".empty").hide();
+      // $(".empty").hide();
       res.forEach(element => {
         $.ajax({
           method: "GET",
@@ -104,8 +105,8 @@ function popFriend() {
                                                      data-placement="top" title="Add to chats"><i
                                                          class="far fa-comment-alt"></i>
                                                  </span></a>
-                                             <a href=""><span class="badge" data-toggle="tooltip" data-placement="top"
-                                                     title="Unfriend" onclick="unfriend(${element.id},${element.friendId},${element.id},'${result.firstname}')"> 
+                                             <a href="#"><span class="badge" data-toggle="tooltip" data-placement="top"
+                                                     title="Unfriend" onclick="unfriend(${result.id},${element.friendId},${element.id},'${result.firstname}')"> 
                                                          <i class="fas fa-trash"></i> </span></a>
                                          </li>`);
           $("#members").append(
@@ -120,9 +121,11 @@ function popFriend() {
       });
     }
   });
-  // if (document.getElementById(friendList).innerHTML == "") {
-  //   $(".empty").hide();
-  // }
+  if (friends.length == 0) {
+    $(".nofriend").show();
+  } else {
+    $(".nofriend").hide();
+  }
   $('[data-toggle="tooltip"]').tooltip();
 }
 
@@ -228,4 +231,74 @@ function showSpinner() {
     $(".spinner").removeClass("d-flex");
     $(".spinner").hide();
   }, 4000);
+}
+
+function unfriend(uId, senderId, eId, fname) {
+  alert(senderId);
+  let cont = confirm(`Are you sure want to unfriend ${fname}`);
+  if (cont === true) {
+    showSpinner();
+    let resEdit = {
+      userId: 403,
+      senderId: 403,
+      friendId: 403,
+      firstname: null,
+      lastname: null,
+      age: null,
+      state: null,
+      city: null
+    };
+    $.ajax({
+      method: "GET",
+      url: `https://tokyochatappdb.herokuapp.com/requestsSent?userId=${uId}&senderId=${senderId}`
+    }).done(function(res) {
+      if (res.length) {
+        patch(res[0].id, resEdit, eId);
+      }
+    });
+    $.ajax({
+      method: "GET",
+      url: `https://tokyochatappdb.herokuapp.com/requestsRecieved?userId=${uId}&senderId=${senderId}`
+    }).done(function(res) {
+      if (res.length) {
+        patch(res[0].id, resEdit, eId);
+      }
+    });
+    $.ajax({
+      method: "GET",
+      url: `https://tokyochatappdb.herokuapp.com/chats?userId=${uId}&chatId=${senderId}`
+    }).done(function(result) {
+      if (result.length) {
+        patchChat(result[0].id, resEdit);
+      }
+    });
+  }
+  document.getElementById("friendList").innerHTML = "";
+  popFriend();
+}
+
+function patch(id, sendData, fId) {
+  $.ajax({
+    method: "PATCH",
+    url: `https://tokyochatappdb.herokuapp.com/requestsRecieved/${id}`,
+    data: sendData
+  });
+  $.ajax({
+    method: "PATCH",
+    url: `https://tokyochatappdb.herokuapp.com/requestsSent/${id}`,
+    data: sendData
+  });
+  $.ajax({
+    method: "PATCH",
+    url: `https://tokyochatappdb.herokuapp.com/friends/${fId}`,
+    data: sendData
+  });
+}
+
+function patchChat(id, data) {
+  $.ajax({
+    method: "PATCH",
+    url: `https://tokyochatappdb.herokuapp.com/chats/${id}`,
+    data: data
+  });
 }
