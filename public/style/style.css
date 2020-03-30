@@ -190,8 +190,7 @@ main {
 
 #register {
   padding: 15px 10px;
-  /* display: none; */
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border: 1px solid rgba(0, 0, 0, 0.125);
 }
 
 .cardTitle {
@@ -318,7 +317,7 @@ USER PAGE
 **********************************/
 
 .card {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
   margin-right: 15px;
   /* background: lightgrey; */
   padding: 10px 15px;
