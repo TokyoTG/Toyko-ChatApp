@@ -267,6 +267,11 @@ main {
   text-align: center;
 }
 
+.regMsg {
+  font-size: 1.3em;
+  color: #00838f;
+}
+
 /******************************
 FOOTER
 ********************************/
@@ -568,7 +573,7 @@ textarea {
 input.error,
 textarea.error {
   border: 1px solid #ef5350 !important;
-  color: white;
+
   resize: none;
 }
 input:focus,

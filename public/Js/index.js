@@ -37,6 +37,7 @@ function popRoomList() {
 }
 
 function popFriend() {
+  showSpinner();
   $.ajax({
     method: "GET",
     url: `https://tokyochatappdb.herokuapp.com/friends?userId=${userDetails.id}`
@@ -124,33 +125,6 @@ function popFriend() {
   $('[data-toggle="tooltip"]').tooltip();
 }
 
-function reject(id) {
-  $.ajax({
-    type: "GET",
-    url: `https://tokyochatappdb.herokuapp.com/requestsRecieved/${id}`
-  }).done(function(res) {
-    let resEdit = {
-      userId: 404,
-      senderId: 404,
-      firstname: null,
-      lastname: null,
-      age: null,
-      state: null,
-      city: null
-    };
-    $.ajax({
-      method: "PATCH",
-      url: `https://tokyochatappdb.herokuapp.com/requestsRecieved/${id}`,
-      data: resEdit
-    }).done(function() {
-      $.ajax({
-        method: "PATCH",
-        url: `https://tokyochatappdb.herokuapp.com/requestsSent/${id}`,
-        data: resEdit
-      });
-    });
-  });
-}
 $("#menuIcon").click(function() {
   $("#newSide").css("width", "250px");
 });

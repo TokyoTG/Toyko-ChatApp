@@ -151,7 +151,19 @@ $("#userReg").validate({
       method: "POST",
       url: "https://tokyochatappdb.herokuapp.com/users",
       data: res
+    }).done(function() {
+      $(".registerModal").modal("show");
+      resetForm();
     });
-    return false;
   }
 });
+
+function resetForm() {
+  $("#userReg")
+    .find("input:text, input:password, input:file, select, textarea")
+    .val("");
+  $("#userReg")
+    .find("input:radio, input:checkbox")
+    .removeAttr("checked")
+    .removeAttr("selected");
+}

@@ -90,7 +90,13 @@
 
         </section>
         <section class="card new">
-
+            <div class="alert alert-success" role="alert">
+                Successful
+            </div>
+            <div class="d-flex align-items-center spinner">
+                <strong>Loading...</strong>
+                <div class="spinner-border ml-auto" role="status" aria-hidden="true"></div>
+            </div>
             <div class="empty">
                 <p>No Friend Requests</p>
                 <button class="btn btn-success">Add Friend</button>
@@ -130,7 +136,6 @@
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal"
                             id="closeModal">Close</button>
-                        <button type="button" class="btn btn-primary">Accept Request</button>
                     </div>
                 </div>
             </div>
@@ -169,25 +174,53 @@
     <!-- <script src="../Js/index.js"></script> -->
     <script>
         let userDetails = JSON.parse(localStorage.getItem("userData"));
-        $(document).ready(
-            function getRequests() {
-                $.ajax({
-                        method: "GET",
-                        url: `https://tokyochatappdb.herokuapp.com/requestsRecieved?userId=${userDetails.id}`
-                    })
-                    .done(function (res) {
-                        if (res.length) {
+        $(document).ready(function () {
+                $('.alert-success').hide();
+                getRequests();
+            }
 
-                            res.forEach((element, index) => {
-                                //FILTERS ACCEPTED REQUESTS
-                                $.ajax({
-                                        method: "GET",
-                                        url: `https://tokyochatappdb.herokuapp.com/friends?friendId=${element.senderId}&userId=${userDetails.id}`
-                                    })
-                                    .done(function (result) {
-                                        if (result.length <= 0) {
-                                            $(".empty").hide()
-                                            $("#requestList").append(`<li
+
+
+        )
+
+        $(".spinner").removeClass("d-flex");
+        $(".spinner").hide()
+
+        function showAlert() {
+            $('.alert-success').show();
+            setTimeout(() => {
+                $('.alert-success').hide();
+            }, 3000);
+        }
+
+        function showSpinner() {
+            $(".spinner").addClass("d-flex");
+            $(".spinner").show()
+            setTimeout(() => {
+                $(".spinner").removeClass("d-flex");
+                $(".spinner").hide()
+            }, 5000);
+        }
+
+        function getRequests() {
+            showSpinner();
+            $.ajax({
+                    method: "GET",
+                    url: `https://tokyochatappdb.herokuapp.com/requestsRecieved?userId=${userDetails.id}`
+                })
+                .done(function (res) {
+                    if (res.length) {
+
+                        res.forEach((element, index) => {
+                            //FILTERS ACCEPTED REQUESTS
+                            $.ajax({
+                                    method: "GET",
+                                    url: `https://tokyochatappdb.herokuapp.com/friends?friendId=${element.senderId}&userId=${userDetails.id}`
+                                })
+                                .done(function (result) {
+                                    if (result.length <= 0) {
+                                        $(".empty").hide()
+                                        $("#requestList").append(`<li
                                 class="list-group-item d-flex justify-content-between align-items-center">
                                 <a href="#" class="chats" onclick="showProfile(${element.senderId})">
                                         <img src="../img/login_icon.png" alt="..." class="profile-img"> ${element.firstname}  ${element.lastname}</a>
@@ -199,19 +232,20 @@
                                 <span class="badge" data-toggle="tooltip" data-placement="top" title="Reject" onclick="reject(${element.id})"> <i
                                         class="fas fa-times"></i> </span>
                             </li>`)
-                                        }
-                                    })
-                            });
-                            $('[data-toggle="tooltip"]').tooltip()
-                        } else {
-                            $('.empty').show()
-                        }
-                    })
-                $('[data-toggle="tooltip"]').tooltip()
-            }
+                                    }
+                                    $(".spinner").removeClass("d-flex");
+                                    $(".spinner").hide()
 
+                                })
+                        });
+                        $('[data-toggle="tooltip"]').tooltip()
+                    } else {
+                        $('.empty').show()
+                    }
+                })
+            $('[data-toggle="tooltip"]').tooltip()
+        }
 
-        )
 
 
 
@@ -231,6 +265,8 @@
                 location: state + ", " + city
             }
             post(friendData);
+            showAlert();
+            getRequests()
         }
 
 
@@ -242,6 +278,39 @@
             })
         }
 
+
+
+
+        function reject(id) {
+            showSpinner();
+            $.ajax({
+                type: "GET",
+                url: `https://tokyochatappdb.herokuapp.com/requestsRecieved/${id}`
+            }).done(function (res) {
+                let resEdit = {
+                    userId: 404,
+                    senderId: 404,
+                    firstname: null,
+                    lastname: null,
+                    age: null,
+                    state: null,
+                    city: null
+                };
+                $.ajax({
+                    method: "PATCH",
+                    url: `https://tokyochatappdb.herokuapp.com/requestsRecieved/${id}`,
+                    data: resEdit
+                }).done(function () {
+                    $.ajax({
+                        method: "PATCH",
+                        url: `https://tokyochatappdb.herokuapp.com/requestsSent/${id}`,
+                        data: resEdit
+                    });
+                });
+            });
+            showAlert();
+            getRequests()
+        }
 
 
 

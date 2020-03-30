@@ -90,6 +90,13 @@
 
         </section>
         <section class="card new">
+            <div class="alert alert-success" role="alert">
+                Request sent
+            </div>
+            <div class="d-flex align-items-center spinner" style="display: none;">
+                <strong>Loading...</strong>
+                <div class="spinner-border ml-auto" role="status" aria-hidden="true"></div>
+            </div>
             <div class="friends-container">
                 <ul class="list-group list-group-flush" id="friendList">
 
@@ -163,26 +170,36 @@
 
     <script>
         let userDetails = JSON.parse(localStorage.getItem("userData"));
-        $(document).ready(
+        $(document).ready(function () {
+                $('.alert-success').hide();
+                popFriend();
 
-            function popFriend() {
 
-                //GETS ALL REGISTERED  USERS
-                $.ajax({
-                        method: 'GET',
-                        url: 'https://tokyochatappdb.herokuapp.com/users',
-                    })
-                    .done(function (res) {
-                        res.forEach(element => {
-                            // FILTERS USERS WITH THOSE THE USERS HAVE SENT REQUEST 
-                            $.ajax({
-                                    method: 'GET',
-                                    url: `https://tokyochatappdb.herokuapp.com/requestsSent?userId=${element.id}&senderId=${userDetails.id}`
-                                })
-                                .done(function (result) {
-                                    if (result.length) {
-                                        result.forEach(data => {
-                                            $("#friendList").append(`<li
+            }
+
+        )
+
+
+
+
+        function popFriend() {
+            showSpinner()
+            //GETS ALL REGISTERED  USERS
+            $.ajax({
+                    method: 'GET',
+                    url: 'https://tokyochatappdb.herokuapp.com/users',
+                })
+                .done(function (res) {
+                    res.forEach(element => {
+                        // FILTERS USERS WITH THOSE THE USERS HAVE SENT REQUEST 
+                        $.ajax({
+                                method: 'GET',
+                                url: `https://tokyochatappdb.herokuapp.com/requestsSent?userId=${element.id}&senderId=${userDetails.id}`
+                            })
+                            .done(function (result) {
+                                if (result.length) {
+                                    result.forEach(data => {
+                                        $("#friendList").append(`<li
                                              class="list-group-item d-flex justify-content-between align-items-center user-${element.id}">
                                              <a href="#" class="chats" onclick="showProfile(${element.id})"
                                                  data-toggle="tooltip" data-placement="top" title="View profile details"><img
@@ -192,16 +209,16 @@
                                                   sent <i class="fas fa-check"></i></span>
                                          </li>`)
 
-                                            $('[data-toggle="tooltip"]').tooltip()
+                                        $('[data-toggle="tooltip"]').tooltip()
 
-                                            $("#sendReqBtn").attr('disabled', true);
+                                        $("#sendReqBtn").attr('disabled', true);
 
-                                        })
+                                    })
 
-                                        //FILTERS THE USER ITSELF
-                                    } else if (userDetails.id !== element.id) {
+                                    //FILTERS THE USER ITSELF
+                                } else if (userDetails.id !== element.id) {
 
-                                        $("#friendList").append(`<li class="list-group-item d-flex justify-content-between align-items-center user-${element.id}">
+                                    $("#friendList").append(`<li class="list-group-item d-flex justify-content-between align-items-center user-${element.id}">
      <a href="#" class="chats" onclick="showProfile(${element.id})" data-toggle="tooltip" data-placement="top"
          title="View profile details"><img src="../img/login_icon.png" alt="..." class="profile-img">
          ${element.firstname + ' '+ element.lastname}</a>
@@ -211,49 +228,72 @@
              class="fas fa-check"></i></span>
 
  </li>`)
-                                        $("#sendReqBtn").attr('disabled', false);
-                                        $('[data-toggle="tooltip"]').tooltip()
+                                    $("#sendReqBtn").attr('disabled', false);
+                                    $('[data-toggle="tooltip"]').tooltip()
 
-                                        // REMOVES USERS WHO HAVE SENT THE USER A REQUEST
-                                        $.ajax({
-                                                method: "GET",
-                                                url: `https://tokyochatappdb.herokuapp.com/requestsRecieved?senderId=${element.id}&userId=${userDetails.id}`
-                                            })
-                                            .done(function (res) {
+                                    // REMOVES USERS WHO HAVE SENT THE USER A REQUEST
+                                    $.ajax({
+                                            method: "GET",
+                                            url: `https://tokyochatappdb.herokuapp.com/requestsRecieved?senderId=${element.id}&userId=${userDetails.id}`
+                                        })
+                                        .done(function (res) {
 
-                                                if (res.length) {
-                                                    // console.log(res)
-                                                    res.forEach(d => {
+                                            if (res.length) {
+                                                // console.log(res)
+                                                res.forEach(d => {
 
-                                                        $(`.user-${d.senderId}`)
-                                                            .remove()
-                                                    })
-                                                }
-                                            })
-                                        //REMOVES A USERS WHO IS ALREADY A FRIEND
-                                        $.ajax({
-                                                method: "GET",
-                                                url: `https://tokyochatappdb.herokuapp.com/friends?friendId=${element.id}&userId=${userDetails.id}`
-                                            })
-                                            .done(function (ress) {
-                                                if (ress.length) {
-                                                    ress.forEach(d => {
-                                                        $(`.user-${d.friendId}`)
-                                                            .remove()
-                                                    })
-                                                }
-                                            })
-                                    }
+                                                    $(`.user-${d.senderId}`)
+                                                        .remove()
+                                                })
+                                            }
+                                        })
+                                    //REMOVES A USERS WHO IS ALREADY A FRIEND
+                                    $.ajax({
+                                            method: "GET",
+                                            url: `https://tokyochatappdb.herokuapp.com/friends?friendId=${element.id}&userId=${userDetails.id}`
+                                        })
+                                        .done(function (ress) {
+                                            if (ress.length) {
+                                                ress.forEach(d => {
+                                                    $(`.user-${d.friendId}`)
+                                                        .remove()
+                                                })
+                                            }
+                                        })
+                                }
 
 
-                                })
-                        });
-                    })
+                            })
+                    });
+                })
+        }
 
-            }
-        )
+
+
+
+        function showAlert() {
+            $('.alert-success').show();
+            setTimeout(() => {
+                $('.alert-success').hide();
+            }, 3000);
+        }
+
+
+
+        $(".spinner").removeClass("d-flex");
+        $(".spinner").hide()
+
+        function showSpinner() {
+            $(".spinner").addClass("d-flex");
+            $(".spinner").show()
+            setTimeout(() => {
+                $(".spinner").removeClass("d-flex");
+                $(".spinner").hide()
+            }, 5000);
+        }
 
         function sendRequest(id) {
+            showSpinner()
             let userDetails = JSON.parse(localStorage.getItem("userData"));
             let requestData = {
                 userId: id,
@@ -277,22 +317,31 @@
                         data: requestData,
                         url: 'https://tokyochatappdb.herokuapp.com/requestsSent'
                     })
+                    $(".spinner").removeClass("d-flex");
+                    $(".spinner").hide()
                 })
+            showAlert();
+            popFriend();
         }
 
         function showProfile(id) {
+            showSpinner()
             $.ajax({
-                method: 'GET',
-                url: 'https://tokyochatappdb.herokuapp.com/users/' + id,
-                success: function (data) {
-                    $("#pName").text(`Name: ${data.firstname}  ${data.lastname}`);
-                    $("#pLoc").text(`Location: ${data.state}, ${data.city}`);
-                    $("#pAge").text(`Age: ${data.age}`)
-                    $("#pStatus").text(`Status: ${data.description}`)
-                    $("#pGender").text(`Gender: ${data.gender}`)
-                    $(".details").modal('show')
-                }
-            })
+                    method: 'GET',
+                    url: 'https://tokyochatappdb.herokuapp.com/users/' + id,
+                    success: function (data) {
+                        $("#pName").text(`Name: ${data.firstname}  ${data.lastname}`);
+                        $("#pLoc").text(`Location: ${data.state}, ${data.city}`);
+                        $("#pAge").text(`Age: ${data.age}`)
+                        $("#pStatus").text(`Status: ${data.description}`)
+                        $("#pGender").text(`Gender: ${data.gender}`)
+                        $(".details").modal('show')
+                    }
+                })
+                .done(function () {
+                    $(".spinner").removeClass("d-flex");
+                    $(".spinner").hide()
+                })
         }
 
         $(".close").click((e) => {

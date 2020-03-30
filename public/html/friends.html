@@ -91,6 +91,13 @@
 
         </section>
         <section class="card new">
+            <div class="alert alert-success" role="alert">
+                Successful
+            </div>
+            <div class="d-flex align-items-center spinner">
+                <strong>Loading...</strong>
+                <div class="spinner-border ml-auto" role="status" aria-hidden="true"></div>
+            </div>
             <div class="empty nofriend">
                 <p>OOps !!! You dont have any friend yet</p>
                 <button class="btn btn-success">Add Friend</button>
@@ -157,6 +164,7 @@
             </div>
         </div>
     </div>
+
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
         integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
@@ -173,11 +181,36 @@
             $(".modal").hide()
         })
 
+
+        $('.alert-success').hide();
+
+        $(".spinner").removeClass("d-flex");
+        $(".spinner").hide()
+
+        function showSpinner() {
+            $(".spinner").addClass("d-flex");
+            $(".spinner").show()
+            setTimeout(() => {
+                $(".spinner").removeClass("d-flex");
+                $(".spinner").hide()
+            }, 4000);
+        }
+
+
+
+
         $('.btn-success').click(function (e) {
             e.preventDefault();
             $("#fR-link")[0].click();
         })
 
+
+        function showAlert() {
+            $('.alert-success').show();
+            setTimeout(() => {
+                $('.alert-success').hide();
+            }, 3000);
+        }
 
         function sendChatData(data) {
             $.ajax({
@@ -191,6 +224,7 @@
         }
 
         function addToChats(id) {
+            showSpinner();
             $.ajax({
                     method: 'GET',
                     url: 'https://tokyochatappdb.herokuapp.com/users/' + id,
@@ -221,6 +255,9 @@
                             } else {
                                 $('.user-link')[0].click();
                             }
+                            $(".spinner").removeClass("d-flex");
+                            $(".spinner").hide()
+
                         })
                 })
         }
@@ -263,27 +300,27 @@
                         patchChat(result[0].id, resEdit);
                     })
             }
-
-            function patch(id, sendData, fId) {
-                $.ajax({
-                    method: "PATCH",
-                    url: `https://tokyochatappdb.herokuapp.com/requestsRecieved/${id}`,
-                    data: sendData
-                })
-                $.ajax({
-                    method: "PATCH",
-                    url: `https://tokyochatappdb.herokuapp.com/requestsSent/${id}`,
-                    data: sendData
-                })
-                $.ajax({
-                    method: "PATCH",
-                    url: `https://tokyochatappdb.herokuapp.com/friends/${fId}`,
-                    data: sendData
-                })
-
-            }
-            popFriend();
         }
+
+        function patch(id, sendData, fId) {
+            $.ajax({
+                method: "PATCH",
+                url: `https://tokyochatappdb.herokuapp.com/requestsRecieved/${id}`,
+                data: sendData
+            })
+            $.ajax({
+                method: "PATCH",
+                url: `https://tokyochatappdb.herokuapp.com/requestsSent/${id}`,
+                data: sendData
+            })
+            $.ajax({
+                method: "PATCH",
+                url: `https://tokyochatappdb.herokuapp.com/friends/${fId}`,
+                data: sendData
+            })
+
+        }
+
 
         function patchChat(id, data) {
             $.ajax({
