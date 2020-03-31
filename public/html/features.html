@@ -45,7 +45,7 @@
         </nav>
 
     </header>
-    <main>
+    <main class="mFeature">
         <section id="features">
             <div class="cardTitle">
                 <h3>FEATURES</h3>
@@ -89,9 +89,13 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.1/dist/jquery.validate.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.1/dist/additional-methods.min.js"></script>
-    <!-- <script src="./Js/userIndex.js"></script> -->
+    <script>
+        window.onclick = function (e) {
+            if (e.target !== $('.navbar-collapse')) {
+                $(".navbar-collapse").removeClass('show');
+            }
+        }
+    </script>
 </body>
 
 </html>

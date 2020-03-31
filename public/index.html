@@ -25,7 +25,7 @@
                 <h3> Tokyo ChatApp</h3>
             </div>
         </div>
-        <nav class="navbar navbar-expand-lg navbar-light ">
+        <nav class="navbar navbar-expand-lg navbar-light " id="navBar">
             <a class="navbar-brand" href="#" id="link">Tokyo ChatApp</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
                 aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -270,6 +270,12 @@
                 }
             })
         })
+
+        window.onclick = function (e) {
+            if (e.target !== $('.navbar-collapse')) {
+                $(".navbar-collapse").removeClass('show');
+            }
+        }
 
         function toggleReg() {
             // e.preventDefault()

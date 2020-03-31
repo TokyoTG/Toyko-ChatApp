@@ -34,8 +34,10 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
-                    <a class="nav-item nav-link logoutBtn" href="#" id="link">Home <span
+                    <a class="nav-item nav-link active" href="userPage.html" id="link"> User Home <span
                             class="sr-only">(current)</span></a>
+                    <span class="nav-item nav-link logoutBtn" id="link">Logout <span
+                            class="sr-only">(current)</span></span>
                     <a class="nav-item nav-link" href="../index.html" id="index" style="display: none;">Features</a>
                 </div>
             </div>
@@ -141,6 +143,14 @@
 
         )
 
+
+        $(".mainT").click(e => {
+            $(".navbar-collapse").removeClass('show');
+            $(".navbar-collapse").addClass('collapse');
+        })
+
+
+
         $('.btn-success').click(function (e) {
             e.preventDefault();
             $("#fR-link")[0].click();
@@ -173,7 +183,7 @@
 
             $.ajax({
                     method: 'GET',
-                    url: `https://tokyochatappdb.herokuapp.com/chats?userId=${userDetails.id}&chatId=${userDetails.id}`
+                    url: `https://tokyochatappdb.herokuapp.com/chats?chatId=${userDetails.id}`
                 })
                 .done(function (result) {
                     if (result.length) {
@@ -190,7 +200,7 @@
                                     <a href="chatPage.html" class="chats"
                                         onclick="getChatId(${result.id},'${resName}',${data.id})"><img
                                             src="../img/login_icon.png" alt="..."
-                                            class="profile-img">${resName}2</a>
+                                            class="profile-img">${resName}</a>
                                                                     </li>`)
                                 })
                         })
@@ -214,6 +224,11 @@
             if (event.target !== modal && event.target !== btn) {
                 $("#newSide").css("width", "0");
             }
+
+            if (event.target !== $('.navbar-collapse')) {
+                $(".navbar-collapse").removeClass('show');
+            }
+
         };
 
         function getChatId(id, name, cId) {

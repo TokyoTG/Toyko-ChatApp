@@ -140,15 +140,20 @@ $(".closeNav").click(function() {
 
 var modal = document.getElementById("newSide");
 var btn = document.getElementById("menuIcon");
+var nav = document.getElementById("navBar");
 
 window.onclick = function(event) {
   if (event.target !== modal && event.target !== btn) {
     $("#newSide").css("width", "0");
   }
+  if (event.target !== $(".navbar-collapse")) {
+    $(".navbar-collapse").removeClass("show");
+  }
 };
 
 $("#roomForm").submit(function(e) {
   e.preventDefault();
+  showLoading();
   let name, id, roomName, roomPurpose, roomObj, memData, adminData;
   let selectedFriends = Array.from(document.getElementsByClassName("sFriends"));
 
@@ -193,13 +198,16 @@ $("#roomForm").submit(function(e) {
             url: "https://tokyochatappdb.herokuapp.com/chatroomMembers",
             data: memData
           }).done(function() {
+            $(".createRoom").modal("hide");
             location.reload();
+            // document.getElementById("roomList").innerHTML = "";
+            // popRoomList();
           });
         }
       }
     });
+
     document.getElementById("friendList").innerHTML = "";
-    $(".createRoom").modal("hide");
     popFriend();
   });
 });
@@ -225,6 +233,14 @@ $(".logoutBtn").click(function() {
 $(".btn-danger").click(function() {
   $("#index")[0].click();
 });
+function showLoading() {
+  $(".spinner-border").show();
+  $(".close").hide();
+  setTimeout(() => {
+    $(".close").show();
+    $(".spinner-border").hide();
+  }, 4000);
+}
 
 function showSpinner() {
   $(".spinner").addClass("d-flex");
@@ -274,8 +290,8 @@ function unfriend(uId, senderId, eId, fname) {
       }
     });
 
-    document.getElementById("friendList").innerHTML = "";
-    popFriend();
+    // document.getElementById("friendList").innerHTML = "";
+    // popFriend();
   }
 }
 

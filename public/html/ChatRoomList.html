@@ -33,8 +33,10 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
-                    <a class="nav-item nav-link logoutBtn" href="#" id="link">Home <span
+                    <a class="nav-item nav-link" href="userPage.html" id="link">User Home <span
                             class="sr-only">(current)</span></a>
+                    <span class="nav-item nav-link logoutBtn" id="link">Logout <span
+                            class="sr-only">(current)</span></span>
                     <a class="nav-item nav-link" href="../index.html" id="index" style="display: none;"></a>
                 </div>
             </div>
@@ -89,7 +91,7 @@
         </section>
         <section class="card new">
 
-            <div class="d-flex align-items-center spinner">
+            <div class=" align-items-center spinner">
                 <strong>Loading...</strong>
                 <div class="spinner-border ml-auto" role="status" aria-hidden="true"></div>
             </div>
@@ -98,7 +100,7 @@
                 <ul class="list-group list-group-flush" id="roomList">
 
                 </ul>
-                <button class="btn btn-info btn-block">New chatroom +</button>
+                <button class="btn btn-info btn-block">New Chatroom <i class="fas fa-plus"></i> </button>
             </div>
         </section>
 
@@ -112,6 +114,9 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
+                    <!-- <div class="d-flex align-items-center processing"> -->
+                    <div class="spinner-border ml-auto" role="status" aria-hidden="true"></div>
+                    <!-- </div> -->
                 </div>
                 <div class="modal-body">
                     <form id="roomForm">
@@ -179,15 +184,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/additional-methods.min.js"></script>
     <script src="../Js/index.js"></script>
     <script>
-        // $(document).ready(function () {
-
-        //         popRoomList();
-        //     }
-
-        // )
-
-
-
         function storeRoomDetails(id, name, purpose) {
             let obj = {
                 roomId: id,
@@ -199,7 +195,10 @@
 
         $(".btn-info").click(e => {
             e.preventDefault();
+
+            $(".spinner-border").hide();
             $('.createRoom').modal('show');
+
         })
         $("#members").change(function (e) {
             e.preventDefault();

@@ -4,6 +4,10 @@
   box-sizing: border-box;
 }
 
+.navbar-collapse {
+  transition: 0.3s;
+}
+
 a {
   text-decoration: none;
   color: #263238;
@@ -422,8 +426,8 @@ CHAT PAGE
 }
 
 #wellBody {
-  height: 75%;
-  max-height: 75%;
+  height: 70%;
+  max-height: 70%;
   overflow: auto;
 }
 

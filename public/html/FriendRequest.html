@@ -33,8 +33,10 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
-                    <a class="nav-item nav-link logoutBtn" href="#" id="link">Home <span
+                    <a class="nav-item nav-link" href="userPage.html" id="link">User Home <span
                             class="sr-only">(current)</span></a>
+                    <span class="nav-item nav-link logoutBtn" id="link">Logout <span
+                            class="sr-only">(current)</span></span>
                     <a class="nav-item nav-link" href="../index.html" id="index" style="display: none;">Features</a>
                 </div>
             </div>
@@ -171,7 +173,7 @@
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/additional-methods.min.js"></script>
-    <!-- <script src="../Js/index.js"></script> -->
+
     <script>
         let userDetails = JSON.parse(localStorage.getItem("userData"));
         $(document).ready(function () {
@@ -192,6 +194,8 @@
                 $('.alert-success').hide();
             }, 3000);
         }
+
+
 
         function showSpinner() {
             $(".spinner").addClass("d-flex");
@@ -360,6 +364,9 @@
         window.onclick = function (event) {
             if (event.target !== modal && event.target !== btn) {
                 $("#newSide").css("width", "0");
+            }
+            if (event.target !== $('.navbar-collapse')) {
+                $(".navbar-collapse").removeClass('show');
             }
         };
     </script>

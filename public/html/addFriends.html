@@ -33,8 +33,10 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
-                    <a class="nav-item nav-link logoutBtn" href="#" id="link">Home <span
+                    <a class="nav-item nav-link" href="userPage.html" id="link">User Home <span
                             class="sr-only">(current)</span></a>
+                    <span class="nav-item nav-link logoutBtn" id="link">Logout <span
+                            class="sr-only">(current)</span></span>
                     <a class="nav-item nav-link" href="../index.html" id="index" style="display: none;">Features</a>
 
                 </div>
@@ -277,7 +279,11 @@
             }, 3000);
         }
 
-
+        window.onclick = function (e) {
+            if (e.target !== $('.navbar-collapse')) {
+                $(".navbar-collapse").removeClass('show');
+            }
+        }
 
         $(".spinner").removeClass("d-flex");
         $(".spinner").hide()
