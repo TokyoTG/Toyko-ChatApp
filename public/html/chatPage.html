@@ -152,12 +152,17 @@
         let recieverId = localStorage.getItem('recieverId');
         let recieverName = localStorage.getItem('recieverName');
         let chatId = localStorage.getItem('chatId');
-        let senderName = userDetails.firstname + ' ' + userDetails.lastname
+        let senderName = userDetails.firstname + ' ' + userDetails.lastname;
+
         $(document).ready(function () {
             popMsg();
         })
 
 
+        setInterval(function () {
+            document.getElementById("wellBody").innerHTML = '';
+            popMsg();
+        }, 5000);
 
         function popMsg() {
             $(".chatName").text(`${recieverName}`)

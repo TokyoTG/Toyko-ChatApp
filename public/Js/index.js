@@ -289,6 +289,7 @@ function unfriend(uId, senderId, eId, fname) {
         patchChat(result[0].id, resEdit);
       }
     });
+    location.reload();
 
     // document.getElementById("friendList").innerHTML = "";
     // popFriend();
